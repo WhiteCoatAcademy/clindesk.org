@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, request
+from flask import Flask, redirect, render_template, url_for, request
 app = Flask(__name__)
 
 # Set up logging in prod.
@@ -15,8 +15,8 @@ if not app.debug:
 
 
 @app.route("/")
-def hello():
-    return "Welcome to ClinDesk, staging. Now auto-deployed v2!"
+def welcome():
+    return render_template('index.html')
 
 # Random-ish URL triggers a git pull for the staging deployment, only.
 @app.route("/github-pull-on-commit-M9tmMWz4XI", methods=['POST'])
