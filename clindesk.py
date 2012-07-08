@@ -16,7 +16,7 @@ if not app.debug:
 
 @app.route("/")
 def hello():
-    return "Welcome to ClinDesk, staging. Now auto-deployed!"
+    return "Welcome to ClinDesk, staging. Now auto-deployed v2!"
 
 # Random-ish URL triggers a git pull for the staging deployment, only.
 @app.route("/github-pull-on-commit-M9tmMWz4XI")
