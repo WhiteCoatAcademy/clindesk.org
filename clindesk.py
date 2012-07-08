@@ -19,9 +19,9 @@ def hello():
     return "Welcome to ClinDesk, staging. Now auto-deployed v2!"
 
 # Random-ish URL triggers a git pull for the staging deployment, only.
-@app.route("/github-pull-on-commit-M9tmMWz4XI")
+@app.route("/github-pull-on-commit-M9tmMWz4XI", methods=['POST'])
 def github_pull_on_commit():
-    if request.method == "POST" and (request.environ['HTTP_X_REAL_IP'] in ('207.97.227.253', '50.57.128.197', '108.171.174.178')):
+    if request.environ['HTTP_X_REAL_IP'] in ('207.97.227.253', '50.57.128.197', '108.171.174.178'):
         import os
         if os.environ['SUPERVISOR_PROCESS_NAME'] == 'clindesk-staging':
             os.system('git reset --hard HEAD; git clean -f -d; git pull')
