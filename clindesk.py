@@ -25,7 +25,7 @@ def github_pull_on_commit():
         import os
         if os.environ['SUPERVISOR_PROCESS_NAME'] == 'clindesk-staging':
             os.system('git reset --hard HEAD; git clean -f -d; git pull')
-            # TODO: We need to change the bits for the next command!
+            # TODO: Change the security permissions to make this less sketchy.
             os.system('supervisorctl restart clindesk-staging')
             return "Pulling."
     return "Access denied."

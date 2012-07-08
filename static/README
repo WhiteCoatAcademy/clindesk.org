@@ -1,0 +1,3 @@
+Static files.
+TODO: Make nginx serve these via a subdomain.
+TODO-LATER: Enable s3 or CloudFront.
