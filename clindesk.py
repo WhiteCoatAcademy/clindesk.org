@@ -3,7 +3,7 @@ import urlparse
 from flask import Flask, redirect, render_template, url_for, request
 app = Flask(import_name=__name__, static_folder='s')
 
-# Set up logging in prod.
+# Set up logging in prod. This sends e-mail via Amazon SES.
 def register_email_logger():
     ADMINS = ['ec2-prodlogs@clindesk.org']
     import logging
@@ -11,13 +11,13 @@ def register_email_logger():
     mail_handler = SMTPHandler('email-smtp.us-east-1.amazonaws.com',
                                'ec2-crashes@clindesk.org',
                                ADMINS,
-                               'ClinDesk Prod Log',
+                               'ClinDesk Prod Crash',
                                ('AKIAIEBTTF4MLQZ3CPAQ', 'AsD8aexgu9TUcIRB1bHmfG/zF2YMyv3Bze5LTpQzw6p1'),
                                secure=())
-    mail_handler.setLevel(logging.ERROR)
+    mail_handler.setLevel(logging.WARNING)
     app.logger.addHandler(mail_handler)
 
-
+    
 # Settings based on prod/staging/dev
 supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
 if supervisor_name == 'clindesk-prod':
