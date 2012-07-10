@@ -72,8 +72,8 @@ def main():
     print('Starting instance, west')
     launchBaseInstance('ami-5d654018', 'us-west-1', 'clindesk-web-us-west-1')
 
-    print('Sleeping 15 seconds to wait for boot...')
-    time.sleep(15)
+    print('Sleeping 20 seconds to wait for boot...')
+    time.sleep(20)
 
     for host, key in NODES.iteritems():
         deploy(host, key)
