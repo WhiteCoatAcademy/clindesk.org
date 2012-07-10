@@ -170,10 +170,6 @@ def deploy(host_string, key_filename):
 
         sudo('invoke-rc.d supervisor start')
 
-        # Give supervisord bits to clindesk-staging
-        # TODO: Change this to something more secure!
-        sudo('chgrp clindesk-staging /run/supervisor.sock ; chmod g+rw /run/supervisor.sock');
-
         # Start nginx
         sudo('invoke-rc.d nginx start')
 
