@@ -3,27 +3,37 @@ import urlparse
 from flask import Flask, redirect, render_template, url_for, request
 app = Flask(import_name=__name__, static_folder='s')
 
-if os.environ.get('SUPERVISOR_PROCESS_NAME', False) == 'clindesk-staging':
-    app.config['STAGING'] = True
-else:
-    app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
-
 # Set up logging in prod.
-# TODO: Check this actually works w/ ec2 mail & firewall, etc.
-ADMINS = ['semenko+ec2crash@clindesk.org']
-if not app.debug:
+def register_email_logger():
+    ADMINS = ['ec2-prodlogs@clindesk.org']
     import logging
     from logging.handlers import SMTPHandler
-    mail_handler = SMTPHandler('aspmx.l.google.com',
-                               'ec2-crahes@clindesk.org',
-                               ADMINS, 'ClinDesk Prod Failure')
+    mail_handler = SMTPHandler('email-smtp.us-east-1.amazonaws.com',
+                               'ec2-crashes@clindesk.org',
+                               ADMINS,
+                               'ClinDesk Prod Log',
+                               ('AKIAIEBTTF4MLQZ3CPAQ', 'AsD8aexgu9TUcIRB1bHmfG/zF2YMyv3Bze5LTpQzw6p1'),
+                               secure=())
     mail_handler.setLevel(logging.ERROR)
     app.logger.addHandler(mail_handler)
+
+
+# Settings based on prod/staging/dev
+supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
+if supervisor_name == 'clindesk-prod':
+    register_email_logger()
+    app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
+elif supervisor_name == 'clindesk-staging':
+    app.config['STAGING'] = True
+else:
+    # We're probably in a local dev instance.
+    pass
+
 
 # Create a static() handler and send content to static.clindesk.org
 def static(path):
     root = app.config.get('STATIC_ROOT', None)
-    if root is None: # fallback on the normal way
+    if root is None: # Just use /s/ instead of CDN
         return url_for('static', filename=path)
     return urlparse.urljoin(root, path)
 
@@ -37,7 +47,6 @@ def inject_static():
 @app.route("/")
 def welcome():
     return render_template('index.html')
-
 
 
 
@@ -55,5 +64,5 @@ def github_pull_on_commit():
 if __name__ == "__main__":
     # This is fine for prod purposes:
     #   The prod servers run via gunicorn & gevent, which won't invoke __main__
-    app.config['STATIC_ROOT'] = None
     app.run(host='0.0.0.0', port=5000, debug=True)
+
