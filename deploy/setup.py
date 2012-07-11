@@ -9,27 +9,104 @@ import boto.ec2
 from boto.ec2.connection import EC2Connection
 from boto.ec2.blockdevicemapping import BlockDeviceType
 from boto.ec2.blockdevicemapping import BlockDeviceMapping
+import argparse
 import time
 import sys
 
-NODES = {
-    'ec2-us-east-1.clindesk.org': 'keys/clindesk-web-us-east-1.pem',
-    'ec2-us-west-1.clindesk.org': 'keys/clindesk-web-us-west-1.pem',
-    }
-
-
 def main():
-    """ Let's go to work! """
+    """
+    Dispatch our update/deploy jobs.
 
-    # Special IAM user: deploy-bot
-    # Access Key Id: AKIAJC43XOE4LZQBPETA
-    with open('.awskey', 'r') as secret_key:
-        conn = EC2Connection('AKIAJC43XOE4LZQBPETA', secret_key.readline())
+    Warning: This may cost you a money! EC2/AWS is not cheap -- be very careful!
+    """
 
-    regions = boto.ec2.regions()
-    print('Available regions: %s\n' % regions)
+    parser = argparse.ArgumentParser(description='The ClinDesk and WCA EC2/AWS management script.')
 
-    # Build a list of our instances
+    parser.add_argument('--launch', '-l', action='store_true', default=False,
+                        dest='launch_ec2',
+                        help='Launch EC2 instances.')
+
+    parser.add_argument('--no-terminate', action='store_true', default=False,
+                        dest='no_terminate',
+                        help='Skip instance termination.')
+
+    parser.add_argument('--no-eip-switch', action='store_true', default=False,
+                        dest='no_eip_switch',
+                        help='Don\'t re-associate the EIP assignments.')
+
+    parser.add_argument('--no-setup', action='store_true', default=False,
+                        dest='no_setup',
+                        help='Don\'t setup the nodes in any way.')
+
+    args = parser.parse_args()
+
+    if args.launch_ec2:
+        print('Preparing to deploy EC2 instances.')
+
+        # Connect
+        print('Connecting to AWS...')
+        # Special IAM user: deploy-bot
+        # Access Key Id: AKIAJC43XOE4LZQBPETA
+        with open('.awskey', 'r') as secret_key:
+            conn = EC2Connection('AKIAJC43XOE4LZQBPETA', secret_key.readline())
+
+        regions = boto.ec2.regions()
+        print('Available regions: %s\n' % regions)
+
+
+        # Get a list of our instances
+        print('Getting list of our instances...')
+        instances = list_our_instances(conn, regions)
+
+
+        # Run our instances
+        print('Deploying two instances...')
+        print('Starting instance, east')
+        east_conn, east_instance = launchBaseInstance('ami-8cfa58e5', 'us-east-1', 'clindesk-web-us-east-1')
+
+        print('Starting instance, west')
+        west_conn, west_instance = launchBaseInstance('ami-5d654018', 'us-west-1', 'clindesk-web-us-west-1')
+
+        if not args.no_setup:
+            print('Setting up nodes.')
+            print('Sleeping 20 seconds to wait for boot...')
+            time.sleep(20)
+
+            # TODO: Modularize this.
+            deploy(east_instance, 'keys/clindesk-web-us-east-1.pem')
+            deploy(west_instance, 'keys/clindesk-web-us-west-1.pem')
+        else:
+            print('*** Skipping node setup. Good luck, Jedi.')
+
+        # Let's move EIPs now, to decrease downtime
+        #  Not sure if AWS EIP transfers are seamless.
+        if not args.no_eip_switch:
+            print('Moving EIPs to new instances.')
+            print('\tMoving East EIP...')
+            transfer_EIPs(east_conn, east_instance)
+            print('\tMoving West EIP...')
+            transfer_EIPs(west_conn, west_instance)
+        else:
+            print('*** Leaving EIPs in place. Are you sure you wanted that?')
+
+        # Should we terminate existing instances?
+        if not args.no_terminate:
+            print('Terminating existing EC2 instances.')
+            terminate_connections(instances)
+        else:
+            print('***** WARNING ******')
+            print('You have asked to not terminate existing instances.')
+            print('*** THIS MAY BE VERY EXPENSIVE! BE CAREFUL! ***')
+
+    else:
+        print('Doing nothing. Type -h for help.')
+
+    return True
+
+
+def list_our_instances(conn, regions):
+    """ List all EC2 instances we own in every region. """
+
     connections = {}
     for region in regions:
         print('Region %s' % region)
@@ -48,11 +125,10 @@ def main():
                 running += 1
         print('** %s instances running in %s\n\n' % (running, region))
 
-    print('---------------------------------------')
-    raw_input('Press any key to terminate all instances. Ctrl-C to abort.')
-    raw_input('Last chance!')
-    print('')
+    return connections
 
+
+def terminate_connections(connections):
     # Kill existing running instances
     for k, v in connections.iteritems():
         kill_list = []
@@ -65,21 +141,11 @@ def main():
             v['conn'].terminate_instances(kill_list)
             print('')
 
-    # Start two nodes
-    print('Starting instance, east')
-    launchBaseInstance('ami-8cfa58e5', 'us-east-1', 'clindesk-web-us-east-1')
-
-    print('Starting instance, west')
-    launchBaseInstance('ami-5d654018', 'us-west-1', 'clindesk-web-us-west-1')
-
-    print('Sleeping 20 seconds to wait for boot...')
-    time.sleep(20)
-
-    for host, key in NODES.iteritems():
-        deploy(host, key)
+    print('All done!')
+    return True
 
 
-# Launch an instance and associate EIPs
+# Launch an instance
 def launchBaseInstance(ami, placement, key_name):
     conn = boto.ec2.connect_to_region(placement)
     reservation = conn.run_instances(ami, instance_type='t1.micro', key_name=key_name, security_groups=['clindesk-web'])
@@ -100,19 +166,25 @@ def launchBaseInstance(ami, placement, key_name):
         print('New instance "' + instance.id + '" accessible at ' + instance.public_dns_name)
     else:
         print('Instance status: ' + status)
+    return conn, instance
 
-    # Associate elastic ip. This can only handle one.
+# Transfer EIPs
+def transfer_EIPs(conn, instance):
+    """ Associate elastic ip. This can only handle one. """
     eips = conn.get_all_addresses()
     if len(eips) == 1:
-        print('Associating elastic ip: %s\n' % eips[0])
+        print('\tAssociating elastic ip: %s\n' % eips[0])
         eips[0].associate(instance.id)
     else:
-        print('Too many EIPs allocated!! %s\n' % eips)
+        print('**** OMG **** Too many EIPs allocated!! %s\n' % eips)
+        print('Fix this by hand. Now.')
     return
 
 
 # FAB deploy and install things
-def deploy(host_string, key_filename):
+# TODO: Modularize this more
+def deploy(instance, key_filename):
+    host_string = instance.public_dns_name
     print host_string
     print key_filename
     with settings(host_string=host_string, user = "ubuntu", key_filename=key_filename):
