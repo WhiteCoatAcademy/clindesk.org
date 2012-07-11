@@ -1,7 +1,7 @@
 import os
 import re
 import urlparse
-from flask import Flask, make_response, redirect, render_template, url_for, request
+from flask import Flask, make_response, redirect, render_template, request, url_for
 app = Flask(import_name=__name__, static_folder='s')
 
 # Set up logging in prod. This sends e-mail via Amazon SES.
@@ -116,10 +116,18 @@ def clicked_disclaimer():
     return resp
 
 
+@app.errorhandler(404)
+def page_not_found(error):
+    """ Return our generic error page. """
+    app.logger.debug("Error %s loading page." % (error,))
+    return render_template('errors/404.html'), 404
+
+
 # Strip non-alnum
 pattern = re.compile('[\W+]')
 def alnum_only(input):
     return pattern.sub('', input)
+
 
 # Random-ish URL triggers a git pull for the staging deployment, only.
 @app.route("/github-pull-on-commit-M9tmMWz4XI", methods=['POST'])
