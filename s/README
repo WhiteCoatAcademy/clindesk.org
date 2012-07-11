@@ -1,3 +1,6 @@
 Static files.
-TODO: Make nginx serve these via a subdomain.
-TODO-LATER: Enable s3 or CloudFront.
+
+These are served via Flask if you run your dev instance locally.
+
+These are served via nginx on staging & prod, and the static images are pushed to static.clindesk.org w/ AWS CloudFront.
+

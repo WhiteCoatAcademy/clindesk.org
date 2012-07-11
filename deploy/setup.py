@@ -2,7 +2,6 @@
 # Deploy ClinDesk & WCA nodes on EC2
 # Author: semenko
 #
-# TODO: Make this not a hackjob.
 
 from fabric.api import *
 import boto.ec2
@@ -200,7 +199,11 @@ def deploy(instance, key_filename):
             with cd('/home/' + username + '/'):
                 sudo('virtualenv .', user=username)
                 sudo('mkdir -p .ssh', user=username)
+                # TODO: Put in the real SSH key here.
                 sudo('echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/' + username + '/.ssh/config', user=username)
+                # TODO: System-wide pip install? Is that cool?
+                # Maybe nested virtual envs?
+                # See: http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
                 virtualenv('/home/' + username + '/', username, 'pip install gunicorn gevent greenlet flask')
 
             # TODO: Move this somewhere
@@ -217,33 +220,40 @@ def deploy(instance, key_filename):
             # We put w/ sudo so the executable file is not editable. Not sure about the supervisor hierarchy.
             put('scripts/run_gunicorn_' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
 
-            # Add the nginx config
-            sudo('rm -f /etc/nginx/sites-enabled/nginx_' + username + '.conf')
-            put('conf/nginx_' + username + '.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
-            sudo('ln -s /etc/nginx/sites-available/nginx_' + username + '.conf /etc/nginx/sites-enabled/')
-
-            # Add the supervisord config
-            put('conf/supervisord_' + username + '.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
 
 
-        # Deploy our two apps
+        #### Deploy our two branches
         deploy_app('clindesk-prod', 'prod')
         deploy_app('clindesk-staging', 'master')
 
-        # Stop supervisord.
-        sudo('invoke-rc.d supervisor stop')
+
+        #### Set up supervisord
+
+        # General config
+        sudo('rm /etc/supervisor/supervisord.conf')
+        put('conf/supervisord.conf','/etc/supervisor/', use_sudo=True, mode=0444)
+
+        # Clindesk config
+        put('conf/supervisord_cd.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
+
+        sudo('supervisorctl reload')
+
+
+        #### Set up nginx
 
         # Drop the nginx default config
         sudo('rm -f /etc/nginx/sites-enabled/default')
 
-        # A general supervisord config file
-        sudo('rm /etc/supervisor/supervisord.conf')
-        put('conf/supervisord.conf','/etc/supervisor/', use_sudo=True, mode=0444)
-
-        sudo('invoke-rc.d supervisor start')
-
+        # Add the nginx ClinDesk config
+        sudo('rm -f /etc/nginx/sites-enabled/nginx_cd.conf')
+        put('conf/nginx_cd.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
+        sudo('ln -s /etc/nginx/sites-available/nginx_cd.conf /etc/nginx/sites-enabled/')
+        
         # Start nginx
         sudo('invoke-rc.d nginx start')
+
+
+
 
 def virtualenv(envpath, user, command):
     with cd(envpath):
