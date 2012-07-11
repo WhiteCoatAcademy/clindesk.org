@@ -155,8 +155,8 @@ def deploy(host_string, key_filename):
 
 
         # Deploy our two apps
-        deploy_app('clindesk-prod', 'master')
-        deploy_app('clindesk-staging', 'staging')
+        deploy_app('clindesk-prod', 'prod')
+        deploy_app('clindesk-staging', 'master')
 
         # Stop supervisord.
         sudo('invoke-rc.d supervisor stop')
