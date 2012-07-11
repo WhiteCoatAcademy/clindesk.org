@@ -2,21 +2,6 @@
 
 This is the core repository, which holds all components necessary for both sites.
 
-Be sure to use the staging branch!
-----------------------------------
-1. `git checkout staging`
-2. Do some work.
-3. `git add YOURFILES` and `git commit` then `git push`
-
-When you're ready to push to master (e.g. your changes didn't break the main site), do:
-1. `git checkout master`
-2. `git merge -Xtheirs staging`
-3. `git push`
-4. And be sure to get back on staging! `git checkout staging`
-
-I might change this, so that master is the "staging" site, and a "prod" branch is live.
-
-
 ## Overview
 
 The magic happens in:
@@ -36,4 +21,12 @@ If you want to run them on your machine, try `sudo pip install flask` then run `
   * [Jinja2](jinja.pocoo.org) templates for Flask.
 * /deploy/
   * Deploy scripts for EC2/AWS magic. Don't do things here.
+
+## Pushing to Master
+When you're ready to push to production (e.g. push your changes to the main site, not just staging):
+1. `git checkout prod`
+2. `git merge -Xtheirs master`
+3. `git push`
+4. And be sure to get back on the master branch with `git checkout master`
+
 
