@@ -45,9 +45,24 @@ def inject_static():
 
 # The main URL settings go here
 @app.route("/")
-def welcome():
+@app.route("/index.html") # TODO: Standardize toplevel url.
+def page_index():
     return render_template('index.html')
 
+# Support & Donate
+@app.route("/support.html")
+def page_support():
+    return render_template('support.html')
+
+# Help & FAQ
+@app.route("/help.html")
+def page_help():
+    return render_template('help.html')
+
+# About Us
+@app.route("/about.html")
+def page_about():
+    return render_template('about.html')
 
 
 # Random-ish URL triggers a git pull for the staging deployment, only.

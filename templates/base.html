@@ -107,25 +107,24 @@
           <div class="container">
             <div class="row-fluid  tagline">
               <div class="span8"><h2>{% block tagline_text %}overwrite this tagline_text block{% endblock %}</h2></div>
-               {% comment %} <div class="span4 action">
+<!--               <div class="span4 action">
                   <div>
                     <a href="#" class="btn first btn-success">Learn More</a>
                     <span>or</span>
                     <a href="#" class="btn btn-info">Contact Us</a>
                   </div>
-                </div>  {% endcomment %}
+                </div>  //-->
             </div>
           </div> <!-- /container -->
         </section>
 
 
-{% comment %}This is the main content area. Not sure the best way to modularize this.{% endcomment %}
 {% block maincontent %}{% endblock %}
 
     <!--footer-->
     <footer>
-		{% comment %}
 		<!--footer testimonail-->
+<!--
 		<section class="testimonial">
 			<div class="container">
 				<div class="row-fluid">
@@ -136,19 +135,15 @@
 
 			</div>
 		</section>
-		{% endcomment %}
-
-{% comment %} No great way to deal with this. Commented the section, since it adds a cute blue bar thing. {% endcomment %}
+	//-->
+<!-- No great way to deal with this. Commented the section, since it adds a cute blue bar thing. //-->
 		<section class="footerMain">
-        {% comment %}
+
+<!--
 			<div class="container">
 				<div class="row-fluid">
 
-					<!--footer main columns-->
-					
 					<div class="span3">
-						
-						<!--newsletter widget-->
               
                         <div class="widget widget_newsletter">
                           <h3>Newsletter</h3>
@@ -163,14 +158,11 @@
                           </form>
                           <p class="outro">Don't worry, your details are safe with us. For more info. read our <a href="#">privacy policy</a></p>
                         </div>
-                        <!--end widget-->
 							
 						</div>
 						
                           
                         <div class="span6">
-							
-							<!--recent posts widget-->
 							
 							<div class="widget widget_recent_entries">
 								<h3>Recent Posts <a href="#"><span class="label">Visit The Blog</span></a></h3>
@@ -193,23 +185,19 @@
 									
 								</ul>
 							</div>  
-							<!--end widget-->
 							
 						</div>
 						
 						<div class="span3 last">
 							
-							<!--footer logo-->
 							<a href="index.html" class="logo-foot" title="Home"><img src="{{ static('img/content/logo_footer.png') }}" alt="mentor logo" /></a>
 							
-							<!--stats widget-->
 							<div class="widget widget_stats ">
 								<a href="#">8,350<span>RSS</span></a>
 								<a href="https://twitter.com/#!/pixelentity">4,170<span>Followers</span></a>
 								<a class="last" href="blog_main.html">250<span>Articles</span></a>
 							</div>
-							
-							<!--links widget-->
+
 							<div class="widget widget_links">
 								<h3>Links</h3>
 								<ul>
@@ -221,7 +209,7 @@
 						</div>
 					</div>
 				</div>
-                {% endcomment %}
+//-->
 			</section>
 
 			<!--footer lower-->
