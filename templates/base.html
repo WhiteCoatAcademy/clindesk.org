@@ -1,0 +1,261 @@
+<!DOCTYPE HTML>
+<!--[if IE 7 ]>    <html class="ie7 no-js" lang="en"> <![endif]-->
+<!--[if IE 8 ]>    <html class="ie8 no-js" lang="en"> <![endif]-->
+<!--[if IE 9 ]>    <html class="ie9 no-js" lang="en"> <![endif]--> 
+<!--[if (gte IE 9)|!(IE)]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+    <meta charset="utf-8" />
+    <title>{% block title %}{% endblock %} &mdash; ClinDesk, Inc.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="{% block description %}{% endblock %}" />
+    <meta name="author" content="{% block author %}{% endblock %}" />
+
+    <!-- CSS styles -->
+    <link href="{{ static('css/mentor.min.css') }}" rel="stylesheet"/>
+    <link href="{{ static('css/skin_blue.css') }}" rel="stylesheet"/>
+
+	<!-- http://remysharp.com/2009/01/07/html5-enabling-script/ -->
+	<!--[if lt IE 9]>
+		<script type="text/javascript">/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary subline time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
+	<![endif]-->
+	<script type="text/javascript">(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
+
+    <!-- favicon & iSO touch icons -->
+    <link rel="shortcut icon" href="{{ static('favicon.jpg') }}" />
+</head>
+
+<body>
+    
+    <!--header and menu-->
+    <header class="navbar navbar-fixed-top" id="top">
+		<div class="navbar-inner">
+			<div class="container">
+				<a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+					<span class="btnTitle">Menu</span>
+					<span class="icon-chevron-down icon-white"></span>
+				</a>
+				<a class="brand" href="index.html" title="Home"><img src="{{ static('img/content/logo.png') }}" alt="mentor" /></a>
+				<div class="nav-collapse">
+
+                    <div class="smedia widget widget_search">
+                      <form class="form-inline" action="#" id="searchform" method="get" role="search">
+                          <input type="text" class="input-medium span3"  placeholder="Search...">
+                          <button class="icon-search" type="submit"></button>
+                      </form>
+
+                  </div>
+
+					<!--main nav-->
+<ul class="nav">
+	<li><a href="index.html">Home</a></li>
+	<li class="dropdown">
+		<a href="diseases.html">Diseases<b class="caret"></b></a>
+		<ul class="dropdown-menu">  
+			<li><a href="full_width.html">Full Width</a></li>
+			<li><a href="sidebar_right.html">Right Sidebar</a></li>
+			<li><a href="sidebar_left.html">Left Sidebar</a></li>
+			<li><a href="faq.html"><i class="icon-question-sign icon-white"></i> &nbsp; FAQs</a></li>
+			<li><a href="404.html">404 Page</a></li>
+			<li><a href="search_results.html">Search Results <span class="badge badge-warning">10</span></a></li>
+			<li class="divider"></li>
+			<li>
+				<a href="#">3rd-level Submenu <span class="icon-chevron-right icon-white"></span></a>
+				<ul class="dropdown-menu sub-menu">
+					<li><a href="#">Action</a></li>
+					<li><a href="#">Another action</a></li>
+					<li><a href="#">Something else here</a></li>
+					<li class="divider"></li>
+					<li class="nav-header">Nav header</li>
+					<li><a href="#">Separated link</a></li>
+					<li><a href="#">One more separated link</a></li>
+				</ul>
+			</li>
+		</ul>
+	</li>
+	<li class="dropdown">
+		<a href="pharm.html">Drugs &amp; Pharm<b class="caret"></b></a>
+		<ul class="dropdown-menu">
+			<li><a href="portfolio_1.html"><i class="icon-th-list icon-white"></i> &nbsp; 1 Column <span class="badge badge-important">1</span></a></li>
+			<li><a href="portfolio_2.html">2 Columns</a></li>
+			<li><a href="portfolio_3.html">3 Columns</a></li>
+			<li><a href="portfolio_4.html">4 Columns</a></li>
+			<li><a href="portfolio_6.html"><i class="icon-th icon-white"></i> &nbsp; Thumbs Grid</a></li>
+			<li class="divider"></li>
+			<li class="nav-header">Projects</li>
+			<li><a href="project_single.html">Project Page <span class="label label-info">Images</span></a></li>
+			<li><a href="project_single_slider.html">Project Page <span class="label label-warning">Slider</span></a></li>
+			<li><a href="project_single_video.html">Project Page <span class="label label-important">Video</span></a></li>
+		</ul>
+	</li>
+	<li class="dropdown"><a href="support.html">Support Us</a>
+	</li>
+    <li>
+   		<a href="help.html">Help &amp; FAQ</a>
+   	</li>
+	<li class="last"><a href="about.html">About</a></li>
+</ul>
+<!--end main nav-->
+					
+					
+				</div><!--end main menu-->
+				
+			</div>
+		</div>
+    </header>
+<!-- The tagline is the huge grey banner, right under the navbar. //-->
+    <section class="taglineWrap">
+          <div class="container">
+            <div class="row-fluid  tagline">
+              <div class="span8"><h2>{% block tagline_text %}overwrite this tagline_text block{% endblock %}</h2></div>
+               {% comment %} <div class="span4 action">
+                  <div>
+                    <a href="#" class="btn first btn-success">Learn More</a>
+                    <span>or</span>
+                    <a href="#" class="btn btn-info">Contact Us</a>
+                  </div>
+                </div>  {% endcomment %}
+            </div>
+          </div> <!-- /container -->
+        </section>
+
+
+{% comment %}This is the main content area. Not sure the best way to modularize this.{% endcomment %}
+{% block maincontent %}{% endblock %}
+
+    <!--footer-->
+    <footer>
+		{% comment %}
+		<!--footer testimonail-->
+		<section class="testimonial">
+			<div class="container">
+				<div class="row-fluid">
+					<div class="span9"><blockquote><p>"Allow us to help you, to help your busines! Call us on <span class="tel">+0044 1034 5623</span> or get in touch via email at <a href="#">mentor@mentorbiz.com</a>"</p><small class="pull-right">Jane Tae, Customer Service</small></blockquote></div>
+					<div class="span3 mugshot"><img src="{{ static('img/content/client_mug2.png') }}" alt="client" /></div>
+				</div>
+
+
+			</div>
+		</section>
+		{% endcomment %}
+
+{% comment %} No great way to deal with this. Commented the section, since it adds a cute blue bar thing. {% endcomment %}
+		<section class="footerMain">
+        {% comment %}
+			<div class="container">
+				<div class="row-fluid">
+
+					<!--footer main columns-->
+					
+					<div class="span3">
+						
+						<!--newsletter widget-->
+              
+                        <div class="widget widget_newsletter">
+                          <h3>Newsletter</h3>
+                          <p>Lorem ipsum dolor sit amet, consec tetue adipiscing elit. Donec odio. Quis que vol utpat mattis eros. Nullam mal.</p>
+                          <form class="form-inline newsletter" action="php/newsletter.php" id="newsletterform" method="get" data-subscribed="Thank You" >
+                              <div class="control-group">
+                                  <div class="input-append">
+                                      <input type="text" name="email" class="input-medium span2"  placeholder="Newsletter.."/>
+                                      <button class="btn" type="submit">Signup</button>
+                                  </div>
+                              </div>
+                          </form>
+                          <p class="outro">Don't worry, your details are safe with us. For more info. read our <a href="#">privacy policy</a></p>
+                        </div>
+                        <!--end widget-->
+							
+						</div>
+						
+                          
+                        <div class="span6">
+							
+							<!--recent posts widget-->
+							
+							<div class="widget widget_recent_entries">
+								<h3>Recent Posts <a href="#"><span class="label">Visit The Blog</span></a></h3>
+								<ul>
+									<li>
+										<a class="thumb" href="blog_post_gallery_fullscreen.html"><img src="{{ static('img/content/recent_thumb2.jpg') }}" alt="thumb" /></a>
+										<div>
+											<a class="title" href="blog_post_gallery_fullscreen.html">The Autumn Of Your Business..</a>
+											<p>Lorem ipsum dolor sit amet, consecte tuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.</p>
+										</div>
+									</li>
+									
+									<li class="last">
+										<a class="thumb" href="blog_post_gallery_thumbs.html"><img src="{{ static('img/content/recent_thumb1.jpg') }}" alt="thumb" /></a>
+										<div>
+											<a class="title" href="blog_post_gallery_thumbs.html">Teach A Man To Fish..</a>
+											<p>Lorem ipsum dolor sit amet, consecte tuer adipiscing elit. Phasellus hendrerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet.</p>
+										</div>
+									</li>
+									
+								</ul>
+							</div>  
+							<!--end widget-->
+							
+						</div>
+						
+						<div class="span3 last">
+							
+							<!--footer logo-->
+							<a href="index.html" class="logo-foot" title="Home"><img src="{{ static('img/content/logo_footer.png') }}" alt="mentor logo" /></a>
+							
+							<!--stats widget-->
+							<div class="widget widget_stats ">
+								<a href="#">8,350<span>RSS</span></a>
+								<a href="https://twitter.com/#!/pixelentity">4,170<span>Followers</span></a>
+								<a class="last" href="blog_main.html">250<span>Articles</span></a>
+							</div>
+							
+							<!--links widget-->
+							<div class="widget widget_links">
+								<h3>Links</h3>
+								<ul>
+									<li><a href="https://twitter.com/#!/ClinDesk">Follow us on Twitter</a><span>&rarr;</span></li>
+									<li><a href="http://pixelentity.com">Freebies on pixelentity.com</a><span>&rarr;</span></li>
+									<li><a href="http://themeforest.net/user/pixelentity">Join us on Envato</a><span>&rarr;</span></li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+                {% endcomment %}
+			</section>
+
+			<!--footer lower-->
+			<section class="footerLower">
+				<div class="container">
+					<div class="row-fluid">
+						<div class="span3 copyright"><p>&copy; 2012 ClinDesk</p></div>
+						<div class="span6 footNav">
+							<a class="first" href="index.html">Home</a><span>&#124;</span>
+							<a href="full_width.html">Diseases</a><span>&#124;</span>
+							<a href="elements.html">Drugs &amp; Pharm</a><span>&#124;</span>
+							<a href="portfolio_3.html">Donate</a><span>&#124;</span>
+							<a href="blog_main.html">Help &amp; FAQ</a><span>&#124;</span>
+							<a href="contact.html">About</a>
+						</div>
+						<div class="span3 smedia">
+                          <a href="#" data-rel="tooltip" title="Facebook"  class="sm-icon sm-icon-facebook"></a>
+                            <a href="#" data-rel="tooltip" data-position="bottom" title="Get RSS Feed"  class="sm-icon sm-icon-rss"></a>
+                            <a href="contact.html" data-rel="tooltip" data-position="bottom" title="Quick Email"  class="sm-icon sm-icon-email"></a>
+                            <a href="https://twitter.com/#!/pixelentity" data-position="bottom" data-rel="tooltip" title="Follow Us"  class="sm-icon sm-icon-twitter"></a>
+                        </div>
+					</div>
+				</div>
+			</section>
+			
+			
+			
+		</footer>
+
+		<!--back to top button-->
+		<a href="#top" id="peBackToTop" class="label btt disabled"><span class="icon-chevron-up icon-white"></span></a>
+
+		<!-- import minified javascript -->
+        <script type="text/javascript" src="{{ static('js/mentor.min.js') }}"></script>
+
+	</body>
+</html>
