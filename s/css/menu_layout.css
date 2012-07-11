@@ -1,0 +1,417 @@
+/*
+    Main Menu Layout CSS
+    Theme Name: Mentor
+    Description: A Business Minded WordPress Theme 
+    Author: Pixelentity
+    Email: helpdesk@pixelentity.com
+    Website: http://pixelentity.com/
+    Stock: http://themeforest.net/user/pixelentity
+    Version: 1.0
+*/
+
+    .navbar-fixed-top{
+        position:relative;
+        margin-bottom:0;
+    }
+    
+    .navbar .brand{
+        padding:0;
+        margin-left:0px;
+        bottom:0;
+    }
+    
+    .navbar .nav{
+        float:right;
+        margin-top:83px;
+    }
+    
+    .navbar .nav > li{
+        margin-right:15px;
+    }
+    
+    .navbar .nav > li > a{
+        padding:8px 10px;
+    }
+    
+    .navbar .nav > li.last{
+        margin-right:0;
+    }
+    
+    .dropdown .caret{
+        margin-left:8px;
+        margin-top:9px;
+    }
+    
+    .navbar .dropdown-menu:after,
+    .navbar .dropdown-menu:before{
+        content:none;
+        border:none;
+    }
+    
+    .navbar .dropdown-menu{
+        margin-top:-2px;
+        position:absolute;
+        left:-9999px !important;
+    }
+    
+    
+    .navbar .dropdown-menu a{
+        padding:5px 15px;
+    }
+    
+    .navbar .nav > li.dropdown:hover > .dropdown-menu{
+        left:0 !important;
+    }
+    
+    .navbar .nav > li.dropdown:hover .dropdown-menu.rightAlign{
+        right:0 !important;
+        left:auto !important;
+    }
+    
+    
+    
+    
+    /*3rd level*/
+    .dropdown-menu a span{
+        margin-top:2px;
+        margin-left:5px;
+    }
+    
+    .dropdown-menu.sub-menu {
+        left:-9999px !important;
+        position: absolute;
+        top: 0;
+        visibility: hidden;
+        display:none !important;
+        margin-top:-6px;
+    }
+    
+    .dropdown-menu .sub-menu {
+        left:-9999px !important;
+        position:absolute;
+    }
+    
+    .dropdown-menu li{
+        position:relative !important;
+    }
+    
+    .dropdown-menu li:hover .sub-menu {
+        visibility: visible;
+        display:block;
+        left:100% !important;
+        position:absolute !important;
+    }
+    
+    .rightAlign li:hover .sub-menu {
+        left:-101% !important;
+        position:absolute !important;
+    }
+    
+    .navbar .nav > li.dropdown ul.dropdown-menu li:hover .rightAlign.sub-menu {
+        left:-101% !important;
+        right:auto !important;
+        position:absolute !important;
+        min-width:162px;
+    }
+
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+    
+    .navbar .nav .nav-header {
+        display: block;
+        padding: 3px 15px;
+    }
+    
+    
+    /*transitions*/
+    
+    .navbar .nav .dropdown-menu,
+    .navbar .nav .dropdown-menu .sub-menu{
+        display:block !important;
+        visibility:hidden;
+        opacity:0;
+        -webkit-transition: opacity 0.2s linear;  
+		   -moz-transition: opacity 0.2s linear;  
+			-ms-transition: opacity 0.2s linear;  
+			 -o-transition: opacity 0.2s linear;  
+				transition: opacity 0.2s linear;
+                
+    }
+    
+    .navbar .nav > li.dropdown:hover > .dropdown-menu,
+    .navbar .nav .dropdown-menu li:hover .sub-menu{
+        display:block;
+        opacity:1 !important;
+        visibility:visible;
+    }
+    
+    
+    
+    /*x-large desktop*/
+    /*----------------------------------------------------------------------*/
+    
+    @media (min-width: 1200px) {
+        
+    }
+    
+    
+
+    /*normal desktop*/
+    /*----------------------------------------------------------------------*/
+    @media (min-width: 980px) {
+        
+        .navbar .nav-collapse{
+            height:auto !important;
+        }
+    }
+    
+    
+    
+    
+    /*tablet landscape*/
+    /*----------------------------------------------------------------------*/
+    @media (max-width: 979px) {
+        
+    }
+    
+    
+    /*iPad portrait*/
+    /*----------------------------------------------------------------------*/
+    @media (min-width: 768px) and (max-width: 979px) {
+        
+        .navbar .nav-collapse{
+            height:auto !important;
+            clear:none;
+            overflow:visible;
+        }
+        
+        .navbar-inner .container{
+            width: 724px;
+            margin-left:auto;
+            margin-right:auto;
+        }
+        
+        .btn-navbar {
+            display: none;
+        }
+        
+        .navbar-fixed-top .navbar-inner{
+            padding:0;
+        }
+        
+        .navbar .nav{
+            margin-bottom:0;
+            margin-right:0;
+            margin-top:78px;
+        }
+        
+        .navbar .nav > li {
+            float:left;
+            margin-right:0;
+        }
+        
+        .navbar .nav > li > a {
+            margin-bottom:0;
+            padding: 10px 10px 11px;
+        }
+        
+        .navbar .brand{
+            margin-left:0;
+        }
+        
+        .navbar .nav > li.dropdown:hover .dropdown-menu{
+            display:block !important;
+        }
+        
+        .navbar .dropdown-menu{
+            display:none;
+            float: left;
+            left: 0;
+            margin:0 !important;
+            margin-top: -2px !important;
+            min-width: 160px;
+            padding: 4px 0;
+            position: absolute;
+            top: 100%;
+            z-index: 1000;
+        }
+        
+        
+        
+        .navbar .dropdown-menu a:hover {
+          background-color: #9aae4c;
+        }
+        
+        .navbar .dropdown-menu .divider {
+            display: block;
+        }
+        
+        .navbar .nav > li.dropdown:hover .dropdown-menu{
+            display:block !important;
+        }
+        
+        /*3rd level menu*/
+        
+        .dropdown-menu .sub-menu {
+            left: 100%;
+            position: absolute;
+            top: 0;
+            visibility: hidden;
+            display:none;
+            margin-top: -6px !important;
+        }
+    }
+    
+    
+    /*iphone landscape*/
+    /*----------------------------------------------------------------------*/
+    @media (max-width: 767px) {
+        
+        .reporter .max767{
+            display:block;
+        }
+        
+        .navbar-fixed-top .navbar-inner{
+            padding-bottom:0;
+        }
+        
+        .navbar .nav .dropdown-menu,
+        .navbar .nav .dropdown-menu .sub-menu{
+            display:block !important;
+            visibility:visible !important;
+            opacity:1 !important;  
+        }
+        
+        /*navbar dropdown btn*/
+        
+        .navbar .btn, .navbar .btn-group {
+            margin-top: 10px;
+            margin-right:0;
+            padding:4px 10px;
+        }
+        
+        .btn-navbar .btnTitle{
+            margin-right:8px;
+        }
+        
+        .navbar .brand img{
+            display:none;
+        }
+        
+        .navbar .brand{
+            height:30px;
+            width:140px;
+            margin: 8px 10px 0 0;
+            padding-bottom:8px;
+        }
+        
+        .navbar .nav{
+            float:none;
+            margin-top:15px;
+        }
+        
+        .navbar .nav > li{
+            margin-right:0;
+        }
+        
+        .navbar .nav > li.last{
+            margin-right:0px;
+        }
+        
+        .navbar .dropdown-menu{
+            margin:0;
+            margin-top:-1px;
+            position:static;
+        }
+        
+        .navbar .dropdown-menu li + li a{
+            margin:0;
+        }
+        
+        .navbar .dropdown-menu li a{
+            padding-left:20px;
+        }
+        
+        /*3rd level menu*/
+        
+        .dropdown-menu .sub-menu {
+            position: static !important;
+            top: auto;
+            opacity:1 !important;
+            visibility: visible !important;
+            display: block !important;
+            float: none;
+            left: auto;
+        }
+        
+        .dropdown-menu .sub-menu li a{
+            padding-left:30px;
+        }
+        
+        .dropdown-menu li a span{
+            /*display:none;*/
+        }
+        
+        .navbar .nav .nav-header {
+            padding-left:20px;
+        }
+        
+        .dropdown-menu .sub-menu .nav-header{
+            padding-left:30px;
+        }
+        
+        /*reset rightalign*/
+        .dropdown-menu.sub-menu {
+            left:0 !important;
+            visibility: visible !important;
+            display:block !important;
+            margin-top:0;
+        }
+        
+        .dropdown-menu .sub-menu {
+            left:0px !important;
+            position:relative;
+        }
+        
+        .rightAlign li:hover .sub-menu{
+            left:0 !important;
+            position:relative !important;
+        }
+        
+        .navbar .nav > li.dropdown ul.dropdown-menu li:hover .rightAlign.sub-menu,
+        .navbar .nav > li.dropdown:hover .dropdown-menu.rightAlign{
+            left:0 !important;
+            width:100% !important;
+            right:auto !important;
+            top:auto !important;
+            position:relative !important;
+        }
+        
+        .dropdown-menu li:hover .sub-menu {
+            visibility: visible;
+            left:0 !important;
+            position:relative !important;
+        }
+        
+        
+        
+    }
+    
+    
+    /*iPhone portrait width*/
+    /*----------------------------------------------------------------------*/
+    @media (max-width: 480px) {
+        
+        
+        
+    }
+    
+    
+   
+    
+    
+    
+    
+    
+    

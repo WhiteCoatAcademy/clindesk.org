@@ -1,0 +1,88 @@
+
+/*mentor slider ui*/
+    
+    .peVolo .peVoloPrev,
+    .peVolo .peVoloNext,
+    .peVolo .peVoloBullets{
+        position:absolute;
+        z-index: 100;
+    }
+    
+    .peVolo .peVoloPrev a,
+    .peVolo .peVoloNext a{
+        display:block;
+        width: 30px;
+        height: 30px;
+        opacity:0.65;
+    }
+    
+    .peVolo .peVoloPrev a:hover,
+    .peVolo .peVoloNext a:hover{
+        opacity:1;
+    }
+    
+    .peVolo .peVoloPrev a{
+       background:url(../img/skin/prev.png) no-repeat 0 0; 
+    }
+    
+    .peVolo .peVoloNext a{
+       background:url(../img/skin/next.png) no-repeat 0 0; 
+    }
+    
+    .peVolo .peVoloBullets a{
+        display:block;
+        width: 22px;
+        height: 22px;
+        opacity:0.65;
+        float:left;
+        margin-left:1px;
+    }
+    
+    .peVolo .peVoloBullets a:hover,
+    .peVolo .peVoloBullets a.selected{
+        opacity:1;
+    }
+    
+    .peVolo .peVoloBullets a{
+       background:url(../img/skin/slide_btn.png) no-repeat 0 0; 
+    }
+    
+    .peVolo .peVoloBullets a.selected{
+       background-image:url(../img/skin/slide_btn_active.png);
+    }
+    
+    
+    /*tablets*/
+    /*----------------------------------------------------------------------*/
+    @media (min-width: 768px) and (max-width: 979px) {
+        
+        
+        /*uncomment to hide the slide buttons on tablets*/
+        
+        /*
+         
+        .peVoloBullets{
+            display:none !important;
+        }
+        
+        */        
+        
+    }
+    
+    
+    /*mobile*/
+    /*----------------------------------------------------------------------*/
+    @media (max-width: 480px) {
+        
+        /*hide the slide buttons on mobile*/
+        .peVoloBullets{
+            display:none !important;
+        }
+        
+        .peVolo .peVoloPrev a,
+        .peVolo .peVoloNext a{
+            opacity:1 !important;
+        }
+    }
+    
+    

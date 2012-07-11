@@ -1,0 +1,316 @@
+/*
+    Main Menu Skin CSS
+    Theme Name: Mentor
+    Description: A Business Minded WordPress Theme 
+    Author: Pixelentity
+    Email: helpdesk@pixelentity.com
+    Website: http://pixelentity.com/
+    Stock: http://themeforest.net/user/pixelentity
+    Version: 1.0
+*/
+    
+    /*Colors Used
+     
+    Primary highlight color:                                    #9aae4c
+    Secordary color (light version of primary)                  #d2d9b5
+    Light Grey (menu item text)                                 #979795
+    Dark grey (drops bg)                                        #393939
+    
+    */
+    
+    
+    
+    
+    
+    /*General Menu Skin Styles*/
+    
+    .navbar-inner {
+        background:transparent;
+        background-image: none;
+        background-image: none;
+        background-image: none;
+        background-image: none;
+        background-image: none;
+        background-image: none;
+        filter: none;
+        -webkit-box-shadow: none;
+        -moz-box-shadow: none;
+        box-shadow: none;
+    }
+    
+    /*menu header underline*/
+    .navbar{
+        background:transparent url(../img/skin/head_line_btm.jpg) repeat-x 0 100%;
+    }
+    
+    .navbar .brand{
+        border-bottom:2px solid #9aae4c;
+    }
+    
+    .navbar .nav > li > a{
+        color:#979795;
+        font-weight:bold;
+        font-size:14px;
+        text-shadow: none;
+        border-bottom:2px solid #d2d9b5;
+    }
+    
+    .navbar .nav > li > a:hover {
+        background-color: transparent;
+        color: #333;
+        text-decoration: none;
+        border-bottom:2px solid #9aae4c;
+    }
+    
+    .navbar .nav .active > a, .navbar .nav .active > a:hover{
+        background-color: #9aae4c;
+        color:#fff;
+        -webkit-border-radius: 0;
+        -moz-border-radius: 0;
+        border-radius:0;
+    }
+    
+    .navbar .nav > .active > a{
+        border-bottom:2px solid #9aae4c;
+        -webkit-border-radius: 3px 3px 0 0;
+        -moz-border-radius: 3px 3px 0 0;
+        border-radius:3px 3px 0 0;
+        -moz-background-clip: padding;
+        -webkit-background-clip: padding-box;
+        background-clip: padding-box;
+        
+    }
+    
+    .navbar .nav > .active > a:hover{
+        -webkit-border-radius: 3px 3px 0 0;
+        -moz-border-radius: 3px 3px 0 0;
+        border-radius:3px 3px 0 0;
+    }
+    
+    .navbar .nav .dropdown-toggle .caret,
+    .navbar .nav .open.dropdown .caret {
+        border-bottom-color:#000;
+        border-top-color:#000;
+    }
+    
+    .navbar .nav .active .caret {
+        border-top-color:#fff;
+    }
+
+    .navbar .dropdown-menu:after,
+    .navbar .dropdown-menu:before{
+        content:none;
+        border:none;
+    }
+    
+    .navbar .dropdown-menu{
+        border-radius:0;
+        -moz-border-radius:0;
+        -webkit-border-radius: 0;
+        border-color:#e5e5e5;
+        border:none;
+        border-top:2px solid #9aae4c;
+        box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+        -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.5);
+        background:#393939;
+    }
+    
+    .navbar .dropdown-menu a{
+        color:#fff;
+    }
+    
+    .dropdown-menu li > a:hover,
+    .dropdown-menu .active > a,
+    .dropdown-menu .active > a:hover {
+      color: #ffffff;
+      text-decoration: none;
+      background-color: #9aae4c;
+    }
+
+    .dropdown-menu .divider{
+        background-color:#000;
+        border-bottom:1px solid #555;
+    }
+    
+    .navbar .nav .open > .dropdown-toggle,
+    .navbar .nav .active > .dropdown-toggle,
+    .navbar .nav .open.active > .dropdown-toggle{
+        background-color:#9aae4c;
+        color:#fff;
+    }
+    
+    .navbar .nav .open > .dropdown-toggle .caret,
+    .navbar .nav .active > .dropdown-toggle .caret,
+    .navbar .nav .open.active > .dropdown-toggle .caret{
+        border-bottom-color:#fff;
+        border-top-color:#fff;
+    }
+    
+    
+    /*3rd level menu*/
+    
+    .navbar .nav .nav-header {
+        font-size: 12px;
+        font-weight: bold;
+        line-height: 18px;
+        color: #fff;
+        text-shadow: none;
+        text-transform: uppercase;
+    }
+    
+    
+    
+    /*x-large desktop*/
+    /*----------------------------------------------------------------------*/
+    
+    @media (min-width: 1200px) {
+        
+    }
+    
+    
+
+    /*normal desktop*/
+    /*----------------------------------------------------------------------*/
+    @media (min-width: 980px) {
+        
+    }
+    
+    
+    
+    /*tablet landscape*/
+    /*----------------------------------------------------------------------*/
+    @media (max-width: 979px) {
+        
+    }
+    
+    
+    /*iPad portrait*/
+    /*----------------------------------------------------------------------*/
+    @media (min-width: 768px) and (max-width: 979px) {
+        
+        .navbar .nav > li > a, .navbar .dropdown-menu a{
+            border-radius:0;
+            -moz-border-radius:0;
+            -webkit-border-radius: 0;
+        }
+        
+        .navbar .dropdown-menu a{
+            font-weight:normal;
+        }
+        
+        .navbar .dropdown-menu a:hover {
+          background-color: #9aae4c;
+        }
+        
+        /*3rd level menu*/
+    }
+    
+    
+    /*iphone landscape*/
+    /*----------------------------------------------------------------------*/
+    @media (max-width: 767px) {
+        
+        
+    
+        /*navbar text items*/
+        .navbar .nav > li > a, .navbar .dropdown-menu a {
+            color:#666;
+        }
+        
+        /*navbar dropdown btn*/
+        .btn-navbar {
+            background: #c1c1bf;
+            border:none;
+            box-shadow:none;
+            -mox-box-shadow:none;
+        }
+        
+        .btn-navbar:hover{
+            background: #9AAE4C;
+        }
+        
+        .btn-navbar .btnTitle{
+            font-size:14px;
+            color:#fff;
+            font-weight:bold;
+            text-shadow:none;
+        }
+        
+        /*logo for drop menu arrangement*/
+        .navbar .brand{
+            background:url(../img/content/logo_sml.png) no-repeat;
+        }
+        
+        .navbar .nav > li > a, .navbar .dropdown-menu a{
+            border-radius:0;
+            -moz-border-radius:0;
+            -webkit-border-radius: 0;
+        }
+        
+        .navbar .nav > li > a{
+            border-left:2px solid #D2D9B5;
+            border-bottom:none;
+            background-color: #eee;
+        }
+        
+        .navbar .nav .active > a, .navbar .nav .active > a:hover {
+            border-left:2px solid #9AAE4C;
+            border-bottom:none;
+            -webkit-border-radius: 0;
+            -moz-border-radius: 0;
+            border-radius:0;
+        }
+        
+        .navbar .nav .active > a{
+            background-color: #9AAE4C;
+        }
+        
+        .navbar .nav > li > a:hover {
+            background-color: #c1c1bf;
+            color: #fff;
+            text-decoration: none;
+            border-left:2px solid #9aae4c;
+            border-bottom:none;
+        }
+        
+        .navbar .dropdown-menu{
+            background:#444;
+        }
+        
+        .navbar .dropdown-menu li a{
+            color:#fff;
+            border-bottom:1px solid #666;
+        }
+        
+        
+        /*3rd level menu*/
+        
+        .navbar .nav .nav-header {
+            border-bottom:1px solid #aaa;
+        }
+        
+        
+        .navbar .dropdown-menu{
+            box-shadow: none;
+        }
+        
+        .navbar .nav li a:hover .caret {
+            border-top-color:#fff;
+        }
+    }
+    
+    
+    /*iPhone portrait width*/
+    /*----------------------------------------------------------------------*/
+    @media (max-width: 480px) {
+        
+    }
+    
+    
+   
+    
+    
+    
+    
+    
+    
