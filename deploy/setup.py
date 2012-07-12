@@ -192,7 +192,7 @@ def deploy(instance, key_filename):
         sudo('apt-get remove -y whoopsie')
         sudo('apt-get update')
         sudo('apt-get -y -V upgrade')
-        sudo('apt-get -y install git python2.7-dev libevent-dev nginx htop supervisor gcc')
+        sudo('apt-get -y install git python2.7-dev python-pip libevent-dev nginx htop supervisor gcc')
 
         # You know, I used virtualenv for a while, but it just got in the way of things.
         # We're using the same packages and versions across everything.
@@ -233,7 +233,8 @@ def deploy(instance, key_filename):
 
         #### Setup our autoupdate script
         sudo('sudo adduser --disabled-password --disabled-login --system --group autoupdate')
-        put('scripts/autoupdate.py', '/home/ubuntu/', mode=0555)
+        put('scripts/autoupdate.py', '/home/autoupdate/', use_sudo=True, mode=0555)
+        put('scripts/run_autoupdate.sh', '/home/autoupdate/', use_sudo=True, mode=0555)
         put('conf/sudoers-magic.txt', '/home/ubuntu/')
         sudo('cat sudoers-magic.txt >> /etc/sudoers')
 
@@ -261,7 +262,7 @@ def deploy(instance, key_filename):
         sudo('rm -f /etc/nginx/sites-enabled/nginx_cd.conf')
         put('conf/nginx_cd.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_cd.conf /etc/nginx/sites-enabled/')
-        
+
         # Start nginx
         sudo('invoke-rc.d nginx start')
 
