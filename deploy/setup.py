@@ -192,19 +192,20 @@ def deploy(instance, key_filename):
         sudo('apt-get remove -y whoopsie')
         sudo('apt-get update')
         sudo('apt-get -y -V upgrade')
-        sudo('apt-get -y install git python2.7-dev python-virtualenv libevent-dev nginx htop supervisor gcc')
+        sudo('apt-get -y install git python2.7-dev libevent-dev nginx htop supervisor gcc')
+
+        # You know, I used virtualenv for a while, but it just got in the way of things.
+        # We're using the same packages and versions across everything.
+        # Maybe later we'll use nested virtual envs, but this just seems needlessly complicated.
+        # See: http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
+        sudo('pip install gunicorn gevent greenlet flask')
 
         def deploy_app(username, git_branch_name):
             sudo('sudo adduser --disabled-password --disabled-login --system --group ' + username)
             with cd('/home/' + username + '/'):
-                sudo('virtualenv .', user=username)
                 sudo('mkdir -p .ssh', user=username)
                 # TODO: Put in the real SSH key here.
                 sudo('echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> /home/' + username + '/.ssh/config', user=username)
-                # TODO: System-wide pip install? Is that cool?
-                # Maybe nested virtual envs?
-                # See: http://stackoverflow.com/questions/4324558/whats-the-proper-way-to-install-pip-virtualenv-and-distribute-for-python
-                virtualenv('/home/' + username + '/', username, 'pip install gunicorn gevent greenlet flask')
 
             # TODO: Move this somewhere
             put('keys/ec2-github-deploy', '/home/' + username + '/.ssh/id_rsa', use_sudo=True, mode=0400)
@@ -213,18 +214,28 @@ def deploy(instance, key_filename):
             with cd('/home/' + username + '/'):
                 sudo('git clone -b ' + git_branch_name + ' git@github.com:semenko/clindesk.git', user=username)
 
-            # We gotta' make a log dir
-            # The run script now does this too, but w/e
-            sudo('mkdir /var/log/gunicorn-' + username + '/ ; chown ' + username + ':' + username + ' /var/log/gunicorn-' + username + '/')
 
             # We put w/ sudo so the executable file is not editable. Not sure about the supervisor hierarchy.
             put('scripts/run_gunicorn_' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
 
+            # Add .sh scripts to do get update to user dirs. Again, root owned.
+            put('scripts/sudo-git-update.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
 
 
         #### Deploy our two branches
         deploy_app('clindesk-prod', 'prod')
         deploy_app('clindesk-staging', 'master')
+
+        #### Make a log dir
+        # TODO: Fix permissions, make all web servers in same group?
+        sudo('mkdir /var/log/gunicorn/ ; chmod 777 /var/log/gunicorn/')
+
+
+        #### Setup our autoupdate script
+        sudo('sudo adduser --disabled-password --disabled-login --system --group autoupdate')
+        put('scripts/autoupdate.py', '/home/ubuntu/', mode=0555)
+        put('conf/sudoers-magic.txt', '/home/ubuntu/')
+        sudo('cat sudoers-magic.txt >> /etc/sudoers')
 
 
         #### Set up supervisord
@@ -235,6 +246,8 @@ def deploy(instance, key_filename):
 
         # Clindesk config
         put('conf/supervisord_cd.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
+
+        put('conf/supervisord_autoupdate.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
 
         sudo('supervisorctl reload')
 
@@ -252,12 +265,6 @@ def deploy(instance, key_filename):
         # Start nginx
         sudo('invoke-rc.d nginx start')
 
-
-
-
-def virtualenv(envpath, user, command):
-    with cd(envpath):
-        sudo('source ' + envpath + 'bin/activate' + ' && ' + command, user=user)
 
 
 if __name__ == '__main__':
