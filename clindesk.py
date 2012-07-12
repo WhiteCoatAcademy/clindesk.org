@@ -5,9 +5,14 @@ import urlparse
 from flask import Flask, make_response, redirect, render_template, request, url_for
 app = Flask(import_name=__name__, static_folder='s')
 
-# Set up logging in prod. This sends e-mail via Amazon SES.
+
 def register_email_logger(subject_tag, log_level):
-    """ This sends e-mails to ec2-crashes when something fails in Prod or Staging. """
+    """
+    This sends e-mails to ec2-crashes when something fails in Prod or Staging. 
+
+    It took me a while to figure this out:
+     ** The log hangler is basically *ignored* if debug=True **
+    """
     ADMINS = ['ec2-prodlogs@clindesk.org']
     from logging import Formatter
     from logging.handlers import SMTPHandler
