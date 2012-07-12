@@ -240,15 +240,9 @@ def deploy(instance, key_filename):
 
 
         #### Set up supervisord
-
-        # General config
         sudo('rm /etc/supervisor/supervisord.conf')
         put('conf/supervisord.conf','/etc/supervisor/', use_sudo=True, mode=0444)
-
-        # Clindesk config
-        put('conf/supervisord_cd.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
-
-        put('conf/supervisord_autoupdate.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
+        put('conf/supervisord_sites.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
 
         sudo('supervisorctl reload')
 
