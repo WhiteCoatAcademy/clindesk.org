@@ -138,7 +138,6 @@ def clicked_disclaimer():
 @app.errorhandler(404)
 def page_not_found(error):
     """ Return our generic error page. """
-    app.logger.debug("Error %s loading page." % (error,))
     return render_template('errors/404.html'), 404
 
 
