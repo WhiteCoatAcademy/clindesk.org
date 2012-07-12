@@ -11,7 +11,11 @@ The magic happens in:
 
 They run on [Flask](http://flask.pocoo.org/).
 
-If you want to run them on your machine, try `sudo pip install flask` then run `python clindesk.py`. Then visit http://localhost:5000/.
+If you want to run them on your machine, try:
+
+ `sudo pip install flask` then `python clindesk.py`
+
+A local instance should then be running at: http://localhost:5000/
 
 ## Directories
 
@@ -22,8 +26,17 @@ If you want to run them on your machine, try `sudo pip install flask` then run `
 * /deploy/
   * Deploy scripts for EC2/AWS magic. Don't do things here.
 
-## Pushing to Master
-When you're ready to push to production (e.g. push your changes to the main site, not just staging):
+## Seeing Things Live
+
+Once you've seen & tested your changes locally (e.g. at localhost:5000), commit your changes and push.
+
+This will auto-HUP our [gunicorn](http://gunicorn.org/) instances on EC2, and your changes will appear at http://staging.clindesk.org/
+
+## Pushing to Production
+Finally, after you've seen your changes in staging, and they seem to be working, you should push into production!
+
+Production code comes from the "prod" branch of the repository. You need to switch to this branch and copy over your changes:
+
 1. `git checkout prod`
 2. `git merge -Xtheirs master`
 3. `git push`
