@@ -152,9 +152,10 @@ def alnum_only(input):
 def github_pull_on_commit():
     if request.environ['HTTP_X_REAL_IP'] in ('207.97.227.253', '50.57.128.197', '108.171.174.178'):
         if app.config.get('STAGING', False):
+            app.logger.warning('Staging about to HUP from a git push. JSON is: %s' % (request.json,))
             os.system('git reset --hard HEAD; git clean -f -d; git pull')
             # TODO: Change the security permissions to make this less sketchy.
-            os.system('supervisorctl restart clindesk-staging')
+            os.system('supervisorctl status clindesk-staging | sed "s/.*[pid ]\([0-9]\+\)\,.*/\\1/" | xargs kill -HUP')
             return "Pulling."
     return "Access denied."
 
