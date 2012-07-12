@@ -2,9 +2,9 @@
 # DO NOT BREAK THIS.
 # Critical for autoupdate permissions.
 
-Cmnd_Alias GITUPDATE = /home/clindesk-staging/sudo-git-update.sh, /home/clindesk-prod/sudo-git-update.sh
+Cmnd_Alias GITUPDATE = /home/staging/sudo-git-update.sh, /home/prod/sudo-git-update.sh
 
 # TODO: Move this to a group, instead of individual users?
-Runas_Alias WEBUSERS = clindesk-staging, clindesk-prod
+Runas_Alias WEBUSERS = staging, prod
 
 autoupdate ALL=(WEBUSERS) NOPASSWD: GITUPDATE

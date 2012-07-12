@@ -22,11 +22,13 @@ def github_pull_on_commit():
         if commit_ref.endswith('master'):
             # We're got a staging push, probably. Maybe.
             app.logger.warning('Pulling in staging.')
-            os.chdir('/home/clindesk-staging/')
-            os.system('sudo -u clindesk-staging ./sudo-git-update.sh')
+            os.chdir('/home/staging/')
+            os.system('sudo -u staging ./sudo-git-update.sh')
             # We can switch back to supervisord-based PID finding later:
             # supervisorctl status clindesk-staging | sed "s/.*[pid ]\([0-9]\+\)\,.*/\\1/"
-            os.system('pgrep -u clindesk-staging -p gunicorn | xargs sudo -u clindesk-staging kill -HUP')
+            # TODO: Move to pkill
+            os.system('pgrep -u staging -f "clindesk:app" -o | xargs sudo -u staging kill -HUP')
+            os.system('pgrep -u staging -f "wca:app" -o | xargs sudo -u staging kill -HUP')
             return "Pulled."
         else:
             app.logger.warning('Pulling in PROD.')

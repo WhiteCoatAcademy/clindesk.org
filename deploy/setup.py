@@ -215,16 +215,17 @@ def deploy(instance, key_filename):
                 sudo('git clone -b ' + git_branch_name + ' git@github.com:semenko/clindesk.git', user=username)
 
 
-            # We put w/ sudo so the executable file is not editable. Not sure about the supervisor hierarchy.
-            put('scripts/run_gunicorn_' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
+            # We put w/ sudo so the executable file is not editable. Not sure about the supervisord security hierarchy.
+            put('scripts/run_gunicorn_cd_' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
+            put('scripts/run_gunicorn_wca_' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
 
             # Add .sh scripts to do get update to user dirs. Again, root owned.
             put('scripts/sudo-git-update.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
 
 
         #### Deploy our two branches
-        deploy_app('clindesk-prod', 'prod')
-        deploy_app('clindesk-staging', 'master')
+        deploy_app('prod', 'prod')
+        deploy_app('staging', 'master')
 
         #### Make a log dir
         # TODO: Fix permissions, make all web servers in same group?
