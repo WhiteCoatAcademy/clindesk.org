@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 import urlparse
@@ -5,28 +6,41 @@ from flask import Flask, make_response, redirect, render_template, request, url_
 app = Flask(import_name=__name__, static_folder='s')
 
 # Set up logging in prod. This sends e-mail via Amazon SES.
-def register_email_logger():
+def register_email_logger(subject_tag, log_level):
+    """ This sends e-mails to ec2-crashes when something fails in Prod or Staging. """
     ADMINS = ['ec2-prodlogs@clindesk.org']
-    import logging
+    from logging import Formatter
     from logging.handlers import SMTPHandler
     mail_handler = SMTPHandler('email-smtp.us-east-1.amazonaws.com',
                                'ec2-crashes@clindesk.org',
                                ADMINS,
-                               'ClinDesk Prod Crash',
+                               'ClinDesk %s Crash' % subject_tag,
                                # Only sorta-secret. We haven't requested SES prod bits, so we can only
                                # send to domains we own & addresses we verify. Little abuse potential. --semenko
                                ('AKIAIEBTTF4MLQZ3CPAQ', 'AsD8aexgu9TUcIRB1bHmfG/zF2YMyv3Bze5LTpQzw6p1'),
                                secure=())
-    mail_handler.setLevel(logging.WARNING)
+    mail_handler.setFormatter(Formatter('''
+Message type:       %(levelname)s
+Location:           %(pathname)s:%(lineno)d
+Module:             %(module)s
+Function:           %(funcName)s
+Time:               %(asctime)s
+
+Message:
+
+%(message)s
+'''))
+    mail_handler.setLevel(log_level)
     app.logger.addHandler(mail_handler)
 
     
 # Settings based on prod/staging/dev
 supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
 if supervisor_name == 'clindesk-prod':
-    register_email_logger()
+    register_email_logger('Prod', logging.WARNING)
     app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
 elif supervisor_name == 'clindesk-staging':
+    register_email_logger('Staging', logging.WARNING)
     app.config['STAGING'] = True
 else:
     # We're probably in a local dev instance.
