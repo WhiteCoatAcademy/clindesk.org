@@ -1,6 +1,14 @@
 from flask import Flask, request
 import json
+import logging
+import os
 app = Flask(import_name=__name__)
+
+# This autoupdate script should be triggered after a GitHub push.
+
+stream_handler = logging.StreamHandler()
+stream_handler.setLevel(logging.WARNING)
+app.logger.addHandler(stream_handler)
 
 # Random-ish URL triggers a git pull & gunicorn HUP
 @app.route("/github-pull-on-commit-M9tmMWz4XI", methods=['POST'])
