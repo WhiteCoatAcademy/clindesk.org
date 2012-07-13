@@ -18,9 +18,7 @@ def github_pull_on_commit():
         thejson = json.JSONDecoder().decode(request.values['payload'])
         commit_ref = thejson['ref']
         app.logger.warning('Commit ref is: %s' % (commit_ref,))
-        # Not sure how this is parsed. Does this change to prod on prod pushes? We'll see.
         if commit_ref.endswith('master'):
-            # We're got a staging push, probably. Maybe.
             app.logger.warning('Pulling in staging.')
             os.chdir('/home/staging/')
             os.system('sudo -u staging ./sudo-git-update.sh')
@@ -29,10 +27,17 @@ def github_pull_on_commit():
             # TODO: Move to pkill
             os.system('pgrep -u staging -f "clindesk:app" -o | xargs sudo -u staging kill -HUP')
             os.system('pgrep -u staging -f "wca:app" -o | xargs sudo -u staging kill -HUP')
-            return "Pulled."
+            return "Pulled in staging."
         else:
-            app.logger.warning('Pulling in PROD.')
-            return "Not pulling. Prod."
+            app.logger.warning('Pulling in PROD!')
+            os.chdir('/home/prod/')
+            os.system('sudo -u prod ./sudo-git-update.sh')
+            # We can switch back to supervisord-based PID finding later:
+            # supervisorctl status clindesk-staging | sed "s/.*[pid ]\([0-9]\+\)\,.*/\\1/"
+            # TODO: Move to pkill
+            os.system('pgrep -u prod -f "clindesk:app" -o | xargs sudo -u prod kill -HUP')
+            os.system('pgrep -u prod -f "wca:app" -o | xargs sudo -u prod kill -HUP')
+            return "Pulled in PROD!"
     return "Access denied."
 
 if __name__ == "__main__":
