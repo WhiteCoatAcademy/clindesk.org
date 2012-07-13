@@ -8,7 +8,7 @@ app = Flask(import_name=__name__, static_folder='s')
 
 def register_email_logger(subject_tag, log_level):
     """
-    This sends e-mails to ec2-crashes when something fails in Prod or Staging. 
+    This sends e-mails to ec2-crashes when something fails in Prod or Staging.
 
     It took me a while to figure this out:
      ** The log hangler is basically *ignored* if debug=True **
@@ -38,7 +38,7 @@ Message:
     mail_handler.setLevel(log_level)
     app.logger.addHandler(mail_handler)
 
-    
+
 # Settings based on prod/staging/dev
 supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
 if supervisor_name == 'clindesk-prod':
@@ -76,6 +76,8 @@ def inject_static():
 @app.route("/")
 @app.route("/index.html") # TODO: Standardize toplevel url.
 def page_index():
+    if app.config.get('STAGING', False):
+        return render_template('teaser.html', logopath=static('clindesk-logo.png'))
     return render_template('index.html')
 
 # Support & Donate
