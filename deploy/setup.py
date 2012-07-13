@@ -257,6 +257,8 @@ def deploy(instance, key_filename):
         sudo('rm -f /etc/nginx/sites-enabled/nginx_cd.conf')
         put('conf/nginx_cd.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_cd.conf /etc/nginx/sites-enabled/')
+        put('conf/nginx_wca.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
+        sudo('ln -s /etc/nginx/sites-available/nginx_wca.conf /etc/nginx/sites-enabled/')
 
         # Start nginx
         sudo('invoke-rc.d nginx start')
