@@ -67,7 +67,7 @@ def inject_static():
 @app.route("/")
 @app.route("/index.html") # TODO: Standardize toplevel url.
 def page_index():
-    return render_template('teaser_wca.html')
+    return render_template('teaser.html', logopath=static('whitecoat-logo.png'))
 
 
 if __name__ == "__main__":
