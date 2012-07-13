@@ -77,8 +77,8 @@ def inject_static():
 @app.route("/index.html") # TODO: Standardize toplevel url.
 def page_index():
     if app.config.get('STAGING', False):
-        return render_template('teaser.html', logopath=static('clindesk-logo.png'))
-    return render_template('index.html')
+        return render_template('index.html')
+    return render_template('teaser.html', logopath=static('clindesk-logo.png'))
 
 # Support & Donate
 @app.route("/support.html")
