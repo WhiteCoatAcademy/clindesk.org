@@ -212,12 +212,12 @@ def deploy(instance, key_filename):
             sudo('chown ' + username + ':' + username + ' /home/' + username + '/.ssh/id_rsa')
 
             with cd('/home/' + username + '/'):
-                sudo('git clone -b ' + git_branch_name + ' git@github.com:semenko/clindesk.git', user=username)
+                sudo('git clone -b ' + git_branch_name + ' --depth 1 git@github.com:semenko/clindesk.git', user=username)
 
 
             # We put w/ sudo so the executable file is not editable. Not sure about the supervisord security hierarchy.
-            put('scripts/run_gunicorn_cd_' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
-            put('scripts/run_gunicorn_wca_' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
+            put('scripts/run_gunicorn_cd-' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
+            put('scripts/run_gunicorn_wca-' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
 
             # Add .sh scripts to do get update to user dirs. Again, root owned.
             put('scripts/sudo-git-update.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
