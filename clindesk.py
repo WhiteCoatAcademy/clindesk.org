@@ -41,12 +41,16 @@ Message:
 
 # Settings based on prod/staging/dev
 supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
-if supervisor_name == 'clindesk-prod':
-    register_email_logger('Prod', logging.WARNING)
-    app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
-elif supervisor_name == 'clindesk-staging':
-    register_email_logger('Staging', logging.WARNING)
-    app.config['STAGING'] = True
+app.config['ON_EC2'] = False
+app.config['STAGING'] = False
+if supervisor_name:
+    app.config['ON_EC2'] = True
+    if supervisor_name == 'clindesk-prod':
+        register_email_logger('Prod', logging.WARNING)
+        app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
+    elif supervisor_name == 'clindesk-staging':
+        register_email_logger('Staging', logging.WARNING)
+        app.config['STAGING'] = True
 else:
     # We're probably in a local dev instance.
     pass
@@ -76,7 +80,7 @@ def inject_static():
 @app.route("/")
 @app.route("/index.html") # TODO: Standardize toplevel url.
 def page_index():
-    if app.config.get('STAGING', False):
+    if app.config['STAGING'] or not app.config['ON_EC2']:
         return render_template('index.html')
     return render_template('teaser.html', logopath=static('clindesk-logo.png'))
 
