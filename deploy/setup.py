@@ -250,10 +250,14 @@ def deploy(instance, key_filename):
 
         #### Set up nginx
 
-        # Drop the nginx default config
+        # Overwrite the nginx general config
+        sudo('rm -f /etc/nginx/nginx.conf')
+        put('conf/nginx.conf','/etc/nginx/', use_sudo=True, mode=0444)
+
+        # Drop the nginx default site config
         sudo('rm -f /etc/nginx/sites-enabled/default')
 
-        # Add the nginx ClinDesk config
+        # Add the nginx site-specific configs
         sudo('rm -f /etc/nginx/sites-enabled/nginx_cd.conf')
         put('conf/nginx_cd.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_cd.conf /etc/nginx/sites-enabled/')
