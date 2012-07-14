@@ -1,1 +1,56 @@
-404 Error Template.
+{% extends "base.html" %}
+{% block title %}Page Not Found{% endblock %}
+{% block tagline_text %}Page Not Found{% endblock %}
+{% block maincontent %}
+<!--main content-->
+<section class="mainContentWrap">
+  <div class="container mainContent">
+    <div class="row-fluid">
+      <div class="span9">
+        <div class="row-fluid">
+          <div class="innerSpacer">
+
+            <!--body search widget for mobile-->
+            <div class="row-fluid body-search">
+              <div class="span12 widget_search">
+                <form class="form-inline" action="#" method="get" role="search">
+                    <input type="text" class="input-medium span3"  placeholder="Search...">
+                    <button class="icon-search" type="submit"></button>
+                </form>
+              </div>
+            </div>
+
+            <!--404 error-->
+            <div class="row-fluid">
+              <div class="span12">
+
+
+                <!--alert error-->
+                <div class="alert alert-block alert-error fade in">
+                  <h4>Error 404: The Page You Are Looking For Isn't Here</h4>
+                  <br />
+                  <p>Whoops! Looks like that page is missing! We're working on finding it.</p>
+                  <br />
+                  <a href="/" class="btn btn-primary">Return Home</a>
+                </div>
+
+
+              </div>
+            </div>
+
+
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

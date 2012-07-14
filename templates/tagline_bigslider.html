@@ -1,4 +1,4 @@
-{% load staticfiles %}<section class="taglineWrap">
+<section class="taglineWrap">
 <div class="container">
 <div class="row-fluid sliderWrap">
 <div class="span12">
@@ -7,16 +7,16 @@
 	<div class="peVolo" data-autopause="enabled">
 
 		<div data-delay="3" class="visible">
-			<a href="#"><img src="{% static "img/content/slide1.jpg" %}" alt="Image" /></a>
+			<a href="#"><img src="{{ static('img/content/slide1.jpg') }}" alt="Image" /></a>
 		</div>
 		<div data-delay="3">
-			<a href="#"><img src="{% static "img/content/slide4.jpg" %}" alt="Image" /></a>
+			<a href="#"><img src="{{ static('img/content/slide4.jpg') }}" alt="Image" /></a>
 		</div>
 		<div data-delay="3">
-			<a href="#"><img src="{% static "img/content/slide3.jpg" %}" alt="Image" /></a>
+			<a href="#"><img src="{{ static('img/content/slide3.jpg') }}" alt="Image" /></a>
 		</div>
 		<div data-delay="3">
-			<a href="#"><img src="{% static "img/content/slide2.jpg" %}" alt="Image" /></a>
+			<a href="#"><img src="{{ static('img/content/slide2.jpg') }}" alt="Image" /></a>
 		</div>
 
 	</div>
