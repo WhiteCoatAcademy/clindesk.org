@@ -4,8 +4,8 @@ WCA: UA-32988270-2
 #}
 {%- if "www" in request.environ.HTTP_HOST -%}
 <script type="text/javascript">
-  alert('{{ request.environ.SERVER_NAME }}');
   var _gaq = _gaq || [];
+  
 {%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
   _gaq.push(['_setAccount', 'UA-32988270-2']);
 {%- elif "clindesk" in request.environ.HTTP_HOST -%}
