@@ -5963,7 +5963,7 @@ h1 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #2f2f2f;
     font-size: 24px;
-    margin-bottom: 45px;
+    margin-bottom: 20px;
     line-height: 30px
 }
 
@@ -5979,12 +5979,12 @@ h3 {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     color: #2f2f2f;
     font-size: 18px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     line-height: 24px
 }
 
 h4 {
-    margin-bottom: 25px
+    margin-bottom: 20px
 }
 
 h5 {
