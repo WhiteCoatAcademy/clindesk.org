@@ -240,6 +240,7 @@
 		<!-- import minified javascript -->
         <script type="text/javascript" src="{{ static('js/mentor.min.js') }}"></script>
     {# TODO: Move this to external JS or something. #}
+    {# TODO: Can't JS set the cookie? Why not use JS instead of Flask? #}
     <script type="text/javascript">
         $(document).ready(function(){
             if (document.cookie.match('disclaimer') != null) {
@@ -249,7 +250,6 @@
                 $.ajax({
                     type: "POST",
                     url: "/setcookie",
-                    data: "ack=True",
                     success: function() {
                         $('#disclaimer').hide();
                     }
