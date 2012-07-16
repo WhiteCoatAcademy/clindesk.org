@@ -22,7 +22,7 @@ A local instance should then be running at: http://localhost:5000/
 * /s/
   * Static files. Served by nginx.
 * /templates/
-  * [Jinja2](jinja.pocoo.org) templates for Flask.
+  * [Jinja2](http://jinja.pocoo.org/) templates for Flask.
 * /deploy/
   * Deploy scripts for EC2/AWS magic. Don't do things here.
 
@@ -35,11 +35,9 @@ This will auto-HUP our [gunicorn](http://gunicorn.org/) instances on EC2, and yo
 ## Pushing to Production
 Finally, after you've seen your changes in staging, and they seem to be working, you should push into production!
 
-Production code comes from the "prod" branch of the repository. You need to switch to this branch and copy over your changes:
+Production code comes from the "prod" branch of the repository. You need to switch to this branch, copy over your changes, then swith back, and push everything.
 
-1. `git checkout prod`
-2. `git merge -Xtheirs master`
-3. `git push`
-4. And be sure to get back on the master branch with `git checkout master`
+1. Make sure you're updated to the latest code: `git pull`
+2. Run this: `git checkout prod ; git merge -Xtheirs master ; git checkout master ; git push`
 
 
