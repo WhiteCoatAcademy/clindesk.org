@@ -227,6 +227,12 @@ def deploy(instance, key_filename):
         deploy_app('prod', 'prod')
         deploy_app('staging', 'master')
 
+        ### Sysctl Tweaks
+        # TODO: Move these to /etc/sysctl.d alongside kptr_restrict and friends?
+        put('conf/sysctl.conf', '/etc/', use_sudo=True, mode=0444)
+        # Load the sysctl settings and flush the network
+        sudo('sysctl -p ; sysctl -w net.ipv4.route.flush=1')
+
         #### Make a log dir
         # TODO: Fix permissions, make all web servers in same group?
         sudo('mkdir /var/log/gunicorn/ ; chmod 777 /var/log/gunicorn/')
