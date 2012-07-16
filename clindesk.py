@@ -5,6 +5,12 @@ import urlparse
 from flask import Flask, make_response, redirect, render_template, request, url_for
 app = Flask(import_name=__name__, static_folder='s')
 
+##########
+# Internal setup functions & error logging.
+#
+# NOTE: You probably want to skip down to the section called "Blocks for URL Control"
+#    where you'll see things like @app.route()
+##########
 
 def register_email_logger(subject_tag, log_level):
     """
@@ -39,11 +45,15 @@ Message:
     app.logger.addHandler(mail_handler)
 
 
-# Settings based on prod/staging/dev
+###
+# Configure our environment depending on if we're in prod vs staging vs local machine.
+###
 supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
 app.config['ON_EC2'] = False
 app.config['STAGING'] = False
+
 if supervisor_name:
+    # supervisor_name is set by supervisord on our EC2 instances
     app.config['ON_EC2'] = True
     if supervisor_name == 'clindesk-prod':
         register_email_logger('Prod', logging.WARNING)
@@ -52,11 +62,20 @@ if supervisor_name:
         register_email_logger('Staging', logging.WARNING)
         app.config['STAGING'] = True
 else:
-    # We're probably in a local dev instance.
+    # We're not running under supervisord, so we're on a local machine.
+    # e.g. someone just ran `python clindesk.py`
     pass
 
 
-# Create a static() handler and send content to static.clindesk.org
+###
+# Create a static() handler for templates.
+# This serves static content from either:
+#   /s/ --- If this is on staging, or a local instance
+# or
+#   static.clindesk.org --- For production.
+# 
+# static.clindesk.org is an AWS CloudFront endpoint that caches our content via the Amazon CDN.
+###
 def static(path):
     root = app.config.get('STATIC_ROOT', None)
     if root is None: # Just use /s/ instead of CDN
@@ -147,7 +166,7 @@ def page_not_found(error):
     return render_template('errors/404.html'), 404
 
 
-# Strip non-alnum
+# Strip non-alnum characters.
 pattern = re.compile('[\W+]')
 def alnum_only(input):
     return pattern.sub('', input)
