@@ -144,18 +144,18 @@ def page_diseases_level2(level1, level2):
 # *** Odd URLs and support functions
 ######
 
-@app.route("/setcookie", methods=['GET', 'POST'])
+@app.route("/setcookie", methods=['POST'])
 def clicked_disclaimer():
     """ Give the user a cookie if they dismiss the disclaimer. """
     resp = make_response()
     resp.set_cookie(key='disclaimer',
                     value='true',
-                    max_age=60, # For testing. *60*24,
+                    max_age=60*60*24, # This is 24 hours.
                     expires=None,
                     path='/',
                     domain=None,
-                    secure=None,
-                    httponly=False,
+                    secure=None, # TODO: Switch to all SSL site? 
+                    httponly=False, # TODO: Make cookie processing server-side?
                     )
     return resp
 

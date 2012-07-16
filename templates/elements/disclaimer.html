@@ -1,6 +1,6 @@
 {# This a disclaimer that appears everywhere on CD & WCA.
         Dismissing the disclaimer adds a cookie, via /getcookie #}
-<div class="alert alert-error fade in">
+<div class="alert alert-error fade in" id="disclaimer">
     <h4 class="alert-heading">ClinDesk and White Coat Academy are only for reference</h4><br/>
    <p>Remember, we're a team of medical students. Although we try our best to ensure the accuracy of all our materials,
     medicine is complex and dynamic. Our information might not always be accurate or up-to-date.</p>
@@ -9,5 +9,6 @@
         <li>Always listen to your doctor or medical provider</li>
         <li>Don't change your medications without first consulting your doctor</li>
     </ul><br />
-    <p><a class="btn btn-info" href="#">Hide This Warning</a></p>
+{# Really not sure what's up w/ the data-dismiss tag. data-dismiss="alert" Is this Mentor-specific? #}
+    <a class="btn btn-info" href="#"  id="ackbutton">Hide This Warning</a>
 </div>
