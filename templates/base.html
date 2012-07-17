@@ -239,5 +239,23 @@
 		<a href="#top" id="peBackToTop" class="label btt disabled"><span class="icon-chevron-up icon-white"></span></a>
 		<!-- import minified javascript -->
         <script type="text/javascript" src="{{ static('js/mentor.min.js') }}"></script>
+    {# TODO: Move this to external JS or something. #}
+    {# TODO: Can't JS set the cookie? Why not use JS instead of Flask? #}
+    <script type="text/javascript">
+        $(document).ready(function(){
+            if (document.cookie.match('disclaimer') != null) {
+                $('#disclaimer').hide();
+            }
+            $('#ackbutton').click(function(){
+                $.ajax({
+                    type: "POST",
+                    url: "/setcookie",
+                    success: function() {
+                        $('#disclaimer').hide();
+                    }
+                });
+            });
+        });
+    </script>
 	</body>
 </html>

@@ -144,18 +144,22 @@ def page_diseases_level2(level1, level2):
 # *** Odd URLs and support functions
 ######
 
-@app.route("/setcookie", methods=['GET', 'POST'])
+@app.route("/setcookie", methods=['POST'])
 def clicked_disclaimer():
     """ Give the user a cookie if they dismiss the disclaimer. """
+    max_age = 60*60*24 # This is 24 hours
+    if app.config['STAGING'] or not app.config['ON_EC2']:
+        max_age = 60*10 # For staging, set a 10 minute TTL, so we don't forget the disclaimer.
+
     resp = make_response()
     resp.set_cookie(key='disclaimer',
-                    value='true',
-                    max_age=60, # For testing. *60*24,
+                    value='MedEd_Should_Be_Open',
+                    max_age=max_age,
                     expires=None,
                     path='/',
                     domain=None,
-                    secure=None,
-                    httponly=False,
+                    secure=None, # TODO: Switch to all SSL site? 
+                    httponly=False, # TODO: Make cookie processing server-side?
                     )
     return resp
 
