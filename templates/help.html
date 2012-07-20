@@ -9,7 +9,7 @@
               <div class="span9">
                 <div class="row-fluid">
                   <div class="innerSpacer">
-{#
+{# Let's see how this reflows on mobile. Can we reflow to mobile videos with a similar approach? #}
                     <!--body search widget for mobile //-->
                     <div class="row-fluid body-search">
                       <div class="span12 widget_search">
@@ -19,40 +19,16 @@
                         </form>
                       </div>
                     </div>
-#}
-                      {% include "elements/disclaimer.html" %}
-
-                    <div class="row-fluid pageTitle">
-                      <div class="span12"><h1>FAQ Page Template</h1></div>
-                    </div>
 
                     <!--TOC-->
                     <div class="row-fluid">
                       <div class="span12">
-                        <p>The underlying principle behind everything we do at ClinDesk is “approachability” -- both the content in our videos and our site design should be straight-forward and efficient.</p>
-
-                        <p>Everything starts at our homepage: ClinDesk.org, where you’ll find basic information about us, an introductory video to our mission, as well as a simple navigation panel that lets you identify the medical specialty you are interested in learning more about. The most commonly explored conditions within each specialty are listed beneath each specialty icon. This should help you find what specialty you’re looking for and will allow you to get to the most commonly accessed pages more quickly.</p
-
-                        <p>Once you’re visiting the medical specialty of interest to you, simply find the condition you’d like to learn more about and click on the link to visit the dedicated page for that condition. From there, you’ll be presented with the videos we have on that subject.</p>
-
-                        <p>For a given condition, our videos are most often watched top-to-bottom, flowing from basic biology, to “who and when” epidemiology, to symptoms, and finally treatment/outcomes. Of course, feel free to find and watch specific videos that are most relevant to what you’re looking for.</p
-
-                        <p>Each video is also paired with “Quick Notes”, which are our way of getting the most essential information to you as quickly as possible. For example, the “Quick Notes” for a given condition might define a few key terms regarding the specific cells in the human body affected by this condition, the average age of onset of the condition, as well as a list of common modern treatments for the condition.</p>
-                        <!--alert success-->
-                        <div class="alert alert-block alert-info fade in">
-                          <button class="close" data-dismiss="alert">&times;</button>
-
-                          <h5>Follow your doctor's advice. etc. etc. Make this box red? Big warning? Yellow? Acknowledge and cookie?</h5>
-                          <p>
-                            <a href="contact.html" class="btn btn-info">Contact Us</a>
-                          </p>
-                        </div>
-
+                        <p>The underlying principle behind everything we do at ClinDesk is approachability &mdash; if you find a topic confusing (or think we got something wrong!), e-mail us at <a href="mailto:info@clindesk.org">info@clindesk.org</a>. Keep in mind that we cannot provide any medical advice, but we'd love feedback on our videos!</p>
 
                       </div>
                     </div>
 
-
+{# TODO: Can we modularize this more? Like a for loop / import thing from Jinja? #}
 
                     <!--faq items-->
                     <div class="row-fluid">
@@ -76,8 +52,6 @@
                         </div>
                         <!--END FAQ ITEM-->
 
-
-
                         <!--FAQ-->
                         <div class="faq">
                           <div class="faq-heading">
@@ -95,25 +69,23 @@
                         </div>
                         <!--END FAQ ITEM-->
 
-
-
-
                         <!--FAQ-->
                         <div class="faq">
                           <div class="faq-heading">
 
                             <div data-target="#faq3" data-toggle="collapse">
                               <i class="icon-question-sign"></i>
-                              Frequently Asked Question 03
+                              Can I trust what I find on ClinDesk and White Coat Academy?
                             </div>
                           </div>
-                          <div class="faq-body collapse" id="faq3">
+                          <div class="faq-body in" id="faq3">
                             <div class="faq-inner">
-                              <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                                <p>omg omg</p>
                             </div>
                           </div>
                         </div>
                         <!--END FAQ ITEM-->
+
 
                         <!--FAQ-->
                         <div class="faq">
@@ -121,17 +93,16 @@
 
                             <div data-target="#faq4" data-toggle="collapse">
                               <i class="icon-question-sign"></i>
-                              Frequently Asked Question 04
+                              Can I trust what I find on ClinDesk and White Coat Academy?
                             </div>
                           </div>
                           <div class="faq-body collapse" id="faq4">
                             <div class="faq-inner">
-                              <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                                <p>omg omg</p>
                             </div>
                           </div>
                         </div>
                         <!--END FAQ ITEM-->
-
 
 
                         <!--FAQ-->
@@ -140,18 +111,88 @@
 
                             <div data-target="#faq5" data-toggle="collapse">
                               <i class="icon-question-sign"></i>
-                              Frequently Asked Question 05
+                              Can I trust what I find on ClinDesk and White Coat Academy?
                             </div>
                           </div>
                           <div class="faq-body collapse" id="faq5">
                             <div class="faq-inner">
-                              <p>Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.</p>
+                                <p>omg omg</p>
                             </div>
                           </div>
                         </div>
                         <!--END FAQ ITEM-->
 
 
+                        <!--FAQ-->
+                        <div class="faq">
+                          <div class="faq-heading">
+
+                            <div data-target="#faq6" data-toggle="collapse">
+                              <i class="icon-question-sign"></i>
+                              Can I trust what I find on ClinDesk and White Coat Academy?
+                            </div>
+                          </div>
+                          <div class="faq-body collapse" id="faq6">
+                            <div class="faq-inner">
+                                <p>omg omg</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!--END FAQ ITEM-->
+
+
+                        <!--FAQ-->
+                        <div class="faq">
+                          <div class="faq-heading">
+
+                            <div data-target="#faq7" data-toggle="collapse">
+                              <i class="icon-question-sign"></i>
+                              Can I trust what I find on ClinDesk and White Coat Academy?
+                            </div>
+                          </div>
+                          <div class="faq-body collapse" id="faq7">
+                            <div class="faq-inner">
+                                <p>omg omg</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!--END FAQ ITEM-->
+
+
+                        <!--FAQ-->
+                        <div class="faq">
+                          <div class="faq-heading">
+
+                            <div data-target="#faq8" data-toggle="collapse">
+                              <i class="icon-question-sign"></i>
+                              Can I trust what I find on ClinDesk and White Coat Academy?
+                            </div>
+                          </div>
+                          <div class="faq-body collapse" id="faq8">
+                            <div class="faq-inner">
+                                <p>omg omg</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!--END FAQ ITEM-->
+
+
+                        <!--FAQ-->
+                        <div class="faq">
+                          <div class="faq-heading">
+
+                            <div data-target="#faq9" data-toggle="collapse">
+                              <i class="icon-question-sign"></i>
+                              Can I trust what I find on ClinDesk and White Coat Academy?
+                            </div>
+                          </div>
+                          <div class="faq-body collapse" id="faq9">
+                            <div class="faq-inner">
+                                <p>omg omg</p>
+                            </div>
+                          </div>
+                        </div>
+                        <!--END FAQ ITEM-->
 
 
                       </div>
