@@ -13,10 +13,19 @@
 		var sc = $("body,html");
 		var menu = $("header ul.nav > li > ul");
 		
+		// This is a bit of a hackjob to do auto-URL based tab highlighting.
+		// TODO: Clean this up or move to Python?
 		function setActiveMenuItem(url) {
-			var page = url.split(/\//).pop();
-			var m = $("header ul.nav");
-			m.find('a[href$="'+page+'"]').parents("li").addClass("active");
+		    var page = url.split(/\//)[3];
+		    if(page) {
+			if(page.indexOf('.') == -1) {
+			    page += '/';
+			}
+		    } else {
+			page = 'index.html';
+		    }
+		    var m = $("header ul.nav");
+		    m.find('a[href$="'+page+'"]').parents("li").addClass("active");
 		}
 
 		
