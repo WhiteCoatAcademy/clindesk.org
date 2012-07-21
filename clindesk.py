@@ -96,8 +96,11 @@ def inject_static():
 # *** Static-ish Pages
 ######
 
+@app.route("/index.html") # TODO: Standardize toplevel url? Move to nginx?
+def redirect_index():
+    return redirect('/', code=302)
+
 @app.route("/")
-@app.route("/index.html") # TODO: Standardize toplevel url.
 def page_index():
     if app.config['STAGING'] or not app.config['ON_EC2']:
         return render_template('index.html')
@@ -125,7 +128,7 @@ def page_about():
 
 @app.route("/diseases/")
 def page_diseases_index():
-    return render_template('diseases.html')
+    return render_template('diseases/index.html')
 
 @app.route("/diseases/<level1>/")
 def page_diseases_toplevel(level1):
