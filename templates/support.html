@@ -2,7 +2,7 @@
 {% block title %}Support Us{% endblock %}
 {% block tagline_text %}Supporting ClinDesk{% endblock %}
 {% block maincontent %}
-    <section class="mainContentWrap">
+<section class="mainContentWrap" xmlns="http://www.w3.org/1999/html">
           <div class="container mainContent">
             <div class="row-fluid">
               <div class="span12">
@@ -20,47 +20,147 @@
                               <div class="hero-unit">
                                  <h2>Help Open Medicine</h2>
                                  <p>We're trying our best to open medical education, but bandwidth and development costs are expensive! </p>
-                                 <p>
+                                 {# <p>
                                    <a class="btn btn-info btn-large"><i class="icon-lock icon-white"></i>
-                                    Donate Now
+                                    Donate via Amazon
                                    </a>
-                                 </p>
+                                 </p> #}
                                </div></div>
                             <div class="span7">
-                              <blockquote><p>"Inspirational tiny quote here omg."</p><small class="pull-right">Some Guy</small></blockquote>
+{#                              <blockquote><p>"Inspirational tiny quote here omg."</p><small class="pull-right">Some Guy</small></blockquote>#}
+                                <blockquote>
+                                    <h2>Donate Now</h2><br/>
+                                    <p>
+                                    	<table class="table" border="0" cellpadding="0" cellspacing="0" style="width:250px">
+                                    	<form action="https://authorize.payments.amazon.com/pba/paypipeline" method="post">
+                                    	  <input type="hidden" name="returnUrl" value="http://www.clindesk.org/thanks.html" >
+                                    	  <input type="hidden" name="processImmediate" value="1" >
+                                    	  <input type="hidden" name="accessKey" value="11SEM03K88SD016FS1G2" >
+                                    	  <input type="hidden" name="signatureMethod" value="HmacSHA256" >
+                                    	  <input type="hidden" name="collectShippingAddress" value="0" >
+                                    	  <input type="hidden" name="isDonationWidget" value="1" >
+                                    	  <input type="hidden" name="amazonPaymentsAccountId" value="DKCLGRNGBYIT44TA45I766U33ZQ8MRBMJPQZF5" >
+                                    	  <input type="hidden" name="referenceId" value="clindesk-001" >
+                                    	  <input type="hidden" name="cobrandingStyle" value="logo" >
+                                    	  <input type="hidden" name="immediateReturn" value="1" >
+                                    	  <input type="hidden" name="description" value="MedEd: ClinDesk and White Coat Academy" >
+                                    	  <input type="hidden" name="abandonUrl" value="http://www.clindesk.org/support.html" >
+                                    	  <input type="hidden" name="signatureVersion" value="2" >
+                                    	  <input type="hidden" name="signature" value="fLF7+Z18Iz+1Jh+1TDjdopAEAJ5Ly5z3DX8eln6Xv10=" >
+                                        <tr>
+                                        	<td>$&nbsp;<input type="text" name="amount" size="8" value="15.00" style="width:50px;">&nbsp;</td>
+                                    	    <td><input type="submit" value="Donate via Amazon" class="btn btn-info btn-medium"></td>
+                                    	</tr>
+                                        </form>
+                                    	</table></p>
+                                </blockquote>
                             </div>
                           </div>
-
-
-                          <!--hero units small & colored-->
 
                           <div class="row-fluid">
-                            <div class="span6">
-                              <div class="hero-unit">
-                                <h1 style="color:grey">Sponsor a Disease</h1>
-                                <br/><p>Lorem ipsum dolor sit amet</p>
+                            <div class="span4">
+                              <div class="hero-unit price inverse well">
+                                <p class="type">Hosting for a Day</p>
+                                  <ul class="unstyled">
+                                    <li><i class="icon-ok icon-white"></i>Includes stuff</li>
+                                    <li><i class="icon-ok icon-white"></i>Other great items</li>
+                                    <li><i class="icon-ok icon-white"></i>Yep that too</li>
+                                  </ul>
+                                  <h1 style="letter-spacing: 1px;">$15</h1>
+                                  <br />
                                 <p>
-                                  <a class="btn btn-inverse">
-                                   More
-                                  </a>
+                                    <a class="btn btn-primary">Donate via Amazon</a>
                                 </p>
                               </div>
                             </div>
 
-                            <div class="span6">
-                              <div class="hero-unit">
-                                <h1 style="color:grey">Sponsor a </h1>
-                                <p>Lorem ipsum dolor sit amet</p>
+                            <div class="span4">
+                              <div class="hero-unit price inverse well">
+                                <p class="type">Like a Sir </p>
+                                  <ul class="unstyled">
+                                    <li><i class="icon-ok icon-white"></i>Includes stuff</li>
+                                    <li><i class="icon-ok icon-white"></i>Other great items</li>
+                                    <li><i class="icon-ok icon-white"></i>Yep that too</li>
+                                  </ul>
+                                  <h1 style="letter-spacing: 1px;">$35</h1>
+                                  <br />
                                 <p>
-                                  <a class="btn btn-inverse">
-                                   More
-                                  </a>
+                                    <a class="btn btn-primary">Donate via Amazon</a>
+                                </p>
+                              </div>
+                            </div>
+
+                            <div class="span4">
+                              <div class="hero-unit price inverse well">
+                                <p class="type">Sponsor a Disease</p>
+                                  <ul class="unstyled">
+                                    <li><i class="icon-ok icon-white"></i>Includes stuff</li>
+                                    <li><i class="icon-ok icon-white"></i>Other great items</li>
+                                    <li><i class="icon-ok icon-white"></i>Yep that too</li>
+                                  </ul>
+                                  <h1 style="letter-spacing: 1px;">$60</h1>
+                                  <br />
+                                <p>
+                                    <a class="btn btn-primary">Donate via Amazon</a>
                                 </p>
                               </div>
                             </div>
                           </div>
 
-{# In the future, add this back. #}
+
+
+                          <div class="row-fluid">
+                            <div class="span4">
+                              <div class="hero-unit price inverse well">
+                                <p class="type">Hosting for a Day</p>
+                                  <ul class="unstyled">
+                                    <li><i class="icon-ok icon-white"></i>Includes stuff</li>
+                                    <li><i class="icon-ok icon-white"></i>Other great items</li>
+                                    <li><i class="icon-ok icon-white"></i>Yep that too</li>
+                                  </ul>
+                                  <h1 style="letter-spacing: 1px;">$100</h1>
+                                  <br />
+                                <p>
+                                    <a class="btn btn-primary">Donate via Amazon</a>
+                                </p>
+                              </div>
+                            </div>
+
+                            <div class="span4">
+                              <div class="hero-unit price inverse well">
+                                <p class="type">Like a Sir </p>
+                                  <ul class="unstyled">
+                                    <li><i class="icon-ok icon-white"></i>Includes stuff</li>
+                                    <li><i class="icon-ok icon-white"></i>Other great items</li>
+                                    <li><i class="icon-ok icon-white"></i>Yep that too</li>
+                                  </ul>
+                                  <h1 style="letter-spacing: 1px;">$250</h1>
+                                  <br />
+                                <p>
+                                    <a class="btn btn-primary">Donate via Amazon</a>
+                                </p>
+                              </div>
+                            </div>
+
+                            <div class="span4">
+                              <div class="hero-unit price inverse well">
+                                <p class="type">Sponsor a Disease</p>
+                                  <ul class="unstyled">
+                                    <li><i class="icon-ok icon-white"></i>Includes stuff</li>
+                                    <li><i class="icon-ok icon-white"></i>Other great items</li>
+                                    <li><i class="icon-ok icon-white"></i>Yep that too</li>
+                                  </ul>
+                                  <h1 style="letter-spacing: 1px;">$500</h1>
+                                  <br />
+                                <p>
+                                    <a class="btn btn-primary">Donate via Amazon</a>
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+
+
+{# In the future, add this back? #}
 {#                          <!--columns-->
 
                           <div class="row-fluid">
