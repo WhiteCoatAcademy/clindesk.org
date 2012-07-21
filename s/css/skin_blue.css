@@ -18,7 +18,7 @@
     { 
         background: #fcfcfc;
         font-family:helvetica, arial, verdana, sans-serif;
-        color:#888;
+        color:#666;
         font-size:12px;
     }
     
@@ -33,7 +33,7 @@
     h2
     {
         font-size:22px;
-        color:#777;
+        color:#444;
         line-height:28px;
         font-family:Georgia, Constantia, Lucida, serif;
         font-weight:normal;
@@ -52,7 +52,7 @@
     {
        font-family:Georgia, Constantia, Lucida, serif;
        font-family:helvetica, arial, verdana, sans-serif;
-       color:#919191;
+       color:#666;
        font-size:12px;
     }
     
@@ -1016,7 +1016,7 @@
     /*links widget*/
     
     .widget_links li a{
-        color:#888;
+        color:#666;
     }
     
     .widget_links li span{
