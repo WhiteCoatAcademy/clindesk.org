@@ -120,7 +120,7 @@ def page_about():
 
 
 ######
-# *** Disease / Drug Pages
+# *** Disease Pages
 ######
 
 @app.route("/diseases/")
@@ -138,6 +138,14 @@ def page_diseases_toplevel(level1):
 def page_diseases_level2(level1, level2):
     return "%s %s" % (level1, level2)
 
+
+#####
+# *** Special Topics Pages
+#####
+
+@app.route("/special-topics/")
+def special_topics():
+    return render_template('special-topics/index.html')
 
 
 ######
