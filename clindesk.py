@@ -121,6 +121,10 @@ def page_help():
 def page_about():
     return render_template('about.html')
 
+# Search
+@app.route("/search.html")
+def search_results():
+    return render_template('search.html')
 
 ######
 # *** Disease Pages
