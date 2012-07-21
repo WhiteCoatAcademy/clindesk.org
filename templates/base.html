@@ -216,8 +216,59 @@
 		</footer>
 		<!--back to top button-->
 		<a href="#top" id="peBackToTop" class="label btt disabled"><span class="icon-chevron-up icon-white"></span></a>
-		<!-- import minified javascript -->
-        <script type="text/javascript" src="{{ static('js/mentor.min.js') }}"></script>
+{# TODO: Make minified JS. For now, we explode the JS, since I want to cut some of their clutter out. #}
+
+    <!-- import javascript -->
+  		<script type="text/javascript" src="{{ static('js/jquery.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/jquery.isotope.min.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/bootstrap/bootstrap.min.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/prettify/prettify.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/boot.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.mousewheel.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.theme.utils.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.utils.easing.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.utils.browser.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.utils.geom.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.utils.preloader.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.utils.transition.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.utils.youtube.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/froogaloop.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.utils.vimeo.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/video/projekktor.min.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.video.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.videoPlayer.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.transform.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.flare.lightbox.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.flare.lightbox.render.image.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.backgroundSlider.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.simplethumb.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe.flare/src/jquery.pixelentity.flare.lightbox.render.gallery.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.volo.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.volo.simpleskin.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.effects.iconmove.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.twitter.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.flickr.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.contactForm.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.newsletter.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.isotope.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.twitter.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.flickr.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.gmap.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.social.facebook.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.social.twitter.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.social.google.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.social.pinterest.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.bslinks.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.contact.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.newsletter.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.isotope.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.bootstrap.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.volo.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.carousel.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/pixelentity.controller.js') }}"></script>
+  		<script type="text/javascript" src="{{ static('js/pe/init.js') }}"></script>
+
     {# TODO: Move this to external JS or something. #}
     {# TODO: Can't JS set the cookie? Why not use JS instead of Flask? #}
     <script type="text/javascript">
