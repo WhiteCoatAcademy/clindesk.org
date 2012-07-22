@@ -127,22 +127,22 @@ def search_results():
     return render_template('search.html')
 
 ######
-# *** Disease Pages
+# *** Condition Pages
 ######
 
-@app.route("/diseases/")
-def page_diseases_index():
-    return render_template('diseases/index.html')
+@app.route("/conditions/")
+def page_conditions_index():
+    return render_template('conditions/index.html')
 
-@app.route("/diseases/<level1>/")
-def page_diseases_toplevel(level1):
+@app.route("/conditions/<level1>/")
+def page_conditions_toplevel(level1):
     # TODO: Does Flask provide a similar function?
     # I see safe_join ...
     cleaned = alnum_only(level1)
     return "%s" % (cleaned)
 
-@app.route("/diseases/<level1>/<level2>/")
-def page_diseases_level2(level1, level2):
+@app.route("/conditions/<level1>/<level2>/")
+def page_conditions_level2(level1, level2):
     return "%s %s" % (level1, level2)
 
 
