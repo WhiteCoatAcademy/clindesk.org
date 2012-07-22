@@ -269,24 +269,7 @@
   		<script type="text/javascript" src="{{ static('js/pe/jquery.pixelentity.widgets.carousel.js') }}"></script>
   		<script type="text/javascript" src="{{ static('js/pe/pixelentity.controller.js') }}"></script>
   		<script type="text/javascript" src="{{ static('js/pe/init.js') }}"></script>#}
-
-    {# TODO: Move this to external JS or something. #}
+    <script type="text/javascript" src="{{ static('js/src/cd.js') }}" async></script>
     {# TODO: Can't JS set the cookie? Why not use JS instead of Flask? #}
-    <script type="text/javascript">
-        $(document).ready(function(){
-            if (document.cookie.match('disclaimer') != null) {
-                $('#disclaimer').hide();
-            }
-            $('#ackbutton').click(function(){
-                $.ajax({
-                    type: "POST",
-                    url: "/setcookie",
-                    success: function() {
-                        $('#disclaimer').hide();
-                    }
-                });
-            });
-        });
-    </script>
 	</body>
 </html>
