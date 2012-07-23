@@ -107,10 +107,10 @@ def page_index():
         return render_template('index.html')
     return render_template('teaser.html', logopath=static('clindesk-logo.png'))
 
-# Support & Donate
-@app.route("/support.html")
-def page_support():
-    return render_template('support.html')
+# Donate
+@app.route("/donate.html")
+def page_donate():
+    return render_template('donate.html')
 
 # Help & FAQ
 @app.route("/help.html")
