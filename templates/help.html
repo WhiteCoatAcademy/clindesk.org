@@ -9,16 +9,7 @@
               <div class="span9">
                 <div class="row-fluid">
                   <div class="innerSpacer">
-{# Let's see how this reflows on mobile. Can we reflow to mobile videos with a similar approach? #}
-                    <!--body search widget for mobile //-->
-                    <div class="row-fluid body-search">
-                      <div class="span12 widget_search">
-                        <form class="form-inline" action="#" method="get" role="search">
-                            <input type="text" class="input-medium span3"  placeholder="Search...">
-                            <button class="icon-search" type="submit"></button>
-                        </form>
-                      </div>
-                    </div>
+
 {# TODO: Can we modularize this more? Like a for loop / import thing from Jinja? #}
                     <!--faq items-->
                     <div class="row-fluid">
@@ -155,63 +146,31 @@
 
               <aside class="span3 sidebar">
 
-{#
-                <!--search widget-->
-                <div class="widget widget_search">
-                  <form class="form-inline" action="#" id="searchform" method="get" role="search">
-                      <input type="text" class="input-medium span3"  placeholder="Search...">
-                      <button class="icon-search" type="submit"></button>
-                  </form>
-                </div>
-#}
-
-                <!--contact details widget-->
-
                 <div class="widget widget_contact">
-                  <h3>Contact Widget</h3>
-                  <div class="address">
-                    <span class="icon-map-marker"></span>
-                    <p><strong>Mentor Business</strong><br>
-                      24 Street Name<br>City Name<br>
-                      Country Name</p>
-                  </div>
-
-                  <div class="email">
+                  <h3>Get in Touch</h3>
+                    Can't find what you're looking for?<br/>Shoot us an e-mail or send us a Tweet!<br/<br/><br/>
+                  <div>
                     <span class="icon-envelope"></span>
-                    <p><a href="mailto:support@pixelentity.com">email@mentor.com</a><br></p>
+                    <p>E-Mail: &nbsp;<a href="mailto:team@clindesk.org">team@clindesk.org</a><br></p>
                   </div>
-
-                  <div class="phone">
-                    <span class="icon-info-sign"></span>
-                    <p>+0044 123 4567 890</p>
-                  </div>
-
-                  <div class="vcard">
-                    <span class="icon-user"></span>
-                    <p><a href="#">Mentor vcard</a></p>
-                  </div>
-
-                  <div class="hours">
-                    <span class="icon-time"></span>
-                    <p class="hours">Mon-Fri: 9:00 &rarr; 18:00<br/>
-                      Sat: 10:00 &rarr; 17:00<br/>
-                      Sun: Closed</p>
+                  <div>
+                    <span class="icon-comment"></span>
+                    <p>
+                      Tweets: <a href="https://twitter.com/ClinDesk" target="_blank">@ClinDesk</a><br/>
                   </div>
 
                 </div>
 
-
-                <!--social media widget-->
-
+                  {#
                 <div class="widget widget_social">
-                  <h3>Social Media Widget</h3>
+                  <h3>Connect With Us</h3>
                   <a href="#" class="sm-icon sm-icon-pinterest"></a>
                   <a href="#" class="sm-icon sm-icon-dribbble"></a>
                   <a href="#" class="sm-icon sm-icon-skype"></a>
                   <a href="#" class="sm-icon sm-icon-facebook"></a>
                   <a href="#" class="sm-icon sm-icon-vimeo"></a>
                 </div>
-
+#}
 
               </aside> <!--end sidebar-->
             </div>
