@@ -1,3 +1,4 @@
+import jinja2
 import logging
 import os
 import re
@@ -138,8 +139,15 @@ def page_conditions_index():
 def page_conditions_toplevel(level1):
     # TODO: Does Flask provide a similar function?
     # I see safe_join ...
-    cleaned = alnum_only(level1)
-    return "%s" % (cleaned)
+
+    # TODO: This 404 logic sucks. Fix it.
+    if (is_safe_string(level1)):
+        try:
+            return render_template('conditions/%s.html' % (level1,))
+        except jinja2.exceptions.TemplateNotFound:
+            return render_template('errors/404.html'), 404
+    else:
+        return render_template('errors/404.html'), 404
 
 @app.route("/conditions/<level1>/<level2>/")
 def page_conditions_level2(level1, level2):
@@ -186,9 +194,13 @@ def page_not_found(error):
 
 
 # Strip non-alnum characters.
-pattern = re.compile('[\W+]')
-def alnum_only(input):
-    return pattern.sub('', input)
+pattern = re.compile('[^a-z0-9-]')
+def is_safe_string(input):
+    subbed_string = pattern.sub('', input)
+    if (input == subbed_string):
+        return True
+    return False
+
 
 
 if __name__ == "__main__":
