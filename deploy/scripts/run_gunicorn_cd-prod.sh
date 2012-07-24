@@ -9,5 +9,5 @@ WORKER_CLASS="gevent"
 BIND="127.0.0.1:8000"
 cd /home/prod/clindesk/
 exec gunicorn --bind $BIND --workers $NUM_WORKERS --worker-class $WORKER_CLASS \
-    --user=$USER --group=$GROUP --log-level=debug \
+    --user=$USER --group=$GROUP \
     --log-file=$LOGFILE clindesk:app 2>>$LOGFILE
