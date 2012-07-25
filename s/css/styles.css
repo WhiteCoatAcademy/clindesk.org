@@ -210,7 +210,11 @@
 	.peVolo .peWrap .portfolioItem {
 		margin: 0px 10px 0px 10px; 
 	}
-    
+
+    .caption {
+        line-height: 18px;
+    }
+
     .divider {
         clear: both;
         position: relative;
@@ -489,12 +493,12 @@
     }
     
     .tagline{
-        padding-top:15px;
-        padding-bottom:15px;
     }
     
     .tagline h2{
         margin-bottom:0;
+        padding-top:15px;
+        padding-bottom:15px;
     }
     
     .tagline .action{
@@ -2305,8 +2309,6 @@
     /*tablet landscape*/
     /*----------------------------------------------------------------------*/
     @media (max-width: 979px) {
-        
-        
         
     }
     
