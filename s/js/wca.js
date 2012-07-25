@@ -17,7 +17,7 @@ $(document).ready(function(){
 
 // Auto-tab highlighting.
 $(document).ready(function(){
-	var page = location.href.split(/\//)[3];
+	var page = location.href.split(/\//)[3].split(/#/)[0];
 	if(page) {
 	    if(page.indexOf('.') == -1) {
 		page += '/';
