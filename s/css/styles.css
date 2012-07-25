@@ -28,7 +28,7 @@
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         color:#2f2f2f;
         font-size:24px;
-        margin-bottom:45px;
+        margin-bottom:20px;
         line-height:30px;
     }
     
@@ -47,13 +47,13 @@
         font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
         color:#2f2f2f;
         font-size:18px;
-        margin-bottom:20px;
+        margin-bottom:10px;
         line-height:24px;
     }
     
     h4
     {
-        margin-bottom:25px;
+        margin-bottom:20px;
         
     }
     
@@ -489,8 +489,8 @@
     }
     
     .tagline{
-        padding-top:30px;
-        padding-bottom:30px; 
+        padding-top:15px;
+        padding-bottom:15px;
     }
     
     .tagline h2{
@@ -572,7 +572,7 @@
     /*main content*/
      
     .mainContent{
-        padding-top:60px;
+        padding-top:20px;
         border-top:2px solid #ffffff;
     }
     
@@ -2072,7 +2072,7 @@
     .sm-icon-last_fm{ background-position: -1944px 0;  } 
     .sm-icon-rss{ background-position: 0 -54px;  } 
     .sm-icon-skype{ background-position: -54px -54px;  } 
-    .sm-icon-e-mail{ background-position: -108px -54px; }
+    .sm-icon-email{ background-position: -108px -54px; }
     
     
     /*missing icons positions*/
