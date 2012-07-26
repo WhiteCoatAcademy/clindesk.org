@@ -143,15 +143,15 @@ def page_conditions_toplevel(level1):
     # TODO: This 404 logic sucks. Fix it.
     if (is_safe_string(level1)):
         try:
-            return render_template('conditions/%s.html' % (level1,))
+            return render_template('conditions/%s/index.html' % (level1,))
         except jinja2.exceptions.TemplateNotFound:
             return render_template('errors/404.html'), 404
     else:
         return render_template('errors/404.html'), 404
 
-@app.route("/conditions/<level1>/<level2>/")
-def page_conditions_level2(level1, level2):
-    return "%s %s" % (level1, level2)
+#@app.route("/conditions/<level1>/<level2>/")
+#def page_conditions_level2(level1, level2):
+#    return "%s %s" % (level1, level2)
 
 
 #####
