@@ -1040,21 +1040,9 @@
     }
     
     /*footer lower section*/
-    
-    footer .footerLower{
-        border-top:1px solid #efefef;
-    }
-    
-    .copyright p{
-        color:#bbb;
-    }
-    
+            
     .footerLower .footNav a{
-        color:#999;
-    }
-    
-    .footerLower .footNav span{
-        color:#ddd;
+        color:#777;
     }
     
     .footerLower .footNav a:hover{
@@ -1168,15 +1156,7 @@
             background:transparent;
         }
         
-        
-        /*footer widgets*/
-        
-        footer .footerMain .widget {
-            border-bottom: 1px solid #eee;
-        }
-		
-		
-		
+        		
 		/*menu*/
 		
 		/*navbar text items*/

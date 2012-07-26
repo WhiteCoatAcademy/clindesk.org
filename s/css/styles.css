@@ -1728,7 +1728,6 @@
     /*footer main section*/
     
     footer .footerMain{
-        padding-top:55px;
         border-top:2px solid #9aae4c;
     }
     
@@ -1741,7 +1740,6 @@
     
     .logo-foot{
         overflow:hidden;
-        
     }
     
     .logo-foot img{
@@ -1958,9 +1956,8 @@
     /*footer lower section*/
     
     footer .footerLower{
-        padding-top:30px;
+        padding-top:25px;
         padding-bottom:30px;
-        border-top:1px solid #efefef;
     }
     
     .footerLower .copyright{
@@ -1968,20 +1965,20 @@
     }
     
     .copyright p{
-        color:#bbb;
+        color:#777;
     }
     
     .footerLower .footNav a{
         float:left;
         padding:4px 6px;
         margin:0 4px;
-        color:#999;
+        color:#777;
     }
     
     .footerLower .footNav span{
         float:left;
         margin:0 2px;
-        color:#ddd;
+        color:#777;
         margin-top:4px;
     }
     
@@ -2001,6 +1998,7 @@
     }
     
     footer .footerLower p{
+        color: #777;
         margin-bottom:0;
     }
     
