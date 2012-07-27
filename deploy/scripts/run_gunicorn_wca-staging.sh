@@ -8,6 +8,6 @@ GROUP=staging
 WORKER_CLASS="gevent"
 BIND="127.0.0.1:8003"
 cd /home/staging/clindesk/
-exec gunicorn --bind $BIND --debug --workers $NUM_WORKERS --worker-class $WORKER_CLASS \
-    --user=$USER --group=$GROUP --log-level=debug \
+exec gunicorn --bind $BIND --workers $NUM_WORKERS --worker-class $WORKER_CLASS \
+    --user=$USER --group=$GROUP --log-level=info \
     --log-file=$LOGFILE wca:app 2>>$LOGFILE
