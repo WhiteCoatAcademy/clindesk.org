@@ -59,12 +59,13 @@ def main():
 
 
         # Run our instances
+        # 64-bit EBS Ubuntu 12.04 (Precise)
         print('Deploying two instances...')
         print('Starting instance, east')
-        east_conn, east_instance = launchBaseInstance('ami-8cfa58e5', 'us-east-1', 'clindesk-web-us-east-1')
+        east_conn, east_instance = launchBaseInstance('ami-82fa58eb', 'us-east-1', 'clindesk-web-us-east-1')
 
         print('Starting instance, west')
-        west_conn, west_instance = launchBaseInstance('ami-5d654018', 'us-west-1', 'clindesk-web-us-west-1')
+        west_conn, west_instance = launchBaseInstance('ami-5965401c', 'us-west-1', 'clindesk-web-us-west-1')
 
         if not args.no_setup:
             print('Setting up nodes.')
