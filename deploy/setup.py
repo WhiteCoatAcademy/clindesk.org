@@ -82,6 +82,8 @@ def main():
         #  Not sure if AWS EIP transfers are seamless.
         if not args.no_eip_switch:
             print('Moving EIPs to new instances.')
+            print('Sleeping 10 seconds first, to decrease CPU steal time ...\n')
+            time.sleep(10)
             print('\tMoving East EIP...')
             transfer_EIPs(east_conn, east_instance)
             print('\tMoving West EIP...')
