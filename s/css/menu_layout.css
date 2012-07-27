@@ -25,7 +25,17 @@
     .navbar .nav > li.last{
         margin-right:0;
     }
-    
+
+    .subnav {
+    }
+
+    .subnav-fixed {
+      position: fixed;
+      top: 40px;
+      left: 0;
+      right: 0;
+    }
+
     .dropdown .caret{
         margin-left:8px;
         margin-top:9px;
