@@ -13,7 +13,7 @@
     {%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
     <link href="{{ static('css/min.wca.css') }}" rel="stylesheet" />
     {%- elif "clindesk" in request.environ.HTTP_HOST -%}
-    <link href="{{ static('js/min.cd.css') }}" rel="stylesheet" />
+    <link href="{{ static('css/min.cd.css') }}" rel="stylesheet" />
     {% else %}
     <!--- Warning: This currently only loads ClinDesk styles, no WCA //-->
     <link href="{{ static('css/bootstrap.css') }}" rel="stylesheet" />
