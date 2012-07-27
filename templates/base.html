@@ -23,10 +23,7 @@
     <link href="{{ static('css/styles.css') }}" rel="stylesheet" />
     <link href="{{ static('css/skin_blue.css') }}" rel="stylesheet"/>
     {% endif %}
-    <!-- http://remysharp.com/2009/01/07/html5-enabling-script/ -->
-    <!--[if lt IE 9]>
-    <script type="text/javascript">/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary subline time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
-    <![endif]-->
+    <!--[if lt IE 9]><script type="text/javascript" src="{{ static('js/html5shiv/36.js') }}"></script><![endif]-->
     <script type="text/javascript">(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
     {#    <!-- favicon & iSO touch icons -->
     <link rel="shortcut icon" href="{{ static('favicon.jpg') }}" /> #}
