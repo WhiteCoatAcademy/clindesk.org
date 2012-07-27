@@ -9,12 +9,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="description" content="{% block description %}{% endblock %}" />
     <meta name="author" content="{% block author %}{% endblock %}" />
+    {# Is it cool to have logic here? #}
+    {%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
+    <link href="{{ static('css/min.wca.css') }}" rel="stylesheet" />
+    {%- elif "clindesk" in request.environ.HTTP_HOST -%}
+    <link href="{{ static('js/min.cd.css') }}" rel="stylesheet" />
+    {% else %}
+    <!--- Warning: This currently only loads ClinDesk styles, no WCA //-->
     <link href="{{ static('css/bootstrap.css') }}" rel="stylesheet" />
     <link href="{{ static('css/bootstrap-responsive.css') }}" rel="stylesheet" />
     <link href="{{ static('css/menu_layout.css') }}" rel="stylesheet" />
     <link href="{{ static('css/menu_skin.css') }}" rel="stylesheet" />
     <link href="{{ static('css/styles.css') }}" rel="stylesheet" />
     <link href="{{ static('css/skin_blue.css') }}" rel="stylesheet"/>
+    {% endif %}
     <!-- http://remysharp.com/2009/01/07/html5-enabling-script/ -->
     <!--[if lt IE 9]>
     <script type="text/javascript">/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark meter nav output progress section summary subline time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
@@ -212,7 +220,16 @@
 <a href="#top" id="peBackToTop" class="label btt disabled"><span class="icon-chevron-up icon-white"></span></a>
 #}
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+{# Is it cool to have logic here? #}
+{%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
+<script type="text/javascript" src="{{ static('js/min.wca.js') }}" async></script>
+{%- elif "clindesk" in request.environ.HTTP_HOST -%}
 <script type="text/javascript" src="{{ static('js/min.cd.js') }}" async></script>
+{% else %}
+<!-- WARNING: This ONLY loads CD on dev now. Fix this later //--->
+<script type="text/javascript" src="{{ static('js/src/shared.js') }}" async></script>
+<script type="text/javascript" src="{{ static('js/src/cd.js') }}" async></script>
+{% endif %}
 <script type="text/javascript" src="{{ static('js/bootstrap/204.min.js') }}" async></script>
 {# TODO: Can't JS set the cookie? Why not use JS instead of Flask? #}
 </body>
