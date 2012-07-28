@@ -16,6 +16,7 @@ h1
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     color:#2f2f2f;
     font-size:24px;
+    margin-bottom:20px;
     line-height:30px;
 }
 
@@ -23,7 +24,7 @@ h2
 {
     font-size:22px;
     color:#444;
-    line-height:28px;
+    line-height:20px;
     font-family:Georgia, Constantia, Lucida, serif;
     font-weight:normal;
 }
@@ -33,6 +34,7 @@ h3
     font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
     color:#2f2f2f;
     font-size:18px;
+    margin-bottom:10px;
     line-height:24px;
 }
 
