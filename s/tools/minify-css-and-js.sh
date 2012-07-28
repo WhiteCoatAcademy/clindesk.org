@@ -21,24 +21,25 @@ java -jar yuicompressor-2.4.7.jar --type js -v -o '../js/min.wca.js' ../js/wca.j
 #### Let's do the same for CSS! 
 # Concatenate CSS into single files
 # (Do newlines matter?)
-cat ../css/bootstrap.css > ../css/_core.css
-echo "" >> ../css/_core.css
-cat ../css/bootstrap-responsive.css >> ../css/_core.css
-echo "" >> ../css/_core.css
-cat ../css/menu_layout.css >> ../css/_core.css
-echo "" >> ../css/_core.css
-cat ../css/menu_skin.css >> ../css/_core.css
-echo "" >> ../css/_core.css
-cat ../css/styles.css >> ../css/_core.css
-echo "" >> ../css/_core.css
-cat ../css/skin_blue.css >> ../css/_core.css
+mkdir ../css/.temp
+cat ../css/_bootstrap.css > ../css/.temp/_shared.css
+echo "" >> ../css/.temp/_shared.css
+cat ../css/_bootstrap-responsive.css >> ../css/.temp/_shared.css
+echo "" >> ../css/.temp/_shared.css
+cat ../css/_menu_layout.css >> ../css/.temp/_shared.css
+echo "" >> ../css/.temp/_shared.css
+cat ../css/_menu_skin.css >> ../css/.temp/_shared.css
+echo "" >> ../css/.temp/_shared.css
+cat ../css/_styles.css >> ../css/.temp/_shared.css
+echo "" >> ../css/.temp/_shared.css
+cat ../css/_skin_blue.css >> ../css/.temp/_shared.css
 
-cat ../css/_core.css > ../css/cd.css
-cat ../css/_core.css > ../css/wca.css
+cat ../css/.temp/_shared.css > ../css/.temp/cd.css
+cat ../css/.temp/_shared.css > ../css/.temp/wca.css
 
 echo "ClinDesk CSS"
-java -jar yuicompressor-2.4.7.jar --type css -v -o '../css/min.cd.css' ../css/cd.css
+java -jar yuicompressor-2.4.7.jar --type css -v -o '../css/min.cd.css' ../css/.temp/cd.css
 
 echo "WCA CSS"
-java -jar yuicompressor-2.4.7.jar --type css -v -o '../css/min.wca.css' ../css/wca.css
+java -jar yuicompressor-2.4.7.jar --type css -v -o '../css/min.wca.css' ../css/.temp/wca.css
 
