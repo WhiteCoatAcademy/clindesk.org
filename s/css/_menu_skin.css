@@ -203,11 +203,6 @@ Dark grey (drops bg)                                        #393939
         text-shadow:none;
     }
 
-    /*logo for drop menu arrangement*/
-    .navbar .brand{
-        background:url(../img/content/logo_sml.png) no-repeat;
-    }
-
     .navbar .nav > li > a, .navbar .dropdown-menu a{
         border-radius:0;
         -moz-border-radius:0;

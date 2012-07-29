@@ -1068,6 +1068,8 @@ a.peOver span.linkIcon{
     /*logo for drop menu arrangement*/
     .navbar .brand{
         background:url(../img/content/logo_sml.png) no-repeat;
+	height: 30px;
+	width: 140px;
     }
 
     .navbar .nav > li > a, .navbar .dropdown-menu a{
