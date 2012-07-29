@@ -11,7 +11,7 @@
 
 .navbar .nav{
     float:right;
-    margin-top:83px;
+    margin-top:64px;
 }
 
 .navbar .nav > li{
@@ -35,6 +35,10 @@
     left: 0;
     right: 0;
     z-index: 1000; // On top of everything.
+}
+
+.subnav-main-spacer {
+   padding-top: 48px;
 }
 
 .dropdown .caret{
@@ -300,8 +304,6 @@
     }
 
     .navbar .brand{
-        height:30px;
-        width:140px;
         margin: 8px 10px 0 0;
         padding-bottom:8px;
     }
