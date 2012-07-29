@@ -36,6 +36,7 @@ $(document).ready(function(){
 	// fix sub nav on scroll
 	var $win = $(window)
 	    , $nav = $('.subnav')
+	    , $main = $('.mainContentWrap')
 	    , navTop = $('.subnav').length && $('.subnav').offset().top - 40
 	    , isFixed = 0
 
@@ -53,9 +54,11 @@ $(document).ready(function(){
 	    if (scrollTop >= navTop && !isFixed) {
 		isFixed = 1
 		$nav.addClass('subnav-fixed')
+		$main.addClass('subnav-main-spacer')
 	    } else if (scrollTop <= navTop && isFixed) {
 		isFixed = 0
 		$nav.removeClass('subnav-fixed')
+		$main.removeClass('subnav-main-spacer')
 	    }
 	}
     });
