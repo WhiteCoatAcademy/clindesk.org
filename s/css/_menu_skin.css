@@ -28,10 +28,6 @@ Dark grey (drops bg)                                        #393939
     background:transparent url(../img/skin/head_line_btm.jpg) repeat-x 0 100%;
 }
 
-.navbar .brand{
-    border-bottom:2px solid #9aae4c;
-}
-
 .navbar .nav > li > a{
     color:#979795;
     font-weight:bold;
@@ -44,11 +40,9 @@ Dark grey (drops bg)                                        #393939
     background-color: transparent;
     color: #333;
     text-decoration: none;
-    border-bottom:2px solid #9aae4c;
 }
 
 .navbar .nav .active > a, .navbar .nav .active > a:hover{
-    background-color: #9aae4c;
     color:#fff;
     -webkit-border-radius: 0;
     -moz-border-radius: 0;
@@ -56,7 +50,6 @@ Dark grey (drops bg)                                        #393939
 }
 
 .navbar .nav > .active > a{
-    border-bottom:2px solid #9aae4c;
     -webkit-border-radius: 3px 3px 0 0;
     -moz-border-radius: 3px 3px 0 0;
     border-radius:3px 3px 0 0;
@@ -94,7 +87,6 @@ Dark grey (drops bg)                                        #393939
     -webkit-border-radius: 0;
     border-color:#e5e5e5;
     border:none;
-    border-top:2px solid #9aae4c;
     box-shadow: 0 3px 5px rgba(0,0,0,0.5);
     -webkit-box-shadow: 0 3px 5px rgba(0,0,0,0.5);
     background:#393939;
@@ -109,7 +101,6 @@ Dark grey (drops bg)                                        #393939
 .dropdown-menu .active > a:hover {
     color: #ffffff;
     text-decoration: none;
-    background-color: #9aae4c;
 }
 
 .dropdown-menu .divider{
@@ -120,7 +111,6 @@ Dark grey (drops bg)                                        #393939
 .navbar .nav .open > .dropdown-toggle,
 .navbar .nav .active > .dropdown-toggle,
 .navbar .nav .open.active > .dropdown-toggle{
-    background-color:#9aae4c;
     color:#fff;
 }
 
@@ -183,10 +173,6 @@ Dark grey (drops bg)                                        #393939
         font-weight:normal;
     }
 
-    .navbar .dropdown-menu a:hover {
-        background-color: #9aae4c;
-    }
-
     /*3rd level menu*/
 }
 
@@ -208,10 +194,6 @@ Dark grey (drops bg)                                        #393939
         border:none;
         box-shadow:none;
         -mox-box-shadow:none;
-    }
-
-    .btn-navbar:hover{
-        background: #9AAE4C;
     }
 
     .btn-navbar .btnTitle{
@@ -239,22 +221,16 @@ Dark grey (drops bg)                                        #393939
     }
 
     .navbar .nav .active > a, .navbar .nav .active > a:hover {
-        border-left:2px solid #9AAE4C;
         border-bottom:none;
         -webkit-border-radius: 0;
         -moz-border-radius: 0;
         border-radius:0;
     }
 
-    .navbar .nav .active > a{
-        background-color: #9AAE4C;
-    }
-
     .navbar .nav > li > a:hover {
         background-color: #c1c1bf;
         color: #fff;
         text-decoration: none;
-        border-left:2px solid #9aae4c;
         border-bottom:none;
     }
 
