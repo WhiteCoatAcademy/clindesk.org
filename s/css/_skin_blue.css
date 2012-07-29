@@ -3,6 +3,14 @@
 
 /* Generic Styles */
 
+.scroll-logo {
+        background:url(../img/content/logo_sml.png) no-repeat;
+	height: 30px;
+	width: 140px;
+	position:fixed;
+	top:5px;
+}
+
 body
 {
     background: #fcfcfc;

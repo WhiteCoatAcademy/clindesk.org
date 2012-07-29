@@ -38,7 +38,7 @@ $(document).ready(function(){
 	    , $nav = $('.subnav')
 	    , $main = $('.mainContentWrap')
 	    , $logo = $('.brand')
-	    , navTop = $('.subnav').length && $('.subnav').offset().top - 44
+	    , navTop = $('.subnav').length && $('.subnav').offset().top - 45
 	    , isFixed = 0
 
 	    processScroll()
@@ -56,12 +56,14 @@ $(document).ready(function(){
 		isFixed = 1
 		$nav.addClass('subnav-fixed')
 		$main.addClass('subnav-main-spacer')
-		$logo.hide()
+		$logo.addClass('scroll-logo')
+		$('img',$logo).hide()
 	    } else if (scrollTop <= navTop && isFixed) {
 		isFixed = 0
 		$nav.removeClass('subnav-fixed')
 		$main.removeClass('subnav-main-spacer')
-		$logo.show()
+		$logo.removeClass('scroll-logo')
+		$('img',$logo).show()
 	    }
 	}
     });
