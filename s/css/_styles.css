@@ -694,52 +694,6 @@ header .smedia{
     margin-top:20px;
 }
 
-/*pager*/
-
-.pager{
-    margin-bottom:60px;
-}
-
-.pager a {
-    background-color: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px 4px 4px 4px;
-    display: inline-block;
-    padding: 5px 14px;
-    color:#666;
-
-}
-
-.pager a span{
-    font-weight:bold;
-}
-
-.pager a:hover{
-    color:#fff;
-    background-color:#9aae4c;
-}
-
-/*search results*/
-
-.result{
-    margin-bottom:30px;
-    padding-bottom:25px;
-    border-bottom:1px solid #eee;
-}
-
-.result .post-image{
-    margin-bottom:20px;
-}
-
-.result .result-title h3 a{
-    color:#2f2f2f;
-}
-
-.result .result-title h3 span{
-    margin-left:20px;
-}
-
-
 
 /*contact form*/
 
@@ -839,56 +793,6 @@ header .smedia{
 
 
 /*portfolio*/
-
-/* isotope stuff */
-.isotope-item {
-    z-index: 2;
-}
-
-.isotope-hidden.isotope-item {
-    pointer-events: none;
-    z-index: 1;
-}
-
-/**** Isotope CSS3 transitions ****/
-
-.isotope,
-.isotope .isotope-item {
-    -webkit-transition-duration: 0.8s;
-    -moz-transition-duration: 0.8s;
-    -ms-transition-duration: 0.8s;
-    -o-transition-duration: 0.8s;
-    transition-duration: 0.8s;
-}
-
-.isotope {
-    -webkit-transition-property: height, width;
-    -moz-transition-property: height, width;
-    -ms-transition-property: height, width;
-    -o-transition-property: height, width;
-    transition-property: height, width;
-}
-
-.isotope .isotope-item {
-    -webkit-transition-property: -webkit-transform, opacity;
-    -moz-transition-property:    -moz-transform, opacity;
-    -ms-transition-property:     -ms-transform, opacity;
-    -o-transition-property:         top, left, opacity;
-    transition-property:         transform, opacity;
-}
-
-/**** disabling Isotope CSS3 transitions ****/
-
-.isotope.no-transition,
-.isotope.no-transition .isotope-item,
-.isotope .isotope-item.no-transition {
-    -webkit-transition-duration: 0s;
-    -moz-transition-duration: 0s;
-    -ms-transition-duration: 0s;
-    -o-transition-duration: 0s;
-    transition-duration: 0s;
-}
-
 
 .pageTitle.portfolio{
     border-bottom:1px solid #eeeeee;

@@ -517,39 +517,6 @@ header .smedia span{
 }
 
 
-
-/*pager*/
-
-
-.pager a {
-    background-color: #FFFFFF;
-    border: 1px solid #DDDDDD;
-    border-radius: 4px 4px 4px 4px;
-    color:#666;
-
-}
-
-.pager a span{
-    font-weight:bold;
-}
-
-.pager a:hover{
-    color:#fff;
-    background-color:#49afcd;
-}
-
-
-/*search results*/
-
-.result{
-    border-bottom:1px solid #eee;
-}
-
-.result .result-title h3 a{
-    color:#2f2f2f;
-}
-
-
 /*contact form*/
 .contact form label {
     color: #666666;
