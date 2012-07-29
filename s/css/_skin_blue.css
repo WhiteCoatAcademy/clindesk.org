@@ -792,14 +792,6 @@ textarea:focus {
     line-height:12px;
 }
 
-.carousel-nav div a:hover{
-    background-color:#49afcd;
-}
-
-.carousel-nav div a i{
-    line-height:12px;
-}
-
 .related-work .section-title{
     border-bottom: 1px solid #EEEEEE;
 }
