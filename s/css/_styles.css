@@ -866,29 +866,6 @@ a.influx-video {
     background-color:#9aae4c;
 }
 
-
-
-/*google maps*/
-.gmapWrap{
-    margin-bottom:50px;
-}
-
-.gmapWrap img{
-    display:block;
-}
-
-.gmapWrap .gmap{
-    height:350px;
-}
-
-.gmapWrap .gmap > div.description {
-    display: none;
-}
-
-.gmap div img{
-    max-width:none;
-}
-
 /*search results*/
 
 .result{
@@ -2549,11 +2526,6 @@ a.peVideo video, a.peVideo iframe {
 
     #commentform div.controls textarea{
         width:280px;
-    }
-
-    /*google maps*/
-    .gmapWrap .gmap{
-        height:185px;
     }
 
 }
