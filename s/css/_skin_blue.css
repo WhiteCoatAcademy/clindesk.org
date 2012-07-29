@@ -272,6 +272,9 @@ blockquote p{
     font-weight:bold;
     font-size:14px;
     text-shadow: none;
+    border: 1px solid #ccc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border-bottom:2px solid #c8e6e0;
 }
 
@@ -279,21 +282,20 @@ blockquote p{
     background-color: transparent;
     color: #333;
     text-decoration: none;
+    border: 1px solid #49afcd;
     border-bottom:2px solid #49afcd;
 }
 
 .navbar .nav .active > a, .navbar .nav .active > a:hover{
     background-color: #49afcd;
-    color:#fff;
+    border: 1px	solid #3195b2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
     border-bottom:2px solid #49afcd;
-
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
     background-clip: padding-box;
-
 }
-
-
 
 .navbar .nav .dropdown-toggle .caret,
 .navbar .nav .open.dropdown .caret {
