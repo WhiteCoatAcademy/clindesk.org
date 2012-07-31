@@ -8,9 +8,10 @@
             <div class="item-description">
                 <h3>Welcome to ClinDesk</h3>
                 <div class="subtitle">
-                    <span class="icon-file "></span><a href="#">Opening Medical knowledge</a>
+                    <span class="icon-file "></span><a href="#">By {% block author_name %}author_name{% endblock %}</a>
                 </div>
-                <p>Our video lectures are designed for everyone, from people with no medical background through to experienced physicians. For each condition we will discuss:</p>
+                <img src="{% block author_image %}author_image{% endblock %}" />
+                <p>{% block welcome_text %}welcome_text{% endblock %}</p>
                 <ul class="unstyled">
                     <li><i class="icon-ok"></i>Background</li>
                     <li><i class="icon-ok"></i>Epidemiology</li>
@@ -27,7 +28,7 @@
         <div class="span8">
             <div class="innerSpacer">
                 <div class="portfolioItem">
-                    <iframe width="100%" height="360" seamless="seamless" src="http://www.youtube-nocookie.com/embed/5vfdIE-eMig?rel=0&html5=1" frameborder="0"></iframe>
+                    <iframe width="100%" height="360" seamless="seamless" src="http://www.youtube-nocookie.com/embed/{% block video_source %}{% endblock %}?rel=0&html5=1" frameborder="0"></iframe>
                 </div>
             </div>
         </div>
@@ -46,7 +47,8 @@
 
             </div>
         </div>
-{% include '_all_conditions.html' %}
+
+{% block all_conditions %}all_conditions{% endblock %}
 
   </div>
 </section>
