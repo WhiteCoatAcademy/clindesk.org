@@ -7,8 +7,8 @@
     <meta charset="utf-8" />
     <title>{% block title %}{% endblock %} &mdash; ClinDesk, Inc.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
-    <meta name="description" content="{% block description %}{% endblock %}" />
-    <meta name="author" content="{% block author %}{% endblock %}" />
+    <meta name="description" content="{% block meta_description %}{% endblock %}" />
+    <meta name="author" content="{% block meta_author %}{% endblock %}" />
     {# Is it cool to have logic here? #}
     {%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
     <link href="{{ static('css/min.wca.css') }}" rel="stylesheet" />
@@ -25,8 +25,6 @@
     {% endif %}
     <!--[if lt IE 9]><script type="text/javascript" src="{{ static('js/html5shiv/36.js') }}"></script><![endif]-->
     <script type="text/javascript">(function(H){H.className=H.className.replace(/\bno-js\b/,'js')})(document.documentElement)</script>
-    {#    <!-- favicon & iSO touch icons -->
-    <link rel="shortcut icon" href="{{ static('favicon.jpg') }}" /> #}
     {% include 'ga_tracking_code.html' %}
 </head>
 <body>
@@ -47,7 +45,6 @@
                         <button class="icon-search" type="submit"></button>
                     </form>
                 </div>
-                <!--main nav-->
                 <ul class="nav">
                     <li><a href="/index.html">Home</a></li>
                     <li><a href="/conditions/">Conditions</a></li> {#
@@ -69,15 +66,14 @@
                     <li><a href="/help.html">Help &amp; FAQ</a></li>
                     <li class="last"><a href="/about.html">About</a></li>
                 </ul>
-                <!--end main nav-->
-            </div><!--end main menu-->
+            </div>
         </div>
     </div>
 </header>
-<!-- The tagline is the huge grey banner, right under the navbar. //-->
 <section class="taglineWrap subnav">
     <div class="container">
-        <div class="row-fluid  tagline">
+        <div class="row-fluid tagline">
+	  <div class="span2"></div>
             <div class="span8"><h2>{% block tagline_text %}overwrite this tagline_text block{% endblock %}</h2></div>
             {#               <div class="span4 action">
             <div>

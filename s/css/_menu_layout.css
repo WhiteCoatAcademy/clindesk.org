@@ -31,10 +31,10 @@
 
 .subnav-fixed {
     position: fixed;
-    top: 40px;
+    top: 0px;
     left: 0;
     right: 0;
-    z-index: 1000; // On top of everything.
+    z-index: 1000; /* On top of everything. */
 }
 
 .subnav-main-spacer {
