@@ -1,17 +1,16 @@
-.navbar-fixed-top{
-    position:relative;
-    margin-bottom:0;
+.navbar {
+   height: 52px;
+   display: block;
+    position:fixed;
 }
 
 .navbar .brand{
-    padding:0;
     margin-left:0px;
-    bottom:0;
 }
 
 .navbar .nav{
     float:right;
-    margin-top:64px;
+    margin-top:5px;
 }
 
 .navbar .nav > li{
@@ -27,6 +26,7 @@
 }
 
 .subnav {
+   margin-top:50px;
 }
 
 .subnav-fixed {
@@ -34,7 +34,7 @@
     top: 0px;
     left: 0;
     right: 0;
-    z-index: 1000; /* On top of everything. */
+    z-index: 100; /* On top of everything. */
 }
 
 .subnav-main-spacer {

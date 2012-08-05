@@ -264,14 +264,11 @@ blockquote p{
 /* END GENERAL */
 
 
-/*MENU SKIN*/
-
-/*menu header underline*/
 .navbar{
-    background:transparent url(../img/skin_blue/head_line_btm.jpg) repeat-x 0 100%;
+    background-color: #C0C0C0;
 }
 
-.navbar .brand{
+.navbar {
     border-bottom:2px solid #49afcd;
 }
 
@@ -797,10 +794,6 @@ footer{
 
 footer .testimonial{
     background:#efefef;
-}
-
-footer .testimonial .span9{
-    background:url(../img/skin_blue/speech_line.png) no-repeat 100% 15px;
 }
 
 footer blockquote{

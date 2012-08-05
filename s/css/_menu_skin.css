@@ -23,10 +23,6 @@ Dark grey (drops bg)                                        #393939
     box-shadow: none;
 }
 
-/*menu header underline*/
-.navbar{
-    background:transparent url(../img/skin/head_line_btm.jpg) repeat-x 0 100%;
-}
 
 .navbar .nav > li > a{
     color:#979795;
