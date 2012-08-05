@@ -13,9 +13,9 @@
 }
 
 .navbar {
-   height: 52px;
+   height: 40px;
    display: block;
-    position:fixed;
+   position:fixed;
 }
 
 .navbar .brand{
@@ -53,11 +53,11 @@
 }
 
 .subnav {
-   margin-top:50px;
 }
 
 .subnav-fixed {
     position: fixed;
+    margin-top:40px;
     top: 0px;
     left: 0;
     right: 0;
