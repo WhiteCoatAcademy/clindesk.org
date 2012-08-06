@@ -1,11 +1,6 @@
 .navbar-inner {
     background:transparent;
     background-image: none;
-    background-image: none;
-    background-image: none;
-    background-image: none;
-    background-image: none;
-    background-image: none;
     filter: none;
     -webkit-box-shadow: none;
     -moz-box-shadow: none;
@@ -25,7 +20,6 @@
 
 .navbar .nav{
     float:right;
-    margin-top:5px;
 }
 
 .navbar .nav > li{
@@ -33,17 +27,16 @@
 }
 
 .navbar .nav > li > a{
-    color:#979795;
-    font-weight:bold;
+    color: white;
     font-size:14px;
     text-shadow: none;
     border-bottom:2px solid #d2d9b5;
     padding:8px 10px;
+
 }
 
 .navbar .nav > li > a:hover {
     background-color: transparent;
-    color: #333;
     text-decoration: none;
 }
 
