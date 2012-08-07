@@ -927,14 +927,6 @@ header .smedia {
   margin-bottom: 6px;
   color: #9aae4c !important; }
 
-/*.post-date a{
-    font-size:10px;
-    font-weight:bold;
-}
-
-.post-date a:hover{
-    background-color:#9aae4c;
-}*/
 .post .post-title h3 {
   margin-bottom: 40px;
   font-size: 24px; }
@@ -1191,14 +1183,6 @@ textarea:focus {
   border: 1px solid #cfcfcf;
   box-shadow: 0px 1px 2px #cfcfcf;
   -mox-box-shadow: 0px 2px 1px #ccc;
-  position: relative; }
-
-.widget_portfolio .peOver img {
-  display: block; }
-
-.widget_portfolio .peOver {
-  width: 100%;
-  height: 100%;
   position: relative; }
 
 .widget_portfolio > div > a span {
@@ -1992,116 +1976,6 @@ a.peOver {
   overflow: hidden;
   background: #000; }
 
-a.peOver > img {
-  background: rgba(0, 0, 0, 0.01); }
-
-a.peOver img {
-  vertical-align: middle;
-  opacity: 1;
-  line-height: 1;
-  -webkit-transition: opacity 0.3s linear;
-  -moz-transition: opacity 0.3s linear;
-  -ms-transition: opacity 0.3s linear;
-  -o-transition: opacity 0.3s linear;
-  transition: opacity 0.3s linear; }
-
-a.peOver:hover img {
-  opacity: 0.55; }
-
-a.peOver:hover span.overIcon {
-  display: block; }
-
-a.peOver span.overIcon {
-  height: 100%;
-  left: 0;
-  margin: 0 !important;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 10; }
-
-a.peOver span.lightboxIcon {
-  background: url("../img/skin/view.png") no-repeat center center; }
-
-a.peOver span.linkIcon {
-  background: url("../img/skin/link.png") no-repeat center center; }
-
-/*video inline*/
-a.peVideo video, a.peVideo iframe {
-  display: block;
-  width: 100% !important;
-  height: 100% !important;
-  position: absolute;
-  top: 0;
-  left: 0; }
-
-.ppcontrols.fade {
-  -webkit-transition: none;
-  -moz-transition: none;
-  -ms-transition: none;
-  -o-transition: none;
-  transition: none;
-  opacity: 1; }
-
-.videoWrapper {
-  position: relative;
-  height: 0;
-  margin-bottom: 20px;
-  overflow: hidden; }
-
-.videoWrapper a.peVideo {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: #666;
-  cursor: pointer; }
-
-.videoWrapper a.peVideo span.largePlay {
-  height: 100%;
-  left: 0;
-  margin: 0 !important;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 10;
-  opacity: 0.7;
-  background: url("../img/skin/vid_start.png") no-repeat center center; }
-
-.videoWrapper a.peVideo:hover span.largePlay {
-  opacity: 1; }
-
-.videoWrapper a.peVideo > div {
-  height: 100%;
-  left: 0;
-  margin: 0 !important;
-  overflow: hidden;
-  position: absolute;
-  top: 0;
-  width: 100%;
-  z-index: 20;
-  background-color: black; }
-
-.videoWrapper.sixteenBYnine {
-  padding-bottom: 56.25%; }
-
-.videoWrapper.fourBYthree {
-  padding-bottom: 75%; }
-
-.videoWrapper.youtube {
-  padding-top: 0; }
-
-.videoWrapper.local,
-.videoWrapper.vidly,
-.videoWrapper.vimeo {
-  padding-top: 0; }
-
-.portfolioItem .videoWrapper {
-  margin-bottom: 0; }
-
 /*x-large desktop*/
 /*----------------------------------------------------------------------*/
 @media (min-width: 1200px) {
@@ -2169,9 +2043,7 @@ a.peVideo video, a.peVideo iframe {
   .widget_newsletter .input-append {
     margin-left: 0; }
 
-  /*google maps*/
-  .gmapWrap .gmap {
-    height: 265px; } }
+}
 /*iphone landscape*/
 /*----------------------------------------------------------------------*/
 @media (max-width: 767px) {
@@ -2287,12 +2159,7 @@ a.peVideo video, a.peVideo iframe {
     margin-left: 0;
     margin-right: 10px; }
 
-  /*google maps*/
-  .gmapWrap {
-    margin-bottom: 40px; }
-
-  .gmapWrap .gmap {
-    height: 215px; } }
+}
 /*iPhone portrait width*/
 /*----------------------------------------------------------------------*/
 @media (max-width: 480px) {
@@ -3107,20 +2974,6 @@ a.peOver span.lightboxIcon {
 
 a.peOver span.linkIcon {
   background: url("../img/skin/link.png") no-repeat center center; }
-
-/*video inline*/
-.videoWrapper a.peVideo {
-  background-color: #fefefe; }
-
-.videoWrapper a.peVideo span.largePlay {
-  opacity: 0.7;
-  background: url("../img/skin/vid_start.png") no-repeat center center; }
-
-.videoWrapper a.peVideo:hover span.largePlay {
-  opacity: 1; }
-
-.videoWrapper a.peVideo > div {
-  background-color: black; }
 
 /*x-large desktop*/
 /*----------------------------------------------------------------------*/
