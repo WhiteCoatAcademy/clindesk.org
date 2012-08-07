@@ -54,7 +54,7 @@ $(document).ready(function(){
 	    if($(this).width() < 767) {
 		// Narrow device? No fixed nav.
 	    } else {
-		var i, scrollTop = $win.scrollTop()
+		var scrollTop = $win.scrollTop()
 		if (scrollTop >= navTop && !isFixed) {
 		    isFixed = 1
 		    $nav.addClass('subnav-fixed')
