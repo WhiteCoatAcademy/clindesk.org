@@ -261,39 +261,48 @@ blockquote p{
     opacity:0.8;
 }
 
+/* END GENERAL */
 
+
+/*MENU SKIN*/
+
+/*menu header underline*/
 .navbar{
-    background-color: #696969;
-    border-bottom:2px solid #5cbc1a;
+    background:transparent url(../img/skin_blue/head_line_btm.jpg) repeat-x 0 100%;
+}
+
+.navbar .brand{
+    border-bottom:2px solid #49afcd;
 }
 
 .navbar .nav > li > a{
-    font-size:15px;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom:0;
+    color:#979795;
+    font-weight:bold;
+    font-size:14px;
+    text-shadow: none;
+    border: 1px solid #ccc;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom:2px solid #c8e6e0;
 }
 
 .navbar .nav > li > a:hover {
-    color: black;
+    background-color: transparent;
+    color: #333;
     text-decoration: none;
-    border-bottom:2px solid #2e2e2e;
-
-    background-color: #505050;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-
+    border: 1px solid #49afcd;
+    border-bottom:2px solid #49afcd;
 }
 
 .navbar .nav .active > a, .navbar .nav .active > a:hover{
-    background-color: #2e2e2e;
-    border-top-left-radius: 8px;
-    border-top-right-radius: 8px;
-    border-bottom:2px solid #2e2e2e;
+    background-color: #49afcd;
+    border: 1px	solid #3195b2;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom:2px solid #49afcd;
     -moz-background-clip: padding;
     -webkit-background-clip: padding-box;
+    background-clip: padding-box;
 }
 
 .navbar .nav .dropdown-toggle .caret,
@@ -788,6 +797,10 @@ footer{
 
 footer .testimonial{
     background:#efefef;
+}
+
+footer .testimonial .span9{
+    background:url(../img/skin_blue/speech_line.png) no-repeat 100% 15px;
 }
 
 footer blockquote{

@@ -28,6 +28,8 @@ cat ../css/_bootstrap-responsive.css >> ../css/.temp/_shared.css
 echo "" >> ../css/.temp/_shared.css
 cat ../css/_menu_layout.css >> ../css/.temp/_shared.css
 echo "" >> ../css/.temp/_shared.css
+cat ../css/_menu_skin.css >> ../css/.temp/_shared.css
+echo "" >> ../css/.temp/_shared.css
 cat ../css/_styles.css >> ../css/.temp/_shared.css
 echo "" >> ../css/.temp/_shared.css
 cat ../css/_skin_blue.css >> ../css/.temp/_shared.css

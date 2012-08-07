@@ -37,8 +37,8 @@ $(document).ready(function(){
 	var $win = $(window)
 	    , $nav = $('.subnav')
 	    , $main = $('.mainContentWrap')
-	    , $toplogo = $('.brand')
-	    , navTop = $('.subnav').length && $('.subnav').offset().top - 48
+	    , $logo = $('.brand')
+	    , navTop = $('.subnav').length && $('.subnav').offset().top - 45
 	    , isFixed = 0
 
 	    processScroll()
@@ -54,17 +54,19 @@ $(document).ready(function(){
 	    if($(this).width() < 767) {
 		// Narrow device? No fixed nav.
 	    } else {
-		var scrollTop = $win.scrollTop()
+		var i, scrollTop = $win.scrollTop()
 		if (scrollTop >= navTop && !isFixed) {
 		    isFixed = 1
 		    $nav.addClass('subnav-fixed')
 		    $main.addClass('subnav-main-spacer')
-		    $toplogo.fadeIn(200)
+		    $logo.addClass('scroll-logo')
+		    $('img',$logo).hide()
 		} else if (scrollTop <= navTop && isFixed) {
 		    isFixed = 0
 		    $nav.removeClass('subnav-fixed')
 		    $main.removeClass('subnav-main-spacer')
-		    $toplogo.fadeOut(400)
+		    $logo.removeClass('scroll-logo')
+		    $('img',$logo).show()
 		}
 	    }
 	}
