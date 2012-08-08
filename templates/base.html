@@ -25,7 +25,6 @@
     {% include 'ga_tracking_code.html' %}
 </head>
 <body>
-<!--header and menu-->
 <header class="navbar navbar-fixed-top" id="top">
     <div class="navbar-inner">
         <div class="container">
@@ -72,20 +71,11 @@
         <div class="row-fluid tagline">
             <span class="scroll-logo" style="display:none"></span>
             <h2 id="slugtext">{% block tagline_text %}overwrite this tagline_text block{% endblock %}</h2>
-            {#               <div class="span4 action">
-            <div>
-                <a href="#" class="btn first btn-success">Learn More</a>
-                <span>or</span>
-                <a href="#" class="btn btn-info">Contact Us</a>
-            </div>
-        </div>  #}
         </div>
-    </div> <!-- /container -->
+    </div>
 </section>
 {% block maincontent %}{% endblock %}
-<!--footer-->
 <footer>
-    <!--footer testimonail-->
     {#
     <section class="testimonial">
         <div class="container">
@@ -157,7 +147,6 @@
         </div>
         #}
     </section>
-    <!--footer lower-->
     <section class="footerLower">
         <div class="container">
             <div class="row-fluid">

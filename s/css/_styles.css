@@ -313,11 +313,6 @@ Dark grey (drops bg)                                        #393939
 .navbar-inner {
   background: transparent;
   background-image: none;
-  background-image: none;
-  background-image: none;
-  background-image: none;
-  background-image: none;
-  background-image: none;
   filter: none;
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
@@ -803,11 +798,6 @@ pre.prettyprint {
   visibility: hidden;
   opacity: 0; }
 
-/*share buttons (facebook, pinterest, google+1..)*/
-.shareButton {
-  float: left;
-  margin-bottom: 12px;
-  overflow: hidden; }
 
 /* END GENERAL */
 /*styles for all sizes*/
@@ -827,35 +817,6 @@ header .smedia {
   margin-bottom: 0;
   padding-top: 15px;
   padding-bottom: 15px; }
-
-.tagline .action {
-  position: relative;
-  margin-top: 20px;
-  overflow: hidden; }
-
-.tagline .action > div {
-  float: right;
-  margin-right: 20px; }
-
-.tagline .action a {
-  margin-left: 20px; }
-
-.tagline .action * {
-  float: left; }
-
-.tagline .action .btn i {
-  float: none; }
-
-.tagline .action span {
-  margin-left: 18px;
-  background: url(../img/skin/or_line.png) no-repeat 5px 2px;
-  height: 38px;
-  display: block;
-  margin-top: -5px;
-  width: 10px;
-  line-height: 36px;
-  font-style: italic;
-  font-family: Georgia, Constantia, Lucida, serif; }
 
 .btn-success {
   background-color: #9fb44f;
@@ -1017,36 +978,6 @@ header .smedia {
 
 .shareBox {
   margin-top: 20px; }
-
-/*contact form*/
-.contact form .control-group {
-  /*overflow:hidden;*/ }
-
-.contact form .control-group:after {
-  content: ".";
-  display: block;
-  height: 0;
-  visibility: hidden;
-  clear: both; }
-
-.contact form label {
-  float: left;
-  color: #666666;
-  margin-left: 40px;
-  text-align: left;
-  width: 100px; }
-
-.contact form span.required {
-  margin-left: 3px;
-  margin-top: 3px; }
-
-.contact form .controls {
-  float: left;
-  margin-left: 0; }
-
-.formSent,
-.formError {
-  display: none; }
 
 /*faq*/
 .faq {
