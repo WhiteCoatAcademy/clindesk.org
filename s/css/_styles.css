@@ -20,6 +20,12 @@
 .navbar .nav > li.last {
   margin-right: 0; }
 
+.subnav {
+  background: #eee;
+  border-bottom: 1px solid #ddd;
+  height: 50px;
+}
+
 .subnav-fixed {
   position: fixed;
   top: 0px;
@@ -816,17 +822,6 @@ header .smedia {
   position: absolute;
   top: 10px;
   right: 0; }
-
-.sliderWrap {
-  padding-top: 40px; }
-
-.sliderWrap .span12 {
-  box-shadow: 0 1px 2px #888;
-  border: 1px solid #aaa; }
-
-.taglineWrap {
-  background: #eee;
-  border-bottom: 1px solid #ddd; }
 
 .tagline h2 {
   margin-bottom: 0;
@@ -2227,7 +2222,8 @@ a.peOver {
   height: 30px;
   width: 140px;
   position: fixed;
-  top: 5px; }
+  top: 8px;
+}
 
 body {
   background: #f8f8f8;
@@ -2529,14 +2525,6 @@ blockquote p {
 header .smedia span {
   color: #aaa;
   font-size: 12px; }
-
-.sliderWrap .span12 {
-  box-shadow: 0 1px 2px #888;
-  border: 1px solid #aaa; }
-
-.taglineWrap {
-  background: #eee;
-  border-bottom: 1px solid #ddd; }
 
 .tagline .action span {
   background: url(../img/skin/or_line.png) no-repeat 5px 2px;

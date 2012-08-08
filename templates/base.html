@@ -67,11 +67,11 @@
         </div>
     </div>
 </header>
-<section class="taglineWrap subnav">
+<section class="subnav">
     <div class="container">
         <div class="row-fluid tagline">
-	  <div class="span2"></div>
-            <div class="span8"><h2>{% block tagline_text %}overwrite this tagline_text block{% endblock %}</h2></div>
+            <span class="scroll-logo" style="display:none"></span>
+            <h2 id="slugtext">{% block tagline_text %}overwrite this tagline_text block{% endblock %}</h2>
             {#               <div class="span4 action">
             <div>
                 <a href="#" class="btn first btn-success">Learn More</a>

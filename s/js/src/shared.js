@@ -38,7 +38,8 @@ $(document).ready(function(){
 	    , $nav = $('.subnav')
 	    , $main = $('.mainContentWrap')
 	    , $logo = $('.brand')
-	    , navTop = $('.subnav').length && $('.subnav').offset().top - 45
+	    , $scrolllogo = $('.scroll-logo')
+	    , navTop = $('.subnav').length && $('.subnav').offset().top - 8
 	    , isFixed = 0
 
 	    processScroll()
@@ -57,15 +58,17 @@ $(document).ready(function(){
 		var scrollTop = $win.scrollTop()
 		if (scrollTop >= navTop && !isFixed) {
 		    isFixed = 1
+		    $('#slugtext').animate({"padding-left":"160px"},{queue:false,duration:400})
 		    $nav.addClass('subnav-fixed')
 		    $main.addClass('subnav-main-spacer')
-		    $logo.addClass('scroll-logo')
+		    $scrolllogo.fadeIn(400)
 		    $('img',$logo).hide()
 		} else if (scrollTop <= navTop && isFixed) {
 		    isFixed = 0
+		    $('#slugtext').animate({"padding-left":"0px"},{queue:false,duration:400})
 		    $nav.removeClass('subnav-fixed')
 		    $main.removeClass('subnav-main-spacer')
-		    $logo.removeClass('scroll-logo')
+		    $scrolllogo.hide()
 		    $('img',$logo).show()
 		}
 	    }
