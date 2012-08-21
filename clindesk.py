@@ -186,7 +186,7 @@ def clicked_disclaimer():
     """ Give the user a cookie if they dismiss the disclaimer. """
     max_age = 60*60*24 # This is 24 hours
     if app.config['STAGING'] or not app.config['ON_EC2']:
-        max_age = 60*10 # For staging, set a 10 minute TTL, so we don't forget the disclaimer.
+        max_age = 60*30 # For staging, set a 30 minute TTL, so we don't forget the disclaimer.
 
     resp = make_response()
     resp.set_cookie(key='disclaimer',

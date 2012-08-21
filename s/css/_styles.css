@@ -816,7 +816,8 @@ header .smedia {
 .tagline h2 {
   margin-bottom: 0;
   padding-top: 15px;
-  padding-bottom: 15px; }
+  padding-bottom: 15px;
+}
 
 .btn-success {
   background-color: #9fb44f;

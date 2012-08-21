@@ -37,17 +37,13 @@
 <section class="mainContentWrap">
     <div class="container mainContent">
         <div class="span12">
-
             <div class="row-fluid relative">
                 <div class="span12" id="condition-topics" style="text-align: center;">
-                    <h3>Thyroid Problems</h3>
+                    <h3>{% block section_title %}section_title{% endblock %}</h3>
                 </div>
-
             </div>
         </div>
-
 {% block all_conditions %}all_conditions{% endblock %}
-
   </div>
 </section>
 
