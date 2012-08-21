@@ -273,8 +273,11 @@ def deploy(instance, key_filename):
         put('conf/nginx_wca.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_wca.conf /etc/nginx/sites-enabled/')
 
-        # Start nginx
-        sudo('invoke-rc.d nginx start')
+        # WARNING: Randomly, nginx seems to not start / fail at launch?
+        # Not sure why, so adding extra logic here.
+        sudo('sync ; invoke-rc.d nginx start')
+        # Realllly start nginx.
+        sudo('sleep 5 ; invoke-rc.d nginx start')
 
 
 
