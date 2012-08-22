@@ -103,9 +103,7 @@ def redirect_index():
 
 @app.route("/")
 def page_index():
-    if app.config['STAGING'] or not app.config['ON_EC2']:
-        return render_template('index.html')
-    return render_template('teaser.html', logopath=static('clindesk-logo.png'))
+    return render_template('index.html')
 
 # Donate
 @app.route("/donate.html")
