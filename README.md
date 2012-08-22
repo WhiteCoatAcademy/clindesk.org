@@ -13,7 +13,7 @@ They run on [Flask](http://flask.pocoo.org/).
 
 If you want to run them on your machine, try:
 
- `sudo pip install flask` then `python clindesk.py`
+ `sudo easy_install pip; sudo pip install flask` then `python clindesk.py`
 
 A local instance should then be running at: http://localhost:5000/
 
