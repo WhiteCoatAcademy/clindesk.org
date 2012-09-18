@@ -277,11 +277,9 @@ def deploy(instance, key_filename):
         put('conf/nginx_wca.conf', '/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_wca.conf /etc/nginx/sites-enabled/')
 
-        # WARNING: Nginx used to segfault at launch. Seems to be fixed now.
-        # TODO: Remove this once we're sure of nginx starting.
-        sudo('sync ; invoke-rc.d nginx start')
-        # Realllly start nginx.
-        sudo('sleep 5 ; invoke-rc.d nginx start')
+        # WARNING: Nginx randomly to segfaults at launch.
+        # See: http://trac.nginx.org/nginx/ticket/222
+        sudo('until service nginx status | grep running ; do service nginx start; sleep 5; done')
 
         # TODO: Grab SSH fingerprint from syslog, update local SSH known_hosts
 
