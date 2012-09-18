@@ -3,15 +3,8 @@
 <!--main content-->
 <div class="container mainContent">
   <div class="row-fluid">
-    <!--description-->
     <div class="span4">
       <div class="item-description">
-        <div class="subtitle">
-          <img height="171" width="150" src="{% block author_image %}author_image{% endblock %}" style="box-shadow: 3px 3px 8px #888;" alt="{% block author_name %}{% endblock %}" />
-	  <p><br>
-            <span class="icon-file "></span><a href="#">By {{ self.author_name() }}</a>
-	  </p>
-        </div>
 	<p>{% block welcome_text %}welcome_text{% endblock %}</p>
         <ul class="unstyled">
           <li><i class="icon-ok"></i>Background</li>
@@ -21,6 +14,10 @@
           <li><i class="icon-ok"></i>Treatment</li>
           <li><i class="icon-ok"></i>Outcome</li>
         </ul>
+        <div class="subtitle">
+          <img height="171" width="150" src="{% block author_image %}author_image{% endblock %}" style="box-shadow: 3px 3px 8px #888;" alt="{% block author_name %}{% endblock %}" />
+	  <p><br><i>By {{ self.author_name() }}</i></p>
+        </div>
         <br />
         <a href="#condition-topics" class="btn btn-primary"><i class="icon-share icon-white"></i>See the Topics</a>
       </div>
