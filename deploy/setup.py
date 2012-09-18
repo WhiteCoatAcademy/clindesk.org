@@ -170,7 +170,7 @@ def launchBaseInstance(ami, region_id, placement, key_name):
     while status == 'pending':
         time.sleep(10)
         status = instance.update()
-        print '\t%s' % status
+        print('\t%s' % status)
     if status == 'running':
         print('New instance "' + instance.id + '" accessible at ' + instance.public_dns_name)
     else:
@@ -195,8 +195,8 @@ def transfer_EIPs(conn, instance):
 # TODO: Modularize this more
 def deploy(instance, key_filename):
     host_string = instance.public_dns_name
-    print host_string
-    print key_filename
+    print("Host String: %s" % host_string)
+    print("Key: %s" % key_filename)
     with settings(host_string=host_string, user="ubuntu", key_filename=key_filename):
         # Basic install stuff
         run('uname -ar')
