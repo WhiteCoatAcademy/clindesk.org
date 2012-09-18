@@ -69,7 +69,7 @@ def main():
         #  https://cloud-images.ubuntu.com/query/precise/server/released.txt
         print('Deploying two instances...')
         print('Starting instance, east')
-        east_conn, east_instance = launchBaseInstance('ami-137bcf7a', 'us-east-1', 'us-east-1c', 'clindesk-web-us-east-1')
+        east_conn, east_instance = launchBaseInstance('ami-137bcf7a', 'us-east-1', 'us-east-1a', 'clindesk-web-us-east-1')
 
         print('Starting instance, west')
         west_conn, west_instance = launchBaseInstance('ami-d70c2892', 'us-west-1', 'us-west-1a', 'clindesk-web-us-west-1')
@@ -165,6 +165,8 @@ def launchBaseInstance(ami, region_id, placement, key_name):
     instance = reservation.instances[0]
 
     print('Waiting for instance to start...')
+    # Give the AWS API a second to synchronize.
+    time.sleep(2)
     # Check up on its status every so often
     status = instance.update()
     while status == 'pending':
