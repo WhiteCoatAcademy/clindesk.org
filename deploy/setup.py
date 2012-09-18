@@ -9,6 +9,7 @@ from boto.ec2.connection import EC2Connection
 from boto.ec2.blockdevicemapping import BlockDeviceType
 from boto.ec2.blockdevicemapping import BlockDeviceMapping
 import argparse
+import os
 import time
 import sys
 
@@ -39,33 +40,34 @@ def main():
 
     args = parser.parse_args()
 
+    # Special IAM user: deploy-bot
+    # Access Key Id: AKIAJC43XOE4LZQBPETA
+    with open('.awskey', 'r') as secret_key:
+        os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAJC43XOE4LZQBPETA'
+        os.environ['AWS_SECRET_ACCESS_KEY'] = secret_key.readline()
+
     if args.launch_ec2:
         print('Preparing to deploy EC2 instances.')
 
         # Connect
         print('Connecting to AWS...')
-        # Special IAM user: deploy-bot
-        # Access Key Id: AKIAJC43XOE4LZQBPETA
-        with open('.awskey', 'r') as secret_key:
-            conn = EC2Connection('AKIAJC43XOE4LZQBPETA', secret_key.readline())
+        conn = EC2Connection()
 
         regions = boto.ec2.regions()
         print('Available regions: %s\n' % regions)
-
 
         # Get a list of our instances
         print('Getting list of our instances...')
         instances = list_our_instances(conn, regions)
 
-
         # Run our instances
         # 64-bit EBS Ubuntu 12.04 (Precise)
         print('Deploying two instances...')
         print('Starting instance, east')
-        east_conn, east_instance = launchBaseInstance('ami-82fa58eb', 'us-east-1', 'clindesk-web-us-east-1')
+        east_conn, east_instance = launchBaseInstance('ami-82fa58eb', 'us-east-1', 'us-east-1c', 'clindesk-web-us-east-1')
 
         print('Starting instance, west')
-        west_conn, west_instance = launchBaseInstance('ami-5965401c', 'us-west-1', 'clindesk-web-us-west-1')
+        west_conn, west_instance = launchBaseInstance('ami-5965401c', 'us-west-1', 'us-west-1a', 'clindesk-web-us-west-1')
 
         if not args.no_setup:
             print('Setting up nodes.')
@@ -148,9 +150,9 @@ def terminate_connections(connections):
 
 
 # Launch an instance
-def launchBaseInstance(ami, placement, key_name):
-    conn = boto.ec2.connect_to_region(placement)
-    reservation = conn.run_instances(ami, instance_type='t1.micro', key_name=key_name, security_groups=['clindesk-web'])
+def launchBaseInstance(ami, region_id, placement, key_name):
+    conn = boto.ec2.connect_to_region(region_id)
+    reservation = conn.run_instances(ami, instance_type='t1.micro', key_name=key_name, placement=placement, security_groups=['clindesk-web'])
     # And assume that the instance we're talking about is the first in the list
     # This is not always a good assumption, and will likely depend on the specifics
     # of your launching situation. For launching an isolated instance while no
