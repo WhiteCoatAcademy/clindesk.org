@@ -61,13 +61,16 @@ def main():
         instances = list_our_instances(conn, regions)
 
         # Run our instances
-        # 64-bit EBS Ubuntu 12.04 (Precise)
+        # 64-bit Ubuntu 12.04.1 (Precise), EBS store [required for t1.micro]
+        # See:
+        #  http://cloud-images.ubuntu.com/releases/precise/release/
+        #  https://cloud-images.ubuntu.com/query/precise/server/released.txt
         print('Deploying two instances...')
         print('Starting instance, east')
-        east_conn, east_instance = launchBaseInstance('ami-82fa58eb', 'us-east-1', 'us-east-1c', 'clindesk-web-us-east-1')
+        east_conn, east_instance = launchBaseInstance('ami-137bcf7a', 'us-east-1', 'us-east-1c', 'clindesk-web-us-east-1')
 
         print('Starting instance, west')
-        west_conn, west_instance = launchBaseInstance('ami-5965401c', 'us-west-1', 'us-west-1a', 'clindesk-web-us-west-1')
+        west_conn, west_instance = launchBaseInstance('ami-d70c2892', 'us-west-1', 'us-west-1a', 'clindesk-web-us-west-1')
 
         if not args.no_setup:
             print('Setting up nodes.')
