@@ -197,7 +197,7 @@ def deploy(instance, key_filename):
     with settings(host_string=host_string, user = "ubuntu", key_filename=key_filename):
         # Basic install stuff
         run('uname -ar')
-        sudo('apt-get remove -y whoopsie')
+        sudo('sudo service whoopsie stop')
         sudo('apt-get update')
         sudo('apt-get -y -V upgrade')
         sudo('apt-get -y install git python2.7-dev python-pip libevent-dev nginx htop supervisor gcc')
@@ -278,11 +278,13 @@ def deploy(instance, key_filename):
         put('conf/nginx_wca.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_wca.conf /etc/nginx/sites-enabled/')
 
-        # WARNING: Randomly, nginx seems to not start / fail at launch?
-        # Not sure why, so adding extra logic here.
+        # WARNING: Nginx used to segfault at launch. Seems to be fixed now.
+        # TODO: Remove this once we're sure of nginx starting.
         sudo('sync ; invoke-rc.d nginx start')
         # Realllly start nginx.
         sudo('sleep 5 ; invoke-rc.d nginx start')
+
+        # TODO: Grab SSH fingerprint from syslog, update local SSH known_hosts
 
 
 
