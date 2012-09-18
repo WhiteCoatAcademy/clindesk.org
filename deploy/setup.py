@@ -2,16 +2,18 @@
 # Deploy ClinDesk & WCA nodes on EC2
 # Author: semenko
 #
+""" Auto-deploy ClinDesk/WCA nodes on EC2. """
 
 from fabric.api import *
 import boto.ec2
 from boto.ec2.connection import EC2Connection
-from boto.ec2.blockdevicemapping import BlockDeviceType
-from boto.ec2.blockdevicemapping import BlockDeviceMapping
+# TODO: Switch to EC2 small size? Is that cheaper?
+#from boto.ec2.blockdevicemapping import BlockDeviceType
+#from boto.ec2.blockdevicemapping import BlockDeviceMapping
 import argparse
 import os
 import time
-import sys
+
 
 def main():
     """
@@ -119,7 +121,7 @@ def list_our_instances(conn, regions):
         print('Region %s' % region)
         c = region.connect()
         connections[region] = {}
-        connections[region]['conn']= c
+        connections[region]['conn'] = c
         reservations = c.get_all_instances()
         instances = []
         for i in reservations:
@@ -136,7 +138,7 @@ def list_our_instances(conn, regions):
 
 
 def terminate_connections(connections):
-    # Kill existing running instances
+    """ Kill existing running instances. """
     for k, v in connections.iteritems():
         kill_list = []
         for i in v['instances']:
@@ -175,6 +177,7 @@ def launchBaseInstance(ami, region_id, placement, key_name):
         print('Instance status: ' + status)
     return conn, instance
 
+
 # Transfer EIPs
 def transfer_EIPs(conn, instance):
     """ Associate elastic ip. This can only handle one. """
@@ -194,7 +197,7 @@ def deploy(instance, key_filename):
     host_string = instance.public_dns_name
     print host_string
     print key_filename
-    with settings(host_string=host_string, user = "ubuntu", key_filename=key_filename):
+    with settings(host_string=host_string, user="ubuntu", key_filename=key_filename):
         # Basic install stuff
         run('uname -ar')
         sudo('sudo service whoopsie stop')
@@ -222,14 +225,12 @@ def deploy(instance, key_filename):
             with cd('/home/' + username + '/'):
                 sudo('git clone -b ' + git_branch_name + ' --depth 1 git@github.com:semenko/clindesk.git', user=username)
 
-
             # We put w/ sudo so the executable file is not editable. Not sure about the supervisord security hierarchy.
             put('scripts/run_gunicorn_cd-' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
             put('scripts/run_gunicorn_wca-' + username + '.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
 
             # Add .sh scripts to do get update to user dirs. Again, root owned.
             put('scripts/sudo-git-update.sh', '/home/' + username + '/', use_sudo=True, mode=0555)
-
 
         #### Deploy our two branches
         deploy_app('prod', 'prod')
@@ -245,7 +246,6 @@ def deploy(instance, key_filename):
         # TODO: Fix permissions, make all web servers in same group?
         sudo('mkdir /var/log/gunicorn/ ; chmod 777 /var/log/gunicorn/')
 
-
         #### Setup our autoupdate script
         sudo('sudo adduser --disabled-password --disabled-login --system --group autoupdate')
         put('scripts/autoupdate.py', '/home/autoupdate/', use_sudo=True, mode=0555)
@@ -253,29 +253,26 @@ def deploy(instance, key_filename):
         put('conf/sudoers-magic.txt', '/home/ubuntu/')
         sudo('cat sudoers-magic.txt >> /etc/sudoers')
 
-
         #### Set up supervisord
         sudo('rm /etc/supervisor/supervisord.conf')
-        put('conf/supervisord.conf','/etc/supervisor/', use_sudo=True, mode=0444)
-        put('conf/supervisord_sites.conf','/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
+        put('conf/supervisord.conf', '/etc/supervisor/', use_sudo=True, mode=0444)
+        put('conf/supervisord_sites.conf', '/etc/supervisor/conf.d/', use_sudo=True, mode=0444)
 
         sudo('supervisorctl reload')
 
-
         #### Set up nginx
-
         # Overwrite the nginx general config
         sudo('rm -f /etc/nginx/nginx.conf')
-        put('conf/nginx.conf','/etc/nginx/', use_sudo=True, mode=0444)
+        put('conf/nginx.conf', '/etc/nginx/', use_sudo=True, mode=0444)
 
         # Drop the nginx default site config
         sudo('rm -f /etc/nginx/sites-enabled/default')
 
         # Add the nginx site-specific configs
         sudo('rm -f /etc/nginx/sites-enabled/nginx_cd.conf')
-        put('conf/nginx_cd.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
+        put('conf/nginx_cd.conf', '/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_cd.conf /etc/nginx/sites-enabled/')
-        put('conf/nginx_wca.conf','/etc/nginx/sites-available/', use_sudo=True, mode=0444)
+        put('conf/nginx_wca.conf', '/etc/nginx/sites-available/', use_sudo=True, mode=0444)
         sudo('ln -s /etc/nginx/sites-available/nginx_wca.conf /etc/nginx/sites-enabled/')
 
         # WARNING: Nginx used to segfault at launch. Seems to be fixed now.
@@ -285,7 +282,6 @@ def deploy(instance, key_filename):
         sudo('sleep 5 ; invoke-rc.d nginx start')
 
         # TODO: Grab SSH fingerprint from syslog, update local SSH known_hosts
-
 
 
 if __name__ == '__main__':
