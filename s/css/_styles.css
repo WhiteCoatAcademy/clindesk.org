@@ -987,7 +987,7 @@ header .smedia {
 .faq-heading {
   border: 1px solid #DDDDDD;
   border-radius: 4px;
-  background: #9aae4c;
+  background: #49afcd;
   color: #fff;
   padding: 8px 20px 8px 20px;
   cursor: pointer; }
@@ -2563,30 +2563,6 @@ header .smedia span {
 /*contact form*/
 .contact form label {
   color: #666666; }
-
-/*faq*/
-.faq-heading {
-  border: 1px solid #DDDDDD;
-  border-radius: 4px;
-  background: #49afcd;
-  color: #fff; }
-
-.faq-heading > div {
-  font-weight: bold; }
-
-.faq-heading:hover {
-  background-color: #E5E5E5; }
-
-.faq-heading:hover > div {
-  color: #666; }
-
-.faq-heading > a {
-  color: #2F2F2F; }
-
-.faq-body .faq-inner {
-  border: 1px solid #DDDDDD;
-  border-radius: 0 0 4px 4px;
-  background-color: #fff; }
 
 /*portfolio*/
 .pageTitle.portfolio {
