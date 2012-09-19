@@ -3,7 +3,7 @@ import logging
 import os
 import re
 import urlparse
-from flask import Flask, make_response, redirect, render_template, request, url_for
+from flask import Flask, make_response, redirect, render_template, url_for
 app = Flask(import_name=__name__, static_folder='s')
 
 ##########
@@ -12,6 +12,7 @@ app = Flask(import_name=__name__, static_folder='s')
 # NOTE: You probably want to skip down to the section called "Blocks for URL Control"
 #    where you'll see things like @app.route()
 ##########
+
 
 def register_email_logger(subject_tag, log_level):
     """
@@ -74,19 +75,19 @@ else:
 #   /s/ --- If this is on staging, or a local instance
 # or
 #   static.clindesk.org --- For production.
-# 
+#
 # static.clindesk.org is an AWS CloudFront endpoint that caches our content via the Amazon CDN.
 ###
 def static(path):
     root = app.config.get('STATIC_ROOT', None)
-    if root is None: # Just use /s/ instead of CDN
+    if root is None:  # Just use /s/ instead of CDN
         return url_for('static', filename=path)
     return urlparse.urljoin(root, path)
+
 
 @app.context_processor
 def inject_static():
     return dict(static=static)
-
 
 
 #################################
@@ -97,28 +98,33 @@ def inject_static():
 # *** Static-ish Pages
 ######
 
-@app.route("/index.html") # TODO: Standardize toplevel url? Move to nginx?
+@app.route("/index.html")  # TODO: Standardize toplevel url? Move to nginx?
 def redirect_index():
     return redirect('/', code=302)
+
 
 @app.route("/")
 def page_index():
     return render_template('index.html')
+
 
 # Donate
 @app.route("/donate.html")
 def page_donate():
     return render_template('donate.html')
 
+
 # Help & FAQ
 @app.route("/help.html")
 def page_help():
     return render_template('help.html')
 
+
 # About Us
 @app.route("/about.html")
 def page_about():
     return render_template('about.html')
+
 
 # Search
 @app.route("/search.html")
@@ -129,9 +135,11 @@ def search_results():
 # *** Condition Pages
 ######
 
+
 @app.route("/conditions/")
 def page_conditions_index():
     return render_template('conditions/index.html')
+
 
 @app.route("/conditions/<level1>/")
 def page_conditions_toplevel(level1):
@@ -146,6 +154,7 @@ def page_conditions_toplevel(level1):
             return render_template('errors/404.html'), 404
     else:
         return render_template('errors/404.html'), 404
+
 
 @app.route("/conditions/<level1>/<level2>.html")
 def page_conditions_level2(level1, level2):
@@ -166,9 +175,11 @@ def page_conditions_level2(level1, level2):
 def page_special_topics():
     return render_template('special-topics.html')
 
+
 @app.route("/diagnostics/")
 def page_diagnostics():
     return render_template('diagnostics/index.html')
+
 
 @app.route("/treatments/")
 def page_treatments():
@@ -179,12 +190,13 @@ def page_treatments():
 # *** Odd URLs and support functions
 ######
 
+# TODO: Move this client size in JS -- let's go to frozen flask!
 @app.route("/setcookie", methods=['POST'])
 def clicked_disclaimer():
     """ Give the user a cookie if they dismiss the disclaimer. """
-    max_age = 60*60*24 # This is 24 hours
+    max_age = 60 * 60 * 24  # This is 24 hours
     if app.config['STAGING'] or not app.config['ON_EC2']:
-        max_age = 60*30 # For staging, set a 30 minute TTL, so we don't forget the disclaimer.
+        max_age = 60 * 30  # For staging, set a 30 minute TTL, so we don't forget the disclaimer.
 
     resp = make_response()
     resp.set_cookie(key='disclaimer',
@@ -193,8 +205,8 @@ def clicked_disclaimer():
                     expires=None,
                     path='/',
                     domain=None,
-                    secure=None, # TODO: Switch to all SSL site? 
-                    httponly=False, # TODO: Make cookie processing server-side?
+                    secure=None,  # TODO: Switch to all SSL site?
+                    httponly=False,  # TODO: Make cookie processing server-side?
                     )
     return resp
 
@@ -207,16 +219,12 @@ def page_not_found(error):
 
 # Strip non-alnum characters.
 pattern = re.compile('[^a-z0-9-]')
-def is_safe_string(input):
-    subbed_string = pattern.sub('', input)
-    if (input == subbed_string):
-        return True
-    return False
-
+def is_safe_string(unsafe_string):
+    subbed_string = pattern.sub('', unsafe_string)
+    return unsafe_string == subbed_string
 
 
 if __name__ == "__main__":
     # This is fine for prod purposes:
     #   The prod servers run via gunicorn & gevent, which won't invoke __main__
     app.run(host='0.0.0.0', port=5000, debug=True)
-
