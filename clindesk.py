@@ -190,27 +190,6 @@ def page_treatments():
 # *** Odd URLs and support functions
 ######
 
-# TODO: Move this client size in JS -- let's go to frozen flask!
-@app.route("/setcookie", methods=['POST'])
-def clicked_disclaimer():
-    """ Give the user a cookie if they dismiss the disclaimer. """
-    max_age = 60 * 60 * 24  # This is 24 hours
-    if app.config['STAGING'] or not app.config['ON_EC2']:
-        max_age = 60 * 30  # For staging, set a 30 minute TTL, so we don't forget the disclaimer.
-
-    resp = make_response()
-    resp.set_cookie(key='disclaimer',
-                    value='MedEd_Should_Be_Open',
-                    max_age=max_age,
-                    expires=None,
-                    path='/',
-                    domain=None,
-                    secure=None,  # TODO: Switch to all SSL site?
-                    httponly=False,  # TODO: Make cookie processing server-side?
-                    )
-    return resp
-
-
 @app.errorhandler(404)
 def page_not_found(error):
     """ Return our generic error page. """
