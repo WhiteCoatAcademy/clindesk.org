@@ -21,7 +21,7 @@ java -jar yuicompressor-2.4.7.jar --type js -v -o '../js/min.wca.js' ../js/wca.j
 #### Let's do the same for CSS! 
 # Concatenate CSS into single files
 # (Do newlines matter?)
-mkdir ../css/.temp
+mkdir ../css/.temp >/dev/null 2>&1
 cat ../css/_bootstrap.css > ../css/.temp/_shared.css
 echo "" >> ../css/.temp/_shared.css
 cat ../css/_bootstrap-responsive.css >> ../css/.temp/_shared.css
