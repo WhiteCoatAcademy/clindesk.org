@@ -15,6 +15,7 @@ import os
 import sys
 from hashlib import md5
 
+
 def main():
     """
     Freeze clindesk/WCA, run a local web instance to test, and resync S3 staging/prod stores.
@@ -59,7 +60,6 @@ def main():
         else:
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
 
-
         # Connect
         print('Connecting to AWS...')
         conn = S3Connection()
@@ -76,12 +76,12 @@ def main():
         local_set = set()
         local_hashes = {}
 
-        print("Getting cloud file list ...")        
+        print("Getting cloud file list ...")
         # Make a list of cloud objects & etag hashes
         # NOTE: Boto claims it provides a Content-MD5 value, but it totally lies.
         objects = bucket.list()
         for storage_object in objects:
-            cloud_set.add('../build/' + storage_object.name) # TODO: Fix this hack
+            cloud_set.add('../build/' + storage_object.name)  # TODO: Fix this hack
             cloud_hashes['../build/' + storage_object.name] = storage_object.etag
 
         print("Files in cloud: %s" % str(len(cloud_set)))
