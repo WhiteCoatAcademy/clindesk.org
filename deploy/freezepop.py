@@ -79,12 +79,16 @@ def main():
         local_hashes = {}
         print("Getting cloud file list ...")
         
+        # Make a list of cloud objects & etag hashes
+        # NOTE: Boto claims it provides a Content-MD5 value, but it totally lies.
         objects = bucket.list()
         for storage_object in objects:
-            cloud_set.add(storage_object.name)
+            cloud_set.add('../build/' + storage_object.name) # TODO: Fix this hack
+            cloud_hashes['../build/' + storage_object.name] = storage_object.etag
 
         print("Files in cloud: %s" % str(len(cloud_set)))
 
+        # Build local files an a (more complex) hash list for Boto
         for dirname, dirnames, filenames in os.walk('../build'):
             for filename in filenames:
                 full_path = os.path.join(dirname, filename)
@@ -94,38 +98,40 @@ def main():
                 cksum.update(open(full_path).read())
                 local_hashes[full_path] = (cksum.hexdigest(), b64encode(cksum.digest()))
 
-
-        print local_hashes
-
         print("Files on disk: %s" % str(len(local_set)))
         upload_pending = local_set.difference(cloud_set)
         delete_pending = cloud_set.difference(local_set)
 
+        for filename, hashes in local_hashes.iteritems():
+            hex_hash, b64hash = hashes
+            if cloud_hashes.get(filename) != '"' + hex_hash + '"':
+                print "weird. %s" % filename
+                delete_pending.add(filename)
+                upload_pending.add(filename)
+
         print("\nDelete Pending: %s" % str(len(delete_pending)))
         print("Upload Pending: %s" % str(len(upload_pending)))
-
+        sys.exit(1)
         if len(delete_pending) > 0 and not args.no_purge:
             print("\nDeleting orhpans ...")
             for delete_file in delete_pending:
                 print "\t %s" % str(delete_file)
                 bucket.delete_key(delete_file)
 
+        # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
+        # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
         if len(upload_pending) > 0:
             print("Uploading files ...")
             for upload_file in upload_pending:
                 k = boto.s3.key.Key(bucket)
-                print "ul file is %s" % upload_file
                 web_name = ''.join(upload_file.split('/', 2)[2:])
                 k.key = web_name
+                k.set_metadata('Content-MD5', local_hashes[upload_file][1])
                 k.set_metadata('md5', local_hashes[upload_file][0])
+                k.set_metadata('base64md5', local_hashes[upload_file][0])
                 k.set_contents_from_filename(upload_file, md5=local_hashes[upload_file])
-                k.make_public() # TODO: Make for whole bucket?
 
-
-
-        sys.exit(1)
-
-        print('*** Skipping node setup. Good luck, Jedi.')
+        print('All done!')
 
     else:
         print('Doing nothing. Type -h for help.')
@@ -143,15 +149,3 @@ if __name__ == '__main__':
 #    httpd = HTTPServer(('0.0.0.0', 5000), SimpleHTTPRequestHandler)
 #    httpd.serve_forever()
 #!/usr/bin/python
-
-"""
-
-print "\nUploading files ..."
-uploads = 0
-for upload_file in upload_pending:
-    if os.path.getmtime(path + upload_file) < (time.time() - 15): # Last mtime at least 15s ago
-        uploads += 1
-        print "\t %s" % str(upload_file)
-
-
-"""
