@@ -8,7 +8,6 @@ from base64 import b64encode
 from boto.s3.connection import S3Connection
 import boto.s3.key
 import argparse
-import time
 from flask_frozen import Freezer
 from BaseHTTPServer import HTTPServer
 from SimpleHTTPServer import SimpleHTTPRequestHandler
@@ -65,20 +64,19 @@ def main():
         print('Connecting to AWS...')
         conn = S3Connection()
 
-
+        # Get our bucket
         bucket = conn.lookup('staging.clindesk.org')
         if not bucket:
             sys.stderr.write('Cannot find bucket!\n')
-#            os.unlink(pidfile)
             sys.exit(1)
 
-
+        # Data structures
         cloud_set = set()
         cloud_hashes = {}
         local_set = set()
         local_hashes = {}
-        print("Getting cloud file list ...")
-        
+
+        print("Getting cloud file list ...")        
         # Make a list of cloud objects & etag hashes
         # NOTE: Boto claims it provides a Content-MD5 value, but it totally lies.
         objects = bucket.list()
@@ -99,37 +97,35 @@ def main():
                 local_hashes[full_path] = (cksum.hexdigest(), b64encode(cksum.digest()))
 
         print("Files on disk: %s" % str(len(local_set)))
+
+        # Completely missing files
         upload_pending = local_set.difference(cloud_set)
         delete_pending = cloud_set.difference(local_set)
 
+        # Compare local and cloud hashes
         for filename, hashes in local_hashes.iteritems():
             hex_hash, b64hash = hashes
             if cloud_hashes.get(filename) != '"' + hex_hash + '"':
-                print "weird. %s" % filename
-                delete_pending.add(filename)
+                print("New hash for: %s" % filename)
+                # NOTE: AWS overwrites uploads, so no need to delete first.
                 upload_pending.add(filename)
-
-        print("\nDelete Pending: %s" % str(len(delete_pending)))
-        print("Upload Pending: %s" % str(len(upload_pending)))
-        sys.exit(1)
-        if len(delete_pending) > 0 and not args.no_purge:
-            print("\nDeleting orhpans ...")
-            for delete_file in delete_pending:
-                print "\t %s" % str(delete_file)
-                bucket.delete_key(delete_file)
 
         # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
         # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
         if len(upload_pending) > 0:
-            print("Uploading files ...")
+            print("Upload pending: %s" % str(len(upload_pending)))
             for upload_file in upload_pending:
                 k = boto.s3.key.Key(bucket)
                 web_name = ''.join(upload_file.split('/', 2)[2:])
                 k.key = web_name
-                k.set_metadata('Content-MD5', local_hashes[upload_file][1])
-                k.set_metadata('md5', local_hashes[upload_file][0])
-                k.set_metadata('base64md5', local_hashes[upload_file][0])
                 k.set_contents_from_filename(upload_file, md5=local_hashes[upload_file])
+
+        # Delete orphans, maybe.
+        if len(delete_pending) > 0 and not args.no_purge:
+            print("\nDeleting: %s" % str(len(delete_pending)))
+            for delete_file in delete_pending:
+                print("\t %s" % str(delete_file))
+                bucket.delete_key(delete_file)
 
         print('All done!')
 
