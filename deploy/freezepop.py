@@ -33,9 +33,9 @@ def main():
                         dest='deploy',
                         help='Deploy staging and prod to S3. Will NOT test.')
 
-    parser.add_argument('--no-purge', action='store_true', default=False,
-                        dest='no_purge',
-                        help='Don\'t purge orphan S3 files.')
+    parser.add_argument('--no-delete', action='store_true', default=False,
+                        dest='no_delete',
+                        help='Don\'t delete orphan S3 files.')
 
     parser.add_argument('--no-cd', action='store_true', default=False,
                         dest='no_cd',
@@ -72,6 +72,10 @@ def main():
         else:
             raise Exception('Unknown branch! Cannot deploy.')
 
+        # Freeze each app, if requested.
+        # Per internal app configs, these make "frozen" static copies of these apps in:
+        #    ./cd_frozen/
+        #    ./wca_frozen/
         if not args.no_freeze:
             if not args.no_cd:
                 print("Freezing ClinDesk app ...")
@@ -87,94 +91,103 @@ def main():
                 frozen_wca = Freezer(wca.app)
                 frozen_wca.freeze()
                 print("")
-
         else:
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
 
 
-        sys.exit(1)
+        # Push the frozen apps above to S3, if we want.
+        if args.deploy:
+            if current_branch is "master":
+                bucket_prefix = "staging"
+            elif current_branch is "prod":
+                bucket_prefix = None
+            else:
+                # We did this above, but just in case.
+                raise Exception('Unknown git branch!')
 
-        # Connect
-        print('Connecting to AWS...')
-        conn = S3Connection()
+            #### Connect to S3
+            print('Connecting to AWS...')
+            conn = S3Connection()
 
-        # Get our bucket
-        bucket = conn.lookup('staging.clindesk.org')
-        if not bucket:
-            sys.stderr.write('Cannot find bucket!\n')
-            sys.exit(1)
-
-        # Data structures
-        cloud_set = set()
-        cloud_hashes = {}
-        local_set = set()
-        local_hashes = {}
-
-        print("Getting cloud file list ...")
-        # Make a list of cloud objects & etag hashes
-        # NOTE: Boto claims it provides a Content-MD5 value, but it totally lies.
-        objects = bucket.list()
-        for storage_object in objects:
-            cloud_set.add('../build/' + storage_object.name)  # TODO: Fix this hack
-            cloud_hashes['../build/' + storage_object.name] = storage_object.etag
-
-        print("Files in cloud: %s" % str(len(cloud_set)))
-
-        # Build local files an a (more complex) hash list for Boto
-        for dirname, dirnames, filenames in os.walk('../build'):
-            for filename in filenames:
-                full_path = os.path.join(dirname, filename)
-                local_set.add(full_path)
-                # Add checksums on files
-                cksum = md5()
-                cksum.update(open(full_path).read())
-                local_hashes[full_path] = (cksum.hexdigest(), b64encode(cksum.digest()))
-
-        print("Files on disk: %s" % str(len(local_set)))
-
-        # Completely missing files
-        upload_pending = local_set.difference(cloud_set)
-        delete_pending = cloud_set.difference(local_set)
-
-        # Compare local and cloud hashes
-        for filename, hashes in local_hashes.iteritems():
-            hex_hash, b64hash = hashes
-            if cloud_hashes.get(filename) != '"' + hex_hash + '"':
-                print("New hash for: %s" % filename)
-                # NOTE: AWS overwrites uploads, so no need to delete first.
-                upload_pending.add(filename)
-
-        # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
-        # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
-        if len(upload_pending) > 0:
-            print("Upload pending: %s" % str(len(upload_pending)))
-            for upload_file in upload_pending:
-                k = Key(bucket)
-                web_name = ''.join(upload_file.split('/', 2)[2:])
-                k.key = web_name
-                k.set_contents_from_filename(upload_file, md5=local_hashes[upload_file])
-
-        # Delete orphans, maybe.
-        if len(delete_pending) > 0 and not args.no_purge:
-            print("\nDeleting: %s" % str(len(delete_pending)))
-            for delete_file in delete_pending:
-                print("\t %s" % str(delete_file))
-                bucket.delete_key(delete_file)
+            # Deploy: (conn, frozen_path, remote_bucket)\
+            if not args.no_cd:
+                deploy_to_s3(conn, 'cd_frozen', bucket_prefix + 'clindesk.org', args.no_delete)
+            if not args.no_wca:
+                deploy_to_s3(conn, 'wca_frozen', bucket_prefix + 'whitecoatacademy.org', args.no_delete)
 
         print('All done!')
-
     else:
         print('Doing nothing. Type -h for help.')
 
     return True
 
 
+def deploy_to_s3(conn, frozen_path, bucket, no_delete):
+    """ Deploy a frozen app to S3, semi-intelligently. """
+    
+    # Get our bucket
+    bucket = conn.lookup('staging.clindesk.org')
+    if not bucket:
+        sys.stderr.write('Cannot find bucket!\n')
+        sys.exit(1)
+
+    # Data structures
+    cloud_set = set()
+    cloud_hashes = {}
+    local_set = set()
+    local_hashes = {}
+    
+    print("Getting cloud file list ...")
+    # Make a list of cloud objects & etag hashes
+    # NOTE: Boto claims it provides a Content-MD5 value, but it totally lies.
+    objects = bucket.list()
+    for storage_object in objects:
+        cloud_set.add('../build/' + storage_object.name)  # TODO: Fix this hack
+        cloud_hashes['../build/' + storage_object.name] = storage_object.etag
+
+    print("Files in cloud: %s" % str(len(cloud_set)))
+
+    # Build local files an a (more complex) hash list for Boto
+    for dirname, dirnames, filenames in os.walk('../build'):
+        for filename in filenames:
+            full_path = os.path.join(dirname, filename)
+            local_set.add(full_path)
+            # Add checksums on files
+            cksum = md5()
+            cksum.update(open(full_path).read())
+            local_hashes[full_path] = (cksum.hexdigest(), b64encode(cksum.digest()))
+
+    print("Files on disk: %s" % str(len(local_set)))
+
+    # Completely missing files
+    upload_pending = local_set.difference(cloud_set)
+    delete_pending = cloud_set.difference(local_set)
+
+    # Compare local and cloud hashes
+    for filename, hashes in local_hashes.iteritems():
+        hex_hash, b64hash = hashes
+        if cloud_hashes.get(filename) != '"' + hex_hash + '"':
+            print("New hash for: %s" % filename)
+            # NOTE: AWS overwrites uploads, so no need to delete first.
+            upload_pending.add(filename)
+
+    # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
+    # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
+    if len(upload_pending) > 0:
+        print("Upload pending: %s" % str(len(upload_pending)))
+        for upload_file in upload_pending:
+            k = Key(bucket)
+            web_name = ''.join(upload_file.split('/', 2)[2:])
+            k.key = web_name
+            k.set_contents_from_filename(upload_file, md5=local_hashes[upload_file])
+
+    # Delete orphans, maybe.
+    if len(delete_pending) > 0 and not no_delete:
+        print("\nDeleting: %s" % str(len(delete_pending)))
+        for delete_file in delete_pending:
+            print("\t %s" % str(delete_file))
+            bucket.delete_key(delete_file)
+
+
 if __name__ == '__main__':
     main()
-
-#    freezer.freeze(app)
-#    print("\nFrozen! Running web server on port 5000.\n Try: http://localhost:5000/")
-#    os.chdir('build/')  # Hack job?
-#    # This doesn't always terminate, unfortunately. Ctrl-C multiple times.
-#    httpd = HTTPServer(('0.0.0.0', 5000), SimpleHTTPRequestHandler)
-#    httpd.serve_forever()
