@@ -1,18 +1,20 @@
 #!/usr/bin/env python
 # Freeze Flask as static files & deploy to S3, which backs CloudFront.
+#
 # Author: semenko
 #
 """ Auto-deploy Frozen Flask sites to S3-backed CloudFront. """
 
+import argparse
+import imp
+import os
+import subprocess
+import sys
+
 from base64 import b64encode
 from boto.s3.connection import S3Connection
-import boto.s3.key
-import argparse
+from boto.s3.key import Key
 from flask_frozen import Freezer
-from BaseHTTPServer import HTTPServer
-from SimpleHTTPServer import SimpleHTTPRequestHandler
-import os
-import sys
 from hashlib import md5
 
 
@@ -23,21 +25,25 @@ def main():
 
     parser = argparse.ArgumentParser(description='The ClinDesk and WCA S3/AWS management script.')
 
+    parser.add_argument('--test', '-t', action='store_true', default=False,
+                        dest='freeze_only',
+                        help='Test the freeze results. Will NOT deploy.')
+
     parser.add_argument('--deploy', '-d', action='store_true', default=False,
                         dest='deploy',
-                        help='Deploy staging and prod to S3.')
+                        help='Deploy staging and prod to S3. Will NOT test.')
 
     parser.add_argument('--no-purge', action='store_true', default=False,
                         dest='no_purge',
-                        help='Don\'t purge orphan S3 files in Prod (staging always purges).')
+                        help='Don\'t purge orphan S3 files.')
 
-    parser.add_argument('--no-prod', action='store_true', default=False,
-                        dest='no_prod',
-                        help='Don\'t touch Prod. (git branch "prod")')
+    parser.add_argument('--no-cd', action='store_true', default=False,
+                        dest='no_cd',
+                        help='Don\'t touch ClinDesk')
 
-    parser.add_argument('--no-staging', action='store_true', default=False,
-                        dest='no_staging',
-                        help='Don\'t touch Staging. (git branch "master")')
+    parser.add_argument('--no-wca', action='store_true', default=False,
+                        dest='no_wca',
+                        help='Don\'t touch White Coat Academy.')
 
     parser.add_argument('--no-freeze', action='store_true', default=False,
                         dest='no_freeze',
@@ -50,15 +56,43 @@ def main():
         os.environ['AWS_ACCESS_KEY_ID'] = 'AKIAI2RJXWXDP2MGMWQA'
         os.environ['AWS_SECRET_ACCESS_KEY'] = secret_key.readline()
 
-    if args.deploy:
+    if args.deploy or args.freeze_only:
+        # Some flag constraints.
+        assert((args.deploy and not args.freeze_only) or (args.freeze_only and not args.no_freeze))
+        assert(not args.no_cd or not args.no_wca)
+
+        # Find the current git branch:
+        #  master -> staging
+        #  prod -> prod
+        current_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).strip()
+        if current_branch == "master":
+            print("Working in staging (your current git branch is: master)")
+        elif current_branch == "prod":
+            print("Workig on **prod** (your current git branch is: prod)")
+        else:
+            raise Exception('Unknown branch! Cannot deploy.')
 
         if not args.no_freeze:
-            if not args.no_staging:
-                pass
-            if not args.no_prod:
-                pass
+            if not args.no_cd:
+                print("Freezing ClinDesk app ...")
+                print("*** Look for errors here *** \n")
+                clindesk = imp.load_source('clindesk', '../clindesk.py')
+                frozen_cd = Freezer(clindesk.app)
+                frozen_cd.freeze()
+                print("")
+            if not args.no_wca:
+                print("Freezing WCA app ...")
+                print("*** Look for errors here *** \n")
+                wca = imp.load_source('wca', '../wca.py')
+                frozen_wca = Freezer(wca.app)
+                frozen_wca.freeze()
+                print("")
+
         else:
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
+
+
+        sys.exit(1)
 
         # Connect
         print('Connecting to AWS...')
@@ -115,7 +149,7 @@ def main():
         if len(upload_pending) > 0:
             print("Upload pending: %s" % str(len(upload_pending)))
             for upload_file in upload_pending:
-                k = boto.s3.key.Key(bucket)
+                k = Key(bucket)
                 web_name = ''.join(upload_file.split('/', 2)[2:])
                 k.key = web_name
                 k.set_contents_from_filename(upload_file, md5=local_hashes[upload_file])
@@ -144,4 +178,3 @@ if __name__ == '__main__':
 #    # This doesn't always terminate, unfortunately. Ctrl-C multiple times.
 #    httpd = HTTPServer(('0.0.0.0', 5000), SimpleHTTPRequestHandler)
 #    httpd.serve_forever()
-#!/usr/bin/python

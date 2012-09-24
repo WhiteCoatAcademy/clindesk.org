@@ -53,6 +53,8 @@ Message:
 supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
 app.config['ON_EC2'] = False
 app.config['STAGING'] = False
+# Tell Frozen Flask where to build
+app.config['FREEZER_DESTINATION'] = 'deploy/frozen_cd/'
 
 if supervisor_name:
     # supervisor_name is set by supervisord on our EC2 instances

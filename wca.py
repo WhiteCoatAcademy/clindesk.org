@@ -38,6 +38,8 @@ Message:
     mail_handler.setLevel(log_level)
     app.logger.addHandler(mail_handler)
 
+
+app.config['FREEZER_DESTINATION'] = 'deploy/frozen_wca/'
     
 # Settings based on prod/staging/dev
 supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
