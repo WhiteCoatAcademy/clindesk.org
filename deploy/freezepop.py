@@ -103,7 +103,7 @@ def main():
             if current_branch == "master":
                 bucket_prefix = "staging."
             elif current_branch == "prod":
-                bucket_prefix = None
+                bucket_prefix = ""
             else:
                 # We did this above, but just in case.
                 raise Exception('Unknown git branch!')
