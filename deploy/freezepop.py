@@ -10,6 +10,7 @@ import imp
 import os
 import subprocess
 import sys
+import time
 
 from base64 import b64encode
 from boto.s3.connection import S3Connection
@@ -94,26 +95,30 @@ def main():
         else:
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
 
+        print('*** Freeze complete! Preparing upload. ')
+        time.sleep(2)
 
         # Push the frozen apps above to S3, if we want.
         if args.deploy:
-            if current_branch is "master":
-                bucket_prefix = "staging"
-            elif current_branch is "prod":
+            if current_branch == "master":
+                bucket_prefix = "staging."
+            elif current_branch == "prod":
                 bucket_prefix = None
             else:
                 # We did this above, but just in case.
                 raise Exception('Unknown git branch!')
 
             #### Connect to S3
-            print('Connecting to AWS...')
+            print('Connecting to AWS...\n')
             conn = S3Connection()
 
             # Deploy: (conn, frozen_path, remote_bucket)\
             if not args.no_cd:
                 deploy_to_s3(conn, 'cd_frozen', bucket_prefix + 'clindesk.org', args.no_delete)
+                time.sleep(2)
             if not args.no_wca:
                 deploy_to_s3(conn, 'wca_frozen', bucket_prefix + 'whitecoatacademy.org', args.no_delete)
+                time.sleep(2)
 
         print('All done!')
     else:
@@ -122,12 +127,16 @@ def main():
     return True
 
 
-def deploy_to_s3(conn, frozen_path, bucket, no_delete):
+def deploy_to_s3(conn, frozen_path, bucket_name, no_delete):
     """ Deploy a frozen app to S3, semi-intelligently. """
-    
+
+    print('*** Preparing to deploy in: %s' % bucket_name)
+    time.sleep(1)
+
     # Get our bucket
-    bucket = conn.lookup('staging.clindesk.org')
+    bucket = conn.lookup(bucket_name)
     if not bucket:
+        # TODO: Standardize errors. Should we die always? Raise()? Return?
         sys.stderr.write('Cannot find bucket!\n')
         sys.exit(1)
 
@@ -136,28 +145,31 @@ def deploy_to_s3(conn, frozen_path, bucket, no_delete):
     cloud_hashes = {}
     local_set = set()
     local_hashes = {}
-    
+
     print("Getting cloud file list ...")
     # Make a list of cloud objects & etag hashes
     # NOTE: Boto claims it provides a Content-MD5 value, but it totally lies.
     objects = bucket.list()
     for storage_object in objects:
-        cloud_set.add('../build/' + storage_object.name)  # TODO: Fix this hack
-        cloud_hashes['../build/' + storage_object.name] = storage_object.etag
+        cloud_set.add(storage_object.name)
+        cloud_hashes[storage_object.name] = storage_object.etag
 
     print("Files in cloud: %s" % str(len(cloud_set)))
 
     # Build local files an a (more complex) hash list for Boto
-    for dirname, dirnames, filenames in os.walk('../build'):
+    for dirname, dirnames, filenames in os.walk(frozen_path):
         for filename in filenames:
             full_path = os.path.join(dirname, filename)
-            local_set.add(full_path)
+            # TODO: Fix this hack.
+            stripped_name = '/'.join(full_path.split('/', 2)[1:])
+            local_set.add(stripped_name)
             # Add checksums on files
             cksum = md5()
             cksum.update(open(full_path).read())
-            local_hashes[full_path] = (cksum.hexdigest(), b64encode(cksum.digest()))
+            local_hashes[stripped_name] = (cksum.hexdigest(), b64encode(cksum.digest()))
 
     print("Files on disk: %s" % str(len(local_set)))
+    time.sleep(1)
 
     # Completely missing files
     upload_pending = local_set.difference(cloud_set)
@@ -167,19 +179,17 @@ def deploy_to_s3(conn, frozen_path, bucket, no_delete):
     for filename, hashes in local_hashes.iteritems():
         hex_hash, b64hash = hashes
         if cloud_hashes.get(filename) != '"' + hex_hash + '"':
-            print("New hash for: %s" % filename)
             # NOTE: AWS overwrites uploads, so no need to delete first.
             upload_pending.add(filename)
 
     # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
     # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
     if len(upload_pending) > 0:
-        print("Upload pending: %s" % str(len(upload_pending)))
+        print("Uploading: %s" % str(len(upload_pending)))
         for upload_file in upload_pending:
             k = Key(bucket)
-            web_name = ''.join(upload_file.split('/', 2)[2:])
-            k.key = web_name
-            k.set_contents_from_filename(upload_file, md5=local_hashes[upload_file])
+            k.key = upload_file
+            k.set_contents_from_filename(frozen_path + '/' + upload_file, md5=local_hashes[upload_file])
 
     # Delete orphans, maybe.
     if len(delete_pending) > 0 and not no_delete:
@@ -187,6 +197,8 @@ def deploy_to_s3(conn, frozen_path, bucket, no_delete):
         for delete_file in delete_pending:
             print("\t %s" % str(delete_file))
             bucket.delete_key(delete_file)
+
+    print('** Successfully deployed: %s!\n' % bucket_name)
 
 
 if __name__ == '__main__':
