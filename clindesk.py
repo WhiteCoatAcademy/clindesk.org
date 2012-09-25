@@ -2,73 +2,10 @@ import jinja2
 import logging
 import os
 import re
+import subprocess
 import urlparse
 from flask import Flask, make_response, redirect, render_template, url_for
 app = Flask(import_name=__name__, static_folder='s')
-
-##########
-# Internal setup functions & error logging.
-#
-# NOTE: You probably want to skip down to the section called "Blocks for URL Control"
-#    where you'll see things like @app.route()
-##########
-
-
-def register_email_logger(subject_tag, log_level):
-    """
-    This sends e-mails to ec2-crashes when something fails in Prod or Staging.
-
-    It took me a while to figure this out:
-     ** The log hangler is basically *ignored* if debug=True **
-    """
-    ADMINS = ['ec2-prodlogs@clindesk.org']
-    from logging import Formatter
-    from logging.handlers import SMTPHandler
-    mail_handler = SMTPHandler('email-smtp.us-east-1.amazonaws.com',
-                               'ec2-crashes@clindesk.org',
-                               ADMINS,
-                               'ClinDesk %s Crash' % subject_tag,
-                               # Only sorta-secret. We haven't requested SES prod bits, so we can only
-                               # send to domains we own & addresses we verify. Little abuse potential. --semenko
-                               ('AKIAIEBTTF4MLQZ3CPAQ', 'AsD8aexgu9TUcIRB1bHmfG/zF2YMyv3Bze5LTpQzw6p1'),
-                               secure=())
-    mail_handler.setFormatter(Formatter('''
-Message type:       %(levelname)s
-Location:           %(pathname)s:%(lineno)d
-Module:             %(module)s
-Function:           %(funcName)s
-Time:               %(asctime)s
-
-Message:
-
-%(message)s
-'''))
-    mail_handler.setLevel(log_level)
-    app.logger.addHandler(mail_handler)
-
-
-###
-# Configure our environment depending on if we're in prod vs staging vs local machine.
-###
-supervisor_name = os.environ.get('SUPERVISOR_PROCESS_NAME', False)
-app.config['ON_EC2'] = False
-app.config['STAGING'] = False
-# Tell Frozen Flask where to build
-app.config['FREEZER_DESTINATION'] = 'deploy/cd_frozen/'
-
-if supervisor_name:
-    # supervisor_name is set by supervisord on our EC2 instances
-    app.config['ON_EC2'] = True
-    if supervisor_name == 'clindesk-prod':
-        register_email_logger('Prod', logging.WARNING)
-        app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
-    elif supervisor_name == 'clindesk-staging':
-        register_email_logger('Staging', logging.WARNING)
-        app.config['STAGING'] = True
-else:
-    # We're not running under supervisord, so we're on a local machine.
-    # e.g. someone just ran `python clindesk.py`
-    pass
 
 
 ###
@@ -209,3 +146,17 @@ if __name__ == "__main__":
     # This is fine for prod purposes:
     #   The prod servers run via gunicorn & gevent, which won't invoke __main__
     app.run(host='0.0.0.0', port=5000, debug=True)
+else:
+    # Man, I kinda' miss the days when we were on EC2 instead of just static.
+    # We're probably being Frozen. Cool.
+    app.config['FREEZER_DESTINATION'] = 'deploy/cd_frozen/'
+    # Find the current git branch:
+    #  master -> staging
+    #  prod -> prod
+    current_branch = subprocess.check_output(['git', 'rev-parse', '--abbrev-ref', 'HEAD']).strip()
+    if current_branch == "master":
+        pass
+    elif current_branch == "prod":
+        app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
+    else:
+        raise Exception('Unknown branch! Cannot deploy.')
