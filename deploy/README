@@ -1,3 +1,3 @@
-These are scripts & config files needed to deploy to EC2.
+These are scripts & config files needed to deploy to AWS S3 and CloudFront.
 
 You probably don't need to use them.
