@@ -6,8 +6,10 @@
 """ Auto-deploy Frozen Flask sites to S3-backed CloudFront. """
 
 import argparse
+import gzip
 import imp
 import os
+import StringIO
 import subprocess
 import sys
 import time
@@ -96,7 +98,7 @@ def main():
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
 
         print('*** Freeze complete! Preparing upload. ')
-        time.sleep(2)
+        time.sleep(1)
 
         # Push the frozen apps above to S3, if we want.
         if args.deploy:
@@ -115,10 +117,10 @@ def main():
             # Deploy: (conn, frozen_path, remote_bucket)\
             if not args.no_cd:
                 deploy_to_s3(conn, 'cd_frozen', bucket_prefix + 'clindesk.org', args.no_delete)
-                time.sleep(2)
+                time.sleep(1)
             if not args.no_wca:
                 deploy_to_s3(conn, 'wca_frozen', bucket_prefix + 'whitecoatacademy.org', args.no_delete)
-                time.sleep(2)
+                time.sleep(1)
 
         print('All done!')
     else:
@@ -151,6 +153,8 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete):
     # NOTE: Boto claims it provides a Content-MD5 value, but it totally lies.
     objects = bucket.list()
     for storage_object in objects:
+        # WARN: This is a bit of a hack. Naming files .gz. will break the world.
+        # if '.gz.' not in storage_object.name:
         cloud_set.add(storage_object.name)
         cloud_hashes[storage_object.name] = storage_object.etag
 
@@ -184,6 +188,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete):
 
     # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
     # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
+    # TODO: Do we need those bucket policies since we're using the S3 web hosting route? I don't think so.
     if len(upload_pending) > 0:
         print("Uploading: %s" % str(len(upload_pending)))
         for upload_file in upload_pending:
@@ -191,12 +196,28 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete):
             k.key = upload_file
             k.set_contents_from_filename(frozen_path + '/' + upload_file, md5=local_hashes[upload_file])
 
+            # Setup a gzip copy, too, maybe:
+            filename, extn = os.path.splitext(upload_file)
+            if extn in {'.html', '.htm', '.css', '.js', '.txt'} and False:
+                kgz = Key(bucket)
+                kgz.key = filename + '.gz' + extn
+                gz_buffer = StringIO.StringIO()
+                gz_fh = gzip.GzipFile(mode='wb', compresslevel=9, fileobj=gz_buffer)
+                gz_fh.write(open(frozen_path + '/' + upload_file).read())
+                gz_fh.close()
+                gz_buffer.seek(0)
+                kgz.set_contents_from_file(gz_buffer, headers={'Content-Encoding': 'gzip', 'Content-Type': k.content_type})
+
+
     # Delete orphans, maybe.
     if len(delete_pending) > 0 and not no_delete:
         print("\nDeleting: %s" % str(len(delete_pending)))
         for delete_file in delete_pending:
             print("\t %s" % str(delete_file))
             bucket.delete_key(delete_file)
+            # Try to delete .gz.ext files, too
+            filename, extn = os.path.splitext(delete_file)
+            bucket.delete_key(filename + '.gz' + extn)
 
     print('** Successfully deployed: %s!\n' % bucket_name)
 
