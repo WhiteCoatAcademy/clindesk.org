@@ -1,3 +1,5 @@
+#!/usr/bin/env python
+
 import jinja2
 import logging
 import os
