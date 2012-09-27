@@ -2,13 +2,13 @@
 CD: UA-32988270-1
 WCA: UA-32988270-2
 #}
-{%- if "www" in request.environ.HTTP_HOST -%}
+{%- if config.prod is defined -%}
 <script type="text/javascript">
   var _gaq = _gaq || [];
   
-{%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
+{%- if "whitecoatacademy" in config.apphost -%}
   _gaq.push(['_setAccount', 'UA-32988270-2']);
-{%- elif "clindesk" in request.environ.HTTP_HOST -%}
+{%- elif "clindesk" in config.apphost -%}
   _gaq.push(['_setAccount', 'UA-32988270-1']);
 {% endif %}
   _gaq.push(['_setSiteSpeedSampleRate', 100]);

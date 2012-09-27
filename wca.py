@@ -8,6 +8,10 @@ from flask import Flask, make_response, redirect, render_template, request, url_
 app = Flask(import_name=__name__, static_folder='s')
 
 
+# Used for some template configuration
+app.config['apphost'] = "whitecoatacademy"
+
+
 def register_email_logger(subject_tag, log_level):
     """
     This sends e-mails to ec2-crashes when something fails in Prod or Staging. 

@@ -10,9 +10,9 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="{% block meta_author %}{% endblock %}" />
     {# Is it cool to have logic here? #}
-    {%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
+    {%- if "whitecoatacademy" in config.apphost -%}
     <link href="{{ static('css/min.wca.css') }}" rel="stylesheet" />
-    {%- elif "clindesk" in request.environ.HTTP_HOST -%}
+    {%- elif "clindesk" in config.apphost -%}
     <link href="{{ static('css/min.cd.css') }}" rel="stylesheet" />
     {% else %}
     <!--- Warning: This currently only loads ClinDesk styles, no WCA //-->
@@ -168,14 +168,11 @@
         </div>
     </section>
 </footer>
-{# TODO: Fix this back to top magic w/ js? Code is in: pixelentity.controller.js
-<a href="#top" id="peBackToTop" class="label btt disabled"><span class="icon-chevron-up icon-white"></span></a>
-#}
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 {# Is it cool to have logic here? #}
-{%- if "whitecoatacademy" in request.environ.HTTP_HOST -%}
+{%- if "whitecoatacademy" in config.apphost -%}
 <script type="text/javascript" src="{{ static('js/min.wca.js') }}" async></script>
-{%- elif "clindesk" in request.environ.HTTP_HOST -%}
+{%- elif "clindesk" in config.apphost -%}
 <script type="text/javascript" src="{{ static('js/min.cd.js') }}" async></script>
 {% else %}
 <!-- WARNING: This ONLY loads CD on dev now. Fix this later //--->

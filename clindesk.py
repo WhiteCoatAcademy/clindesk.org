@@ -149,9 +149,13 @@ if __name__ == "__main__":
     #   The prod servers run via gunicorn & gevent, which won't invoke __main__
     app.run(host='0.0.0.0', port=5000, debug=True)
 else:
+    # Used for logic in some templates
+    app.config['apphost'] = "clindesk"
+
     # Man, I kinda' miss the days when we were on EC2 instead of just static.
     # We're probably being Frozen. Cool.
     app.config['FREEZER_DESTINATION'] = 'deploy/cd_frozen/'
+
     # Find the current git branch:
     #  master -> staging
     #  prod -> prod
@@ -159,6 +163,7 @@ else:
     if current_branch == "master":
         pass
     elif current_branch == "prod":
+        app.config['prod'] = True
         app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
     else:
         raise Exception('Unknown branch! Cannot deploy.')
