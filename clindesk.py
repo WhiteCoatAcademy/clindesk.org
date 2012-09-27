@@ -17,7 +17,7 @@ app = Flask(import_name=__name__, static_folder='s')
 # or
 #   static.clindesk.org --- For production.
 #
-# static.clindesk.org is an AWS CloudFront endpoint that caches our content via the Amazon CDN.
+# static.clindesk.org is an AWS CloudFront endpoint.
 ###
 def static(path):
     root = app.config.get('STATIC_ROOT', None)
