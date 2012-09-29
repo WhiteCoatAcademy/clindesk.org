@@ -17,6 +17,7 @@ import time
 from base64 import b64encode
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
+from datetime import datetime, timedelta
 from flask_frozen import Freezer
 from hashlib import md5
 
@@ -189,15 +190,34 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete):
     # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
     # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
     # TODO: Do we need those bucket policies since we're using the S3 web hosting route? I don't think so.
+    cache_times = {'.png': '1209600',  # 14 days
+                   '.jpg': '1209600',
+                   '.css': '172800',  # 2 days
+                   '.html': '172800',
+                   '_DEFAULT_': '14400'  # 4 hours
+                   }
+    def get_headers(extn):
+        headers = {}
+        exp_seconds = cache_times.get(extn, cache_times['_DEFAULT_'])
+
+        expires = datetime.utcnow() + timedelta(seconds=int(exp_seconds))
+        expires = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
+
+        headers['Cache-control'] = 'max-age=' + exp_seconds + ', public' # TODO: fix whenever S3/CloudFront gzip doesn't suck
+        headers['Expires'] = expires
+        return headers
+        
+    
     if len(upload_pending) > 0:
         print("Uploading: %s" % str(len(upload_pending)))
         for upload_file in upload_pending:
+            filename, extn = os.path.splitext(upload_file)
+
             k = Key(bucket)
             k.key = upload_file
-            k.set_contents_from_filename(frozen_path + '/' + upload_file, md5=local_hashes[upload_file])
+            k.set_contents_from_filename(frozen_path + '/' + upload_file, headers=get_headers(extn), md5=local_hashes[upload_file])
 
             # Setup a gzip copy, too, maybe:
-            filename, extn = os.path.splitext(upload_file)
             if extn in {'.html', '.htm', '.css', '.js', '.txt'} and False:
                 kgz = Key(bucket)
                 kgz.key = filename + '.gz' + extn
