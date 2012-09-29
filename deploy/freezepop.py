@@ -41,6 +41,10 @@ def main():
                         dest='no_delete',
                         help='Don\'t delete orphan S3 files.')
 
+    parser.add_argument('--overwrite-all', action='store_true', default=False,
+                        dest='overwrite_all',
+                        help='Overwrite everything. Useful if metadata changes.')
+
     parser.add_argument('--no-cd', action='store_true', default=False,
                         dest='no_cd',
                         help='Don\'t touch ClinDesk')
@@ -117,10 +121,10 @@ def main():
 
             # Deploy: (conn, frozen_path, remote_bucket)\
             if not args.no_cd:
-                deploy_to_s3(conn, 'cd_frozen', bucket_prefix + 'clindesk.org', args.no_delete)
+                deploy_to_s3(conn, 'cd_frozen', bucket_prefix + 'clindesk.org', args.no_delete, args.overwrite_all)
                 time.sleep(1)
             if not args.no_wca:
-                deploy_to_s3(conn, 'wca_frozen', bucket_prefix + 'whitecoatacademy.org', args.no_delete)
+                deploy_to_s3(conn, 'wca_frozen', bucket_prefix + 'whitecoatacademy.org', args.no_delete, args.overwrite_all)
                 time.sleep(1)
 
         print('All done!')
@@ -130,7 +134,7 @@ def main():
     return True
 
 
-def deploy_to_s3(conn, frozen_path, bucket_name, no_delete):
+def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
     """ Deploy a frozen app to S3, semi-intelligently. """
 
     print('*** Preparing to deploy in: %s' % bucket_name)
@@ -183,7 +187,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete):
     # Compare local and cloud hashes
     for filename, hashes in local_hashes.iteritems():
         hex_hash, b64hash = hashes
-        if cloud_hashes.get(filename) != '"' + hex_hash + '"':
+        if overwrite_all or cloud_hashes.get(filename) != '"' + hex_hash + '"':
             # NOTE: AWS overwrites uploads, so no need to delete first.
             upload_pending.add(filename)
 
