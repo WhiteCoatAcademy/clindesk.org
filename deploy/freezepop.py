@@ -191,14 +191,13 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
             # NOTE: AWS overwrites uploads, so no need to delete first.
             upload_pending.add(filename)
 
-    # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
-    # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
-    # TODO: Do we need those bucket policies since we're using the S3 web hosting route? I don't think so.
-    cache_times = {'.png': '1209600',  # 14 days
-                   '.jpg': '1209600',
-                   '.css': '172800',  # 2 days
-                   '.html': '172800',
-                   '_DEFAULT_': '14400'  # 4 hours
+    # TODO: Make these much higher when we have good versioning set up.
+    cache_times = {'.png': '14400',  # 4 hours
+                   '.jpg': '14400',
+                   '.js': '14400',
+                   '.css': '14400',
+                   '.html': '14400',
+                   '_DEFAULT_': '14400'
                    }
     def get_headers(extn):
         headers = {}
@@ -207,11 +206,20 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
         expires = datetime.utcnow() + timedelta(seconds=int(exp_seconds))
         expires = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
 
-        headers['Cache-control'] = 'max-age=' + exp_seconds + ', public' # TODO: fix whenever S3/CloudFront gzip doesn't suck
+        headers['Cache-control'] = 'public, max-age=' + exp_seconds # TODO: fix whenever S3/CloudFront gzip doesn't suck
         headers['Expires'] = expires
+
+        # Security-related headers
+        if extn in {'.html'}:
+            headers['Content-Type'] = 'text/html; charset=UTF-8'
+            headers['X-Content-Type-Options'] = 'nosniff'
+            headers['X-Frame-Options'] = 'SAMEORIGIN'
+            headers['X-XSS-Protection'] = '1; mode=block'
         return headers
         
-    
+    # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
+    # a bucket-wide AWS policy: http://docs.amazonwebservices.com/AmazonS3/latest/dev/WebsiteAccessPermissionsReqd.html
+    # TODO: Do we need those bucket policies since we're using the S3 web hosting route? I don't think so.    
     if len(upload_pending) > 0:
         print("Uploading: %s" % str(len(upload_pending)))
         for upload_file in upload_pending:
