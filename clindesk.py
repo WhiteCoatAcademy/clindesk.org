@@ -137,6 +137,15 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 's'),
                                'favicon.cd.ico', mimetype='image/vnd.microsoft.icon')
 
+# Return favicon from the root path
+@app.route('/robots.txt')
+def robots():
+    robot_path = 'robots.staging.txt'
+    if app.config.get('prod', False):
+        robot_path = 'robots.prod.txt'
+    return send_from_directory(os.path.join(app.root_path, 's'),
+                               robot_path, mimetype='text/plain')
+
 # This doesn't really do anything. It renders error.html for Flask.
 # error.html is a special S3 endpoint custom error page.
 @app.route("/error.html")
