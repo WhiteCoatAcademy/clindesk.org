@@ -102,7 +102,7 @@ def main():
         else:
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
 
-        print('*** Freeze complete! Preparing upload. ')
+        print('*** Freeze complete!')
         time.sleep(1)
 
         # Push the frozen apps above to S3, if we want.

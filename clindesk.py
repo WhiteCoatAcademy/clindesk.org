@@ -6,7 +6,7 @@ import os
 import re
 import subprocess
 import urlparse
-from flask import Flask, make_response, redirect, render_template, url_for
+from flask import Flask, make_response, redirect, render_template, send_from_directory, url_for
 app = Flask(import_name=__name__, static_folder='s')
 
 
@@ -131,6 +131,19 @@ def page_treatments():
 # *** Odd URLs and support functions
 ######
 
+# Return favicon from the root path
+@app.route('/favicon.ico')
+def favicon():
+    return send_from_directory(os.path.join(app.root_path, 's'),
+                               'favicon.cd.ico', mimetype='image/vnd.microsoft.icon')
+
+# This doesn't really do anything. It renders error.html for Flask.
+# error.html is a special S3 endpoint custom error page.
+@app.route("/error.html")
+def error_handler_for_flask():
+    return render_template('errors/404.html')
+
+# A more generic handler, only for live Flask deployments.
 @app.errorhandler(404)
 def page_not_found(error):
     """ Return our generic error page. """
