@@ -20,7 +20,7 @@ A local instance should then be running at: http://localhost:5000/
 ## Directories
 
 * /s/
-  * Static files. Served by nginx.
+  * Static files. Usually loaded via static.DOMAIN.com via CloudFront
 * /templates/
   * [Jinja2](http://jinja.pocoo.org/) templates for Flask.
 * /deploy/

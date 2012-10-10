@@ -197,6 +197,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
                    '.js': '14400',
                    '.css': '14400',
                    '.html': '14400',
+                   '.ico': '604800',
                    '_DEFAULT_': '14400'
                    }
     def get_headers(extn):
