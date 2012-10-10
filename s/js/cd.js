@@ -29,8 +29,6 @@ $(document).ready(function(){
     }
     $("header ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
 });
-// TODO: Add that mobile tag from pixelentity.controller.js ?
-//  if mobile, $("html").addClass("mobile");
 
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
