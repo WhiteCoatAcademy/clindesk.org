@@ -186,6 +186,8 @@ else:
         pass
     elif current_branch == "prod":
         app.config['prod'] = True
-        app.config['STATIC_ROOT'] = 'http://static.clindesk.org/s/'
+        # We don't really support SSL given Cloudfront, but ...
+        # app.config['STATIC_ROOT'] = '//static.clindesk.org/s/'
+        app.config['STATIC_ROOT'] = 'https://d10ka1woaw849g.cloudfront.net/s/'
     else:
         raise Exception('Unknown branch! Cannot deploy.')
