@@ -40,3 +40,12 @@ Production code comes from the "prod" branch of the repository. You need to swit
 1. Make sure you're updated to the latest code: `git pull`
 2. Run this: `git checkout prod ; git merge -Xtheirs master ; git checkout master ; git push`
 
+## Copyright
+
+Some shared libraries are available via an Apache License v2.0 (e.g. bootstrap)
+
+All other work is Copyright 2012, ClinDesk, Inc. All rights reserved.
+
+(Note: We'll clean up this license to CC BY NC SA 3.0 when we can.)
+
+
