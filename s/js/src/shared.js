@@ -37,42 +37,45 @@ $(document).ready(function(){
 $(document).ready(function(){
     // fix sub nav on scroll
     var $win = $(window)
-    , $nav = $('.subnav')
-    , $main = $('.mainContentWrap')
-    , $logo = $('.brand')
-    , $scrolllogo = $('.scroll-logo')
-    , navTop = $('.subnav').length && $('.subnav').offset().top - 8
-    , isFixed = 0
-    
+        , $nav = $('.subnav')
+        , $main = $('.mainContentWrap')
+        , $logo = $('.brand')
+        , $scrolllogo = $('.scroll-logo')
+        , navTop = $('.subnav').length && $('.subnav').offset().top - 8
+        , isFixed = 0
+        , $dznav = $('.bs-docs-sidenav');
+
     processScroll()
-    
+
     // hack sad times - holdover until rewrite for 2.1
     $nav.on('click', function () {
-	if (!isFixed) setTimeout(function () {  $win.scrollTop($win.scrollTop() - 47) }, 10)
+        if (!isFixed) setTimeout(function () {  $win.scrollTop($win.scrollTop() - 47) }, 10)
     })
-    
+
     $win.on('scroll', processScroll)
-    
+
     function processScroll() {
-	if($(this).width() < 767) {
-	    // Narrow device? No fixed nav.
-	} else {
-	    var scrollTop = $win.scrollTop()
-	    if (scrollTop >= navTop && !isFixed) {
-		isFixed = 1
-		$('#slugtext').animate({"padding-left":"160px"},{queue:false,duration:400})
-		$nav.addClass('subnav-fixed')
-		$main.addClass('subnav-main-spacer')
-		$scrolllogo.fadeIn(400)
-		$('img',$logo).hide()
-	    } else if (scrollTop <= navTop && isFixed) {
-		isFixed = 0
-		$('#slugtext').animate({"padding-left":"0px"},{queue:false,duration:400})
-		$nav.removeClass('subnav-fixed')
-		$main.removeClass('subnav-main-spacer')
-		$scrolllogo.hide()
-		$('img',$logo).show()
-	    }
+        if($(this).width() < 767) {
+            // Narrow device? No fixed nav.
+        } else {
+            var scrollTop = $win.scrollTop()
+            if (scrollTop >= navTop && !isFixed) {
+                isFixed = 1
+                $('#slugtext').animate({"padding-left":"160px"},{queue:false,duration:400})
+                $nav.addClass('subnav-fixed')
+                $main.addClass('subnav-main-spacer')
+                $dznav.addClass('affix')
+                $scrolllogo.fadeIn(400)
+                $('img',$logo).hide()
+            } else if (scrollTop <= navTop && isFixed) {
+                isFixed = 0
+                $('#slugtext').animate({"padding-left":"0px"},{queue:false,duration:400})
+                $nav.removeClass('subnav-fixed')
+                $main.removeClass('subnav-main-spacer')
+                $dznav.removeClass('affix')
+                $scrolllogo.hide()
+                $('img',$logo).show()
+            }
 	}
     }
 });
