@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="{% block meta_author %}Nick Semenkovich (semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap-combined.min.css" rel="stylesheet">
     {# Is it cool to have logic here? #}
     {%- if "whitecoatacademy" in config.apphost -%}
     <link href="{{ static('css/min.wca.css') }}" rel="stylesheet" />
@@ -12,16 +13,16 @@
     <link href="{{ static('css/min.cd.css') }}" rel="stylesheet" />
     {% else %}
     <!--- Warning: This currently only loads ClinDesk styles, no WCA //-->
-    <link href="{{ static('css/_bootstrap.css') }}" rel="stylesheet" />
-    <link href="{{ static('css/_bootstrap-responsive.css') }}" rel="stylesheet" />
     <link href="{{ static('css/_styles.css') }}" rel="stylesheet" />
     {% endif %}
     <!--[if lt IE 9]><script type="text/javascript" src="{{ static('js/html5shiv/36.js') }}"></script><![endif]-->
 
+    {#
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ static('img/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ static('img/ico/apple-touch-icon-114-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ static('img/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ static('img/ico/apple-touch-icon-57-precomposed.png') }}">
+    #}
 
     {% include 'ga_tracking_code.html' %}
 </head>
@@ -52,48 +53,48 @@
             </div>
         </div>
     </div>
+</div>
 
-    {# <img src="{{ static('img/content/logo.png') }}" height="100" alt="ClinDesk, Inc." /> #}
+{# <img src="{{ static('img/content/logo.png') }}" height="100" alt="ClinDesk, Inc." /> #}
 
-    <header class="jumbotron subhead" id="overview">
-        <div class="container">
-            <h1>{% block tagline_text %}tagline_text{% endblock %}</h1>
-            <p class="lead">{% block lead %}lead{% endblock %}</p>
-        </div>
-    </header>
+<header class="jumbotron subhead" id="overview">
+    <div class="container">
+        <h1>{% block tagline_text %}tagline_text{% endblock %}</h1>
+        <p class="lead">{% block lead %}lead{% endblock %}</p>
+    </div>
+</header>
 
-    <!-- Main content block -->
-    {% block maincontent %}maincontent{% endblock %}
-    <!-- End of main content block -->
+{% block maincontent %}maincontent{% endblock %}
 
-
-    <footer class="footer">
-        <div class="container">
-            <p class="pull-right"><a href="#">Back to top</a></p>
-            <p>&copy 2012 ClinDesk, Inc., some rights reserved</p>
-            <p>Videos are licensed under the Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/3.0">CC BY NC SA 3.0</a> license.</p>
-            <ul class="footer-links">
-                <li><a href="/">Home</a></li>
-                <li class="muted">&middot;</li>
-                <li><a href="/donate.html">Donate</a></li>
-                <li class="muted">&middot;</li>
-                <li><a href="/about.html#team">Contact Us</a></li>
-            </ul>
-        </div>
-    </footer>
+<footer class="footer">
+    <div class="container">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy 2012 ClinDesk, Inc., some rights reserved</p>
+        <p>Videos are licensed under the Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/3.0">CC BY NC SA 3.0</a> license.</p>
+        <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li class="muted">&middot;</li>
+            <li><a href="/donate.html">Donate</a></li>
+            <li class="muted">&middot;</li>
+            <li><a href="/about.html#team">Contact Us</a></li>
+        </ul>
+    </div>
+</footer>
 
 
-    <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
-    {# Is it cool to have logic here? #}
-    {%- if "whitecoatacademy" in config.apphost -%}
-    <script type="text/javascript" src="{{ static('js/min.wca.js') }}" async></script>
-    {%- elif "clindesk" in config.apphost -%}
-    <script type="text/javascript" src="{{ static('js/min.cd.js') }}" async></script>
-    {% else %}
-    <!-- WARNING: This ONLY loads CD on dev now. Fix this later //--->
-    <script type="text/javascript" src="{{ static('js/src/shared.js') }}" async></script>
-    <script type="text/javascript" src="{{ static('js/src/cd.js') }}" async></script>
-    {% endif %}
-    <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js" async></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js" ></script>
+
+{# Is it cool to have logic here? #}
+{%- if "whitecoatacademy" in config.apphost -%}
+<script type="text/javascript" src="{{ static('js/min.wca.js') }}" async></script>
+{%- elif "clindesk" in config.apphost -%}
+<script type="text/javascript" src="{{ static('js/min.cd.js') }}" async></script>
+{% else %}
+<!-- WARNING: This ONLY loads CD on dev now. Fix this later //--->
+<script type="text/javascript" src="{{ static('js/src/shared.js') }}" ></script>
+<script type="text/javascript" src="{{ static('js/src/cd.js') }}" ></script>
+{% endif %}
+
 </body>
 </html>

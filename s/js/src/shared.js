@@ -29,12 +29,12 @@ $(document).ready(function(){
     }
     $("header ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
 });
-// TODO: Add that mobile tag from pixelentity.controller.js ?
-//  if mobile, $("html").addClass("mobile");
+
 
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
 $(document).ready(function(){
+
     // fix sub nav on scroll
     var $win = $(window)
         , $nav = $('.subnav')
@@ -43,7 +43,13 @@ $(document).ready(function(){
         , $scrolllogo = $('.scroll-logo')
         , navTop = $('.subnav').length && $('.subnav').offset().top - 8
         , isFixed = 0
-        , $dznav = $('.bs-docs-sidenav');
+
+    $('.bs-docs-sidenav').affix({
+      offset: {
+        top: function () { return $win.width() <= 980 ? 290 : 210 }
+      , bottom: 270
+      }
+    })
 
     processScroll()
 
@@ -64,7 +70,6 @@ $(document).ready(function(){
                 $('#slugtext').animate({"padding-left":"160px"},{queue:false,duration:400})
                 $nav.addClass('subnav-fixed')
                 $main.addClass('subnav-main-spacer')
-                $dznav.addClass('affix')
                 $scrolllogo.fadeIn(400)
                 $('img',$logo).hide()
             } else if (scrollTop <= navTop && isFixed) {
@@ -72,7 +77,6 @@ $(document).ready(function(){
                 $('#slugtext').animate({"padding-left":"0px"},{queue:false,duration:400})
                 $nav.removeClass('subnav-fixed')
                 $main.removeClass('subnav-main-spacer')
-                $dznav.removeClass('affix')
                 $scrolllogo.hide()
                 $('img',$logo).show()
             }
