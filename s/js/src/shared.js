@@ -31,6 +31,14 @@ $(document).ready(function(){
     $(".navbar ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
 });
 
+// Sexy smooth scroll
+$('a').click(function(){
+    $('html, body').animate({
+        scrollTop: $( $(this).attr('href') ).offset().top
+    }, 500);
+    return false;
+});
+
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
 $(document).ready(function(){
