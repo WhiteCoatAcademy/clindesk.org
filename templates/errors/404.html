@@ -1,30 +1,5 @@
 {% extends "base.html" %}
 {% block title %}Error: Page Not Found{% endblock %}
-{% block tagline_text %}Error: Page Not Found{% endblock %}
-{% block maincontent %}
-<!--main content-->
-<section class="mainContentWrap">
-  <div class="container mainContent">
-    <div class="row-fluid">
-      <div class="span9">
-        <div class="row-fluid">
-          <div class="innerSpacer">
-
-                <!--alert error-->
-                <div class="alert alert-block alert-error fade in">
-                  <h4>Error 404: The Page You Are Looking For Isn't Here</h4>
-                  <br />
-                  <p>Whoops! Looks like that page is missing! We're working on finding it.</p>
-                  <br />
-                  <a href="/" class="btn btn-primary">Return Home</a>
-                </div>
-
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-{% endblock %}
+{% block tagline_text %}Page Not Found{% endblock %}
+{% block lead %}Sorry about that. Hopefully we'll fix this error soon.{% endblock %}
+{% block maincontent %}{% endblock %}
