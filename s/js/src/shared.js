@@ -1,4 +1,4 @@
-// Handle our disclaimer & get a cookie, yo.
+// Handle our disclaimer & get a cookie.
 $(document).ready(function(){
     if (document.cookie.match('disclaimer') != null) {
 	$('#disclaimer').hide();
@@ -17,6 +17,7 @@ $(document).ready(function(){
 });
 
 
+// TODO: Move this to HTML?
 // Auto-tab highlighting.
 $(document).ready(function(){
     var page = location.href.split(/\//)[3].split(/#/)[0];
@@ -27,9 +28,8 @@ $(document).ready(function(){
     } else {
 	page = 'index.html';
     }
-    $("header ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
+    $(".navbar ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
 });
-
 
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
