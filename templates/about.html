@@ -43,22 +43,70 @@
         <div class="page-header">
           <h1>Meet the Team</h1>
         </div>
-        <p class="lead">Within the download you'll find the following file structure and contents, logically grouping common assets and providing both compiled and minified variations.</p>
-        <p>Once downloaded, unzip the compressed folder to see the structure of (the compiled) Bootstrap. You'll see something like this:</p>
-<pre class="prettyprint">
-bootstrap/
-├── css/
-│   ├── bootstrap.css
-│   ├── bootstrap.min.css
-├── js/
-│   ├── bootstrap.js
-│   ├── bootstrap.min.js
-└── img/
-    ├── glyphicons-halflings.png
-    └── glyphicons-halflings-white.png
-</pre>
-        <p>This is the most basic form of Bootstrap: compiled files for quick drop-in usage in nearly any web project. We provide compiled CSS and JS (<code>bootstrap.*</code>), as well as compiled and minified CSS and JS (<code>bootstrap.min.*</code>). The image files are compressed using <a href="http://imageoptim.com/">ImageOptim</a>, a Mac app for compressing PNGs.</p>
-        <p>Please note that all JavaScript plugins require jQuery to be included.</p>
+        <p class="lead">We're a group of senior medical students and resident physicians who are passionate about opening up
+            the private world of medical knowledge and education.</p>
+
+          <div class="row-fluid">
+              <div class="span6">
+                  <h3>Nick Semenkovich</h3>
+                  <h4>Founder &amp; President
+                      <span style="float:right">
+                          <a href="https://twitter.com/semenko" data-rel="tooltip" title="Twitter"><i class="icon-twitter-sign icon-large"></i></a>
+                          <a href="https://www.facebook.com/semenko" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
+                          <a href="https://github.com/semenko" data-rel="tooltip" title="GitHub" class="sm-icon"><i class="icon-github-sign icon-large"></i></a>
+                      </span>
+                  </h4>
+                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/semenko.jpg') }}" width="150"/></span>
+                  <span>Nick hails from M.I.T., where he served as Editor in Chief of the student newspaper The Tech. He's currently an MD/PhD student
+                      in the lab of Dr. Jeffrey Gordon, where he's focused on developing bacteriophage therapeutics targeting the microbiome.
+                      <br/><br/><p>E-Mail: <a href="mailto:semenko@clindesk.org">semenko@clindesk.org</a></p>
+                  </span>
+              </div>
+              <div class="span6">
+                  <h3>David Germain</h3>
+                  <h4>Chief Operations Officer
+                      <span style="float:right">
+                       <a href="https://twitter.com/keepitgermain" data-rel="tooltip" title="Twitter"><i class="icon-twitter-sign icon-large"></i></a>
+                      <a href="https://www.facebook.com/dgermain" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
+                      </span>
+                  </h4>
+                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/dgermain.jpg') }}" width="150"/></span>
+                  <span>David spent his undergrad at Stanford and will one day cure leukemia. He's currently an MD/PhD student in the lab of Dr. Tim Ley,
+                        focused on epigenetic regulatory mechanisms of AML. When not at lab, he spends time entertaining his magnificient cat, Osmo.
+                      <br/><br/><p>E-Mail: <a href="mailto:dgermain@clindesk.org">dgermain@clindesk.org</a></p>
+                  </span>
+              </div>
+          </div>
+          <div class="row-fluid">
+              <div class="span6">
+                  <h3>Ray Jean</h3>
+                  <h4>Chief Technology Officer
+                      <span style="float:right">
+                      <a href="https://www.facebook.com/raymond.a.jean" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
+                      </span>
+                  </h4>
+                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/rayjean.jpg') }}" width="150"/></span>
+                  <span>Ray did his undergrad at Harvard where he was an engineering major. He's now a fourth year medical student, taking a year off to
+                      expand the world's medical knowledge while doing research with Dr. Jay Picarillo.
+                      <br/><br/><br/><p>E-Mail: <a href="mailto:rayjean@clindesk.org">rayjean@clindesk.org</a></p>
+                  </span>
+              </div>
+              <div class="span6">
+                  <h3>Aaron Mintz</h3>
+                  <h4>CFO &amp; Visionary
+                      <span style="float:right">
+                      <a href="https://www.facebook.com/aaronmintz" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
+                      </span>
+                  </h4>
+                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/aaronm.jpg') }}" width="150"/></span>
+                  <span>Aaron spent his undergrad years at Stanford, and is currently a fourth year medical student. After his residency, Aaron will
+                      likely direct operations and innovation at a large academic medical center.
+                      <br/><br/><br/><p>E-Mail: <a href="mailto:aaronm@clindesk.org">aaronm@clindesk.org</a></p>
+                  </span>
+              </div>
+
+          </div>
+
       </section>
 
 
@@ -139,89 +187,6 @@ bootstrap/
         <p><strong>And you're set!</strong> With those two files added, you can begin to develop any site or application with Bootstrap.</p>
       </section>
 
-
-
-      <!-- Examples
-      ================================================== -->
-      <section id="examples">
-        <div class="page-header">
-          <h1>5. Examples</h1>
-        </div>
-        <p class="lead">Move beyond the base template with a few example layouts. We encourage folks to iterate on these examples and not simply use them as an end result.</p>
-        <ul class="thumbnails bootstrap-examples">
-          <li class="span3">
-            <a class="thumbnail" href="examples/hero.html">
-              <img src="assets/img/examples/bootstrap-example-hero.jpg" alt="">
-            </a>
-            <h4>Basic marketing site</h4>
-            <p>Featuring a hero unit for a primary message and three supporting elements.</p>
-          </li>
-          <li class="span3">
-            <a class="thumbnail" href="examples/fluid.html">
-              <img src="assets/img/examples/bootstrap-example-fluid.jpg" alt="">
-            </a>
-            <h4>Fluid layout</h4>
-            <p>Uses our new responsive, fluid grid system to create a seamless liquid layout.</p>
-          </li>
-          <li class="span3">
-            <a class="thumbnail" href="examples/starter-template.html">
-              <img src="assets/img/examples/bootstrap-example-starter.jpg" alt="">
-            </a>
-            <h4>Starter template</h4>
-            <p>A barebones HTML document with all the Bootstrap CSS and JavaScript included.</p>
-          </li>
-
-          <li class="span3">
-            <a class="thumbnail" href="examples/marketing-narrow.html">
-              <img src="assets/img/examples/bootstrap-example-marketing-narrow.png" alt="">
-            </a>
-            <h4>Narrow marketing</h4>
-            <p>Slim, lightweight marketing template for small projects or teams.</p>
-          </li>
-          <li class="span3">
-            <a class="thumbnail" href="examples/signin.html">
-              <img src="assets/img/examples/bootstrap-example-signin.png" alt="">
-            </a>
-            <h4>Sign in</h4>
-            <p>Barebones sign in form with custom, larger form controls and a flexible layout.</p>
-          </li>
-          <li class="span3">
-            <a class="thumbnail" href="examples/sticky-footer.html">
-              <img src="assets/img/examples/bootstrap-example-sticky-footer.png" alt="">
-            </a>
-            <h4>Sticky footer</h4>
-            <p>Pin a fixed-height footer to the bottom of the user's viewport.</p>
-          </li>
-
-<!--
-          <li class="span3">
-            <a class="thumbnail" href="examples/carousel.html">
-              <img src="assets/img/examples/bootstrap-example-carousel.png" alt="">
-            </a>
-            <h4>Carousel jumbotron</h4>
-            <p>A more interactive riff on the basic marketing site featuring a prominent carousel.</p>
-          </li>
--->
-        </ul>
-      </section>
-
-
-
-
-      <!-- Next
-      ================================================== -->
-      <section id="what-next">
-        <div class="page-header">
-          <h1>What next?</h1>
-        </div>
-        <p class="lead">Head to the docs for information, examples, and code snippets, or take the next leap and customize Bootstrap for any upcoming project.</p>
-        <a class="btn btn-large btn-primary" href="./scaffolding.html" >Visit the Bootstrap docs</a>
-        <a class="btn btn-large" href="./customize.html" style="margin-left: 5px;" >Customize Bootstrap</a>
-      </section>
-
-
-
-
     </div>
   </div>
 
@@ -237,67 +202,7 @@ bootstrap/
                 <div class="row-fluid">
                   <div class="innerSpacer">
                     <h1 id="team">Meet the Team</h1>
-                      <div class="row-fluid">
-                          <div class="span6 well">
-                              <h3>Nick Semenkovich</h3>
-                              <h4>Founder &amp; President
-                                  <span style="float:right">
-                                      <a href="https://twitter.com/semenko" data-rel="tooltip" title="Twitter" class="sm-icon sm-icon-twitter"></a>
-                                      <a href="https://www.facebook.com/semenko" data-rel="tooltip" title="Facebook" class="sm-icon sm-icon-facebook"></a>
-                                      <a href="https://github.com/semenko" data-rel="tooltip" title="GitHub" class="sm-icon sm-icon-github"></a>
-                                      <a href="http://www.quora.com/Nick-Semenkovich" data-rel="tooltip" title="Quora" class="sm-icon sm-icon-quora"></a>
-                                  </span>
-                              </h4>
-                              <span style="float:left; padding-right: 10px;"><img src="{{ static('img/heads/semenko.jpg') }}" width="150"/></span>
-                              <span>Nick hails from M.I.T., where he served as Editor in Chief of the student newspaper The Tech. He's currently an MD/PhD student
-                                  in the lab of Dr. Jeffrey Gordon, where he's focused on developing bacteriophage therapeutics targeting the microbiome.
-                                  <br/><br/><p>E-Mail: <a href="mailto:semenko@clindesk.org">semenko@clindesk.org</a></p>
-                              </span>
-                          </div>
-                          <div class="span6 well">
-                              <h3>David Germain</h3>
-                              <h4>Chief Operations Officer
-                                  <span style="float:right">
-                                   <a href="https://twitter.com/keepitgermain" data-rel="tooltip" title="Twitter" class="sm-icon sm-icon-twitter"></a>
-                                  <a href="https://www.facebook.com/dgermain" data-rel="tooltip" title="Facebook" class="sm-icon sm-icon-facebook"></a>
-                                  </span>
-                              </h4>
-                              <span style="float:left; padding-right: 10px;"><img src="{{ static('img/heads/dgermain.jpg') }}" width="150"/></span>
-                              <span>David spent his undergrad at Stanford and will one day cure leukemia. He's currently an MD/PhD student in the lab of Dr. Tim Ley,
-                                    focused on epigenetic regulatory mechanisms of AML. When not at lab, he spends time entertaining his magnificient cat, Osmo.
-                                  <br/><br/><p>E-Mail: <a href="mailto:dgermain@clindesk.org">dgermain@clindesk.org</a></p>
-                              </span>
-                          </div>
-                      </div>
-                      <div class="row-fluid">
-                          <div class="span6 well">
-                              <h3>Ray Jean</h3>
-                              <h4>Chief Technology Officer
-                                  <span style="float:right">
-                                  <a href="https://www.facebook.com/raymond.a.jean" data-rel="tooltip" title="Facebook" class="sm-icon sm-icon-facebook"></a>
-                                  </span>
-                              </h4>
-                              <span style="float:left; padding-right: 10px;"><img src="{{ static('img/heads/rayjean.jpg') }}" width="150"/></span>
-                              <span>Ray did his undergrad at Harvard where he was an engineering major. He's now a fourth year medical student, taking a year off to
-                                  expand the world's medical knowledge while doing research with Dr. Jay Picarillo.
-                                  <br/><br/><br/><p>E-Mail: <a href="mailto:rayjean@clindesk.org">rayjean@clindesk.org</a></p>
-                              </span>
-                          </div>
-                          <div class="span6 well">
-                              <h3>Aaron Mintz</h3>
-                              <h4>CFO &amp; Visionary
-                                  <span style="float:right">
-                                  <a href="https://www.facebook.com/aaronmintz" data-rel="tooltip" title="Facebook" class="sm-icon sm-icon-facebook"></a>
-                                  </span>
-                              </h4>
-                              <span style="float:left; padding-right: 10px;"><img src="{{ static('img/heads/aaronm.jpg') }}" width="150"/></span>
-                              <span>Aaron spent his undergrad years at Stanford, and is currently a fourth year medical student. After his residency, Aaron will
-                                  likely direct operations and innovation at a large academic medical center.
-                                  <br/><br/><br/><p>E-Mail: <a href="mailto:aaronm@clindesk.org">aaronm@clindesk.org</a></p>
-                              </span>
-                          </div>
 
-                      </div>
                       
                       <h1 id="governance">Non-Profit Governance</h1>
                      <div class="row-fluid">
