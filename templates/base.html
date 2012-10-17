@@ -7,9 +7,7 @@
     <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
-    {%- if "whitecoatacademy" in config.apphost -%}
-    <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
-    {%- elif "clindesk" in config.apphost -%}
+    {%- if config.apphost is defined -%}
     <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
     {% else %}
     <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
@@ -78,18 +76,12 @@
     </div>
 </footer>
 
-
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
-
-{# Is it cool to have logic here? #}
-{%- if "whitecoatacademy" in config.apphost -%}
-<script type="text/javascript" src="{{ static('js/shared.min.js') }}" async></script>
-{%- elif "clindesk" in config.apphost -%}
+{%- if config.apphost is defined -%}
 <script type="text/javascript" src="{{ static('js/shared.min.js') }}" async></script>
 {% else %}
 <script type="text/javascript" src="{{ static('js/shared.js') }}" async></script>
 {% endif %}
-
 </body>
 </html>
