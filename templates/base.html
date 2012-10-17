@@ -8,12 +8,11 @@
     <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome.css" rel="stylesheet">
     {%- if "whitecoatacademy" in config.apphost -%}
-    <link href="{{ static('css/min.wca.css') }}" rel="stylesheet" />
+    <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
     {%- elif "clindesk" in config.apphost -%}
-    <link href="{{ static('css/min.cd.css') }}" rel="stylesheet" />
+    <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
     {% else %}
-    <!--- Warning: This currently only loads ClinDesk styles, no WCA //-->
-    <link href="{{ static('css/_styles.css') }}" rel="stylesheet" />
+    <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
     {% endif %}
     <!--[if lt IE 9]><script type="text/javascript" src="{{ static('js/html5shiv/36.js') }}"></script><![endif]-->
     {#
@@ -85,13 +84,11 @@
 
 {# Is it cool to have logic here? #}
 {%- if "whitecoatacademy" in config.apphost -%}
-<script type="text/javascript" src="{{ static('js/min.wca.js') }}" async></script>
+<script type="text/javascript" src="{{ static('js/shared.min.js') }}" async></script>
 {%- elif "clindesk" in config.apphost -%}
-<script type="text/javascript" src="{{ static('js/min.cd.js') }}" async></script>
+<script type="text/javascript" src="{{ static('js/shared.min.js') }}" async></script>
 {% else %}
-<!-- WARNING: This ONLY loads CD on dev now. Fix this later //--->
-<script type="text/javascript" src="{{ static('js/src/shared.js') }}" async></script>
-<script type="text/javascript" src="{{ static('js/src/cd.js') }}" async></script>
+<script type="text/javascript" src="{{ static('js/shared.js') }}" async></script>
 {% endif %}
 
 </body>

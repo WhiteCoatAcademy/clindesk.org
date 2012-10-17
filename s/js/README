@@ -1,7 +1,7 @@
-There's one site-wide minified JS file:
-min.cd.js or min.wca.js
+Update the shared.js file.
 
-The sources to build these files are in ./src/
+The shared.min.js @@@@@@@.
 
 Make updated minified files using the ./make-minified.sh script.
 This requires yui-compressor (http://yuilibrary.com/download/yuicompressor/).
+

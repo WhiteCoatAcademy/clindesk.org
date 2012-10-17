@@ -2,5 +2,4 @@ Static files.
 
 These are served via Flask if you run your dev instance locally.
 
-These are served via nginx on staging & prod, and the static images are pushed to static.clindesk.org w/ AWS CloudFront.
-
+In prod, these are served via S3 & AWS CloudFront via static.clindesk.org.
