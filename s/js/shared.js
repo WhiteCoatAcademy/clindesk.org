@@ -32,7 +32,8 @@ $(document).ready(function(){
 });
 
 // Sexy smooth scroll
-$('a').click(function(){
+// TODO: Name this something more portable.
+$('.bs-docs-sidenav a').click(function(){
     $('html, body').animate({
         scrollTop: $( $(this).attr('href') ).offset().top
     }, 500);
