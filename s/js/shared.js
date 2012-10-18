@@ -1,39 +1,37 @@
-// Handle our disclaimer & get a cookie.
-$(document).ready(function(){
-    if (document.cookie.match('disclaimer') != null) {
-	$('#disclaimer').hide();
+// Hide disclaimer if cookie is set
+if (document.cookie.match('disclaimer') != null) {
+    $('#disclaimer').hide();
+}
+
+// Set cookie on disclaimer dismissal
+$('#ackbutton').click(function(){
+    var expires = new Date();
+    // Quick expires for dev/staging, etc.
+    expires.setTime(expires.getTime()+(60*1000));
+    if (window.location.host == "www.clindesk.org" ||
+        window.location.host == "www.whitecoatacademy.org") {
+        expires.setTime(expires.getTime()+(24*60*60*1000));
     }
-    $('#ackbutton').click(function(){
-	var expires = new Date();
-	// Quick expires for dev/staging, etc.
-	expires.setTime(expires.getTime()+(60*1000));
-	if (window.location.host == "www.clindesk.org" ||
-	    window.location.host == "www.whitecoatacademy.org") {
-	    expires.setTime(expires.getTime()+(24*60*60*1000));
-	}
-	document.cookie = "disclaimer=Meded_Should_Be_Open;expires=" + expires.toGMTString();
-	$('#disclaimer').hide();
-    });
+    document.cookie = "disclaimer=Meded_Should_Be_Open;expires=" + expires.toGMTString();
+    $('#disclaimer').hide();
 });
 
-
-// TODO: Move this to HTML?
 // Auto-tab highlighting.
-$(document).ready(function(){
-    var page = location.href.split(/\//)[3].split(/#/)[0];
-    if(page) {
-	if(page.indexOf('.') == -1) {
-	    page += '/';
-	}
-    } else {
-	page = 'index.html';
+// TODO: Move this to HTML?
+var page = location.href.split(/\//)[3].split(/#/)[0];
+if(page) {
+    if(page.indexOf('.') == -1) {
+        page += '/';
     }
-    $(".navbar ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
-});
+} else {
+    page = 'index.html';
+}
+$(".navbar ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
+
 
 // Sexy smooth scroll
 // TODO: Name this something more portable.
-$('.bs-docs-sidenav a').click(function(){
+$('.bs-docs-sidenav a').click(function smoothScroll(){
     $('html, body').animate({
         scrollTop: $( $(this).attr('href') ).offset().top
     }, 500);
@@ -42,7 +40,7 @@ $('.bs-docs-sidenav a').click(function(){
 
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
-$(document).ready(function(){
+$(document).ready(function affixThings(){
 
     // fix sub nav on scroll
     var $win = $(window)
