@@ -1,31 +1,24 @@
 /*
 Adapted from the Bootstrap docs, which are CC BY 3.0.
 */
-
-
-/* Body and structure
--------------------------------------------------- */
-
 body {
   position: relative;
   padding-top: 40px;
 }
 }
 
-
 /* Tweak navbar brand link to be super sleek
 -------------------------------------------------- */
-
 body > .navbar {
   font-size: 13px;
 }
 
 /* Change the docs' brand */
 body > .navbar .brand {
-//  padding-right: 0;
   padding-left: 0;
   margin-left: 20px;
-//  float: right;
+  padding-top: 5px;
+  padding-bottom: 5px;
   font-weight: bold;
   color: #000;
   text-shadow: 0 1px 0 rgba(0,0,0,.1), 0 0 30px rgba(0,0,0,.125);

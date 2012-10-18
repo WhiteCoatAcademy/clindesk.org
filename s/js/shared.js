@@ -40,32 +40,33 @@ $('.bs-docs-sidenav a').click(function smoothScroll(){
 
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
+$win = $(window)
+$('.bs-docs-sidenav').affix({
+  offset: {
+    top: function () { return $win.width() <= 980 ? 290 : 210 }
+  , bottom: 270
+  }
+})
+
 $(document).ready(function affixThings(){
 
     // fix sub nav on scroll
-    var $win = $(window)
-        , $nav = $('.subnav')
+    var $nav = $('.subnav')
         , $main = $('.mainContentWrap')
         , $logo = $('.brand')
         , $scrolllogo = $('.scroll-logo')
         , navTop = $('.subnav').length && $('.subnav').offset().top - 8
         , isFixed = 0
 
-    $('.bs-docs-sidenav').affix({
-      offset: {
-        top: function () { return $win.width() <= 980 ? 290 : 210 }
-      , bottom: 270
-      }
-    })
 
-    processScroll()
+    // processScroll()
 
     // hack sad times - holdover until rewrite for 2.1
-    $nav.on('click', function () {
-        if (!isFixed) setTimeout(function () {  $win.scrollTop($win.scrollTop() - 47) }, 10)
-    })
+    // $nav.on('click', function () {
+    //    if (!isFixed) setTimeout(function () {  $win.scrollTop($win.scrollTop() - 47) }, 10)
+    // })
 
-    $win.on('scroll', processScroll)
+    //$win.on('scroll', processScroll)
 
     function processScroll() {
         if($(this).width() < 767) {
