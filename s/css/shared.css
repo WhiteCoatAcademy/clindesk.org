@@ -63,6 +63,9 @@ hr.soften {
   border: 0;
 }
 
+.fixed-disease-height .thumbnail {
+  height:200px;
+}
 
 
 /* Jumbotrons
