@@ -50,10 +50,11 @@
     </div>
 </div>
 
-<header class="jumbotron subhead" id="overview">
+<header class="jumbotron {% block jumbotron_class %}subhead{% endblock %}" id="overview">
     <div class="container">
         <h1>{% block tagline_text %}tagline_text{% endblock %}</h1>
         <p class="lead">{% block lead %}lead{% endblock %}</p>
+        {% block extra_jumbotron %}{% endblock %}
     </div>
 </header>
 

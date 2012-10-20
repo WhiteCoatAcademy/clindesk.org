@@ -1,6 +1,15 @@
 {% extends "base.html" %}
 {% block title %}Welcome to ClinDesk{% endblock %}
-{% block tagline_text %}{% endblock %}
+{% block jumbotron_class %}masthead{% endblock %}
+{% block tagline_text %}ClinDesk{% endblock %}
+{% block lead %}Opening Medical Education{% endblock %}
+{% block extra_jumbotron %}
+<ul class="masthead-links">
+  <li><a href="http://github.com/twitter/bootstrap" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'GitHub project']);">GitHub project</a></li>
+  <li><a href="./extend.html" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'Extend']);">Extend</a></li>
+  <li>Version 2.1.1</li>
+</ul>
+{% endblock %}
 {% block maincontent %}
 <div class="container mainContent">
     <div class="row-fluid">
