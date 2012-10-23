@@ -18,8 +18,6 @@
           <img height="171" width="150" src="{% block author_image %}author_image{% endblock %}" style="box-shadow: 3px 3px 8px #888;" alt="{% block author_name %}{% endblock %}" />
 	  <p><br><i>By {{ self.author_name() }}</i></p>
         </div>
-        <br />
-        <a href="#condition-topics" class="btn btn-primary"><i class="icon-share icon-white"></i>See the Topics</a>
       </div>
     </div>
     
@@ -32,17 +30,7 @@
     </div>
 </div>
 
-<section class="mainContentWrap">
-    <div class="container mainContent">
-        <div class="span12">
-            <div class="row-fluid relative">
-                <div class="span12" id="condition-topics" style="text-align: center;">
-                    <h3>{% block section_title %}section_title{% endblock %}</h3>
-                </div>
-            </div>
-        </div>
-{% block all_conditions %}all_conditions{% endblock %}
-  </div>
-</section>
-
+<div class="container">
+    {% block all_conditions %}all_conditions{% endblock %}
+</div>
 {% endblock %}
