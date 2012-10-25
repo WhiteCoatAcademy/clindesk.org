@@ -1,68 +1,54 @@
 {% extends "base.html" %}
 {% block title %}Welcome to ClinDesk{% endblock %}
-{% block jumbotron_class %}masthead{% endblock %}
-{% block tagline_text %}ClinDesk{% endblock %}
+{# {% block jumbotron_class %}masthead{% endblock %} #}
+{% block tagline_text %}Welcome to ClinDesk{% endblock %}
 {% block lead %}Opening Medical Education{% endblock %}
-{% block extra_jumbotron %}
-<ul class="masthead-links">
-  <li><a href="http://github.com/twitter/bootstrap" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'GitHub project']);">GitHub project</a></li>
-  <li><a href="./extend.html" onclick="_gaq.push(['_trackEvent', 'Jumbotron actions', 'Jumbotron links', 'Extend']);">Extend</a></li>
-  <li>Version 2.1.1</li>
-</ul>
-{% endblock %}
+{% block extra_jumbotron %}{% endblock %}
 {% block maincontent %}
-<div class="container mainContent">
+<div class="container"><br>
     <div class="row-fluid">
-
-
-        <!--description-->
-        <div class="span3">
-            <div class="item-description">
-                <h3>Welcome to ClinDesk</h3>
-                <div class="subtitle">
-                    <span class="icon-file "></span><a href="#">Opening Medical knowledge</a>
-                </div>
-                <p>Our video lectures are designed for everyone, from people with no medical background to experienced physicians. For each condition we discuss:</p>
-                <ul class="unstyled">
-                    <li><i class="icon-ok"></i>Background</li>
-                    <li><i class="icon-ok"></i>Epidemiology</li>
-                    <li><i class="icon-ok"></i>Symptoms</li>
-                    <li><i class="icon-ok"></i>Diagnosis</li>
-                    <li><i class="icon-ok"></i>Treatment</li>
-                    <li><i class="icon-ok"></i>Outcome</li>
-                </ul>
-                <br />
-                <a href="#condition-topics" class="btn btn-primary"><i class="icon-share icon-white"></i>See the Topics</a>
+        <div class="span12">
+            <div class="hero-unit"">
+                <p class="lead">Welcome:</p>
+                <p>ClinDesk comprises a team of senior medical students and resident physicians who are deeply familiar with medical knowledge and education. </p>
+                <p>Over the coming months, we'll be producing educational videos to walk patients and their families through diseases, from the basic biology &amp; epidemiology, to treatment options &amp; outcomes.</p>
+                <p>Together with our sister-site <a href="http://www.WhiteCoatAcademy.org/" target="_blank">White Coat Academy</a>, we hope to change the face of medical education.</p><br>
+                <p>Stay tuned,</p>
+                <p>Nick Semenkovich</p>
+                <p style="line-height:0px">Founder</p>
             </div>
         </div>
-
-
-	<div class="span12">
-          <div class="hero-unit" style="padding-top:15px">
-            <h1 style="color:black;text-align:center">Welcome to ClinDesk</h1><h2 style="color:black;text-align:center">Opening Medical Education</h2><br>
-
-<center><img src="{{ static('clindesk-logo.png') }}" style="border:1px solid #ccc; padding:2px; background:#eee;height:80px">
-&nbsp;
-<img src="{{ static('whitecoat-logo.png') }}" style="border:1px solid #ccc; padding:2px; background:#eee; height:80px;"><br><br></center>
-
-
-            <p>ClinDesk comprises a team of senior medical students and resident physicians who are deeply familiar with medical knowledge and education. </p>
-	    <p>Over the coming months, we'll be producing educational videos to walk patients and their families through diseases, from the basic biology &amp; epidemiology, to treatment options &amp; outcomes.</p>
-	    <p>Together with our sister-site White Coat Academy, we hope to change the face of medical education.</p><br>
-	    <p>Stay tuned,</p>
-	    <p>Nick Semenkovich</p>
-	    <p style="line-height:0px">Founder</p>
-          </div>
-	</div>
-
-        <div class="span9">
-            <div class="innerSpacer">
-              <iframe width="100%" height="360" seamless="seamless" src="http://www.youtube-nocookie.com/embed/5vfdIE-eMig?rel=0&html5=1" frameborder="0"></iframe>
-            </div>
-        </div>
-
-
     </div>
 </div>
 
 {% endblock %}
+
+{#
+<!--description-->
+<div class="span3">
+    <div class="item-description">
+        <h3>Welcome to ClinDesk</h3>
+        <div class="subtitle">
+            <span class="icon-file "></span><a href="#">Opening Medical knowledge</a>
+        </div>
+        <p>Our video lectures are designed for everyone, from people with no medical background to experienced physicians. For each condition we discuss:</p>
+        <ul class="unstyled">
+            <li><i class="icon-ok"></i>Background</li>
+            <li><i class="icon-ok"></i>Epidemiology</li>
+            <li><i class="icon-ok"></i>Symptoms</li>
+            <li><i class="icon-ok"></i>Diagnosis</li>
+            <li><i class="icon-ok"></i>Treatment</li>
+            <li><i class="icon-ok"></i>Outcome</li>
+        </ul>
+        <br />
+        <a href="#condition-topics" class="btn btn-primary"><i class="icon-share icon-white"></i>See the Topics</a>
+    </div>
+</div>
+
+
+<div class="span9">
+    <div class="innerSpacer">
+      <iframe width="100%" height="360" seamless="seamless" src="http://www.youtube-nocookie.com/embed/5vfdIE-eMig?rel=0&html5=1" frameborder="0"></iframe>
+    </div>
+</div>
+        #}
