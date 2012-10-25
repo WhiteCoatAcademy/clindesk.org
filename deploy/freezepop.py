@@ -167,7 +167,8 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
 
     # Build local files an a (more complex) hash list for Boto
     for dirname, dirnames, filenames in os.walk(frozen_path):
-        for filename in filenames:
+        # Filter out "~" files.
+        for filename in filter(lambda x: not x.endswith("~"), filenames):
             full_path = os.path.join(dirname, filename)
             # TODO: Fix this hack.
             stripped_name = '/'.join(full_path.split('/', 2)[1:])
