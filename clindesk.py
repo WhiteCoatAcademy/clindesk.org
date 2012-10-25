@@ -112,9 +112,9 @@ def page_conditions_level2(level1, level2):
 # *** Special Topics Pages (Diagnostics & Treatments)
 #####
 
-@app.route("/special-topics.html")
-def page_special_topics():
-    return render_template('special-topics.html')
+#@app.route("/special-topics.html")
+#def page_special_topics():
+#    return render_template('special-topics.html')
 
 
 @app.route("/diagnostics/")
@@ -122,9 +122,9 @@ def page_diagnostics():
     return render_template('diagnostics/index.html')
 
 
-@app.route("/treatments/")
-def page_treatments():
-    return render_template('treatments/index.html')
+#@app.route("/treatments/")
+#def page_treatments():
+#    return render_template('treatments/index.html')
 
 
 ######
