@@ -108,6 +108,8 @@ def page_conditions_level2(level1, level2):
         return render_template('errors/404.html'), 404
 
 
+
+
 #####
 # *** Special Topics Pages (Diagnostics & Treatments)
 #####
@@ -117,9 +119,9 @@ def page_conditions_level2(level1, level2):
 #    return render_template('special-topics.html')
 
 
-@app.route("/diagnostics/")
-def page_diagnostics():
-    return render_template('diagnostics/index.html')
+#@app.route("/diagnostics/")
+#def page_diagnostics():
+#    return render_template('diagnostics/index.html')
 
 
 #@app.route("/treatments/")

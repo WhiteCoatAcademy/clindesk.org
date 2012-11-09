@@ -90,6 +90,24 @@ def main():
                 print("*** Look for errors here *** \n")
                 clindesk = imp.load_source('clindesk', '../clindesk.py')
                 frozen_cd = Freezer(clindesk.app)
+
+                # Hierarchy required for URL generators for Flask static.
+                page_structure = {'metabolism-and-endocrine': ['diabetes'], }
+
+                # Generator for top level conditions.
+                @frozen_cd.register_generator
+                def page_conditions_toplevel():
+                    for level1, level2_list in page_structure.iteritems():
+                        yield {'level1': level1}
+
+                # Generator for level1 & level2
+                @frozen_cd.register_generator
+                def page_conditions_level2():
+                    for level1, level2_list in page_structure.iteritems():
+                        for level2 in level2_list:
+                            yield {'level1': level1, 'level2': level2}
+
+
                 frozen_cd.freeze()
                 print("")
             if not args.no_wca:
