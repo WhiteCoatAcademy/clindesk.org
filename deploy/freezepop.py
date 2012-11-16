@@ -76,7 +76,7 @@ def main():
         if current_branch == "master":
             print("Working in staging (your current git branch is: master)")
         elif current_branch == "prod":
-            print("Workig on **prod** (your current git branch is: prod)")
+            print("Working on **prod** (your current git branch is: prod)")
         else:
             raise Exception('Unknown branch! Cannot deploy.')
 
@@ -126,7 +126,7 @@ def main():
         # Push the frozen apps above to S3, if we want.
         if args.deploy:
             if current_branch == "master":
-                bucket_prefix = "staging."
+                bucket_prefix = "staging"
             elif current_branch == "prod":
                 bucket_prefix = "prod"
             else:
@@ -139,10 +139,10 @@ def main():
 
             # Deploy: (conn, frozen_path, remote_bucket)\
             if not args.no_cd:
-                deploy_to_s3(conn, 'cd_frozen', bucket_prefix + 'clindesk.org', args.no_delete, args.overwrite_all)
+                deploy_to_s3(conn, 'cd_frozen', bucket_prefix + '.clindesk.org', args.no_delete, args.overwrite_all)
                 time.sleep(1)
             if not args.no_wca:
-                deploy_to_s3(conn, 'wca_frozen', bucket_prefix + 'whitecoatacademy.org', args.no_delete, args.overwrite_all)
+                deploy_to_s3(conn, 'wca_frozen', bucket_prefix + '.whitecoatacademy.org', args.no_delete, args.overwrite_all)
                 time.sleep(1)
 
         print('All done!')
