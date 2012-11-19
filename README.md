@@ -6,29 +6,29 @@ This is the core repository, which holds all components necessary for both sites
 
 The magic happens in:
 
-* clindesk.py
-* wca.py
+* clindesk/cd.py
+* whitecoatacademy/wca.py
 
 They run on [Flask](http://flask.pocoo.org/).
 
 If you want to run them on your machine, try:
 
- `sudo easy_install pip; sudo pip install flask frozen-flask` then `python clindesk.py`
+ `sudo easy_install pip; sudo pip install flask frozen-flask` then `cd clindesk; python cd.py`
 
-A local instance should then be running at: http://localhost:5000/
+A local instance should then be running at: http://localhost:5000/ (CD) or http://localhost:5001/ (WCA)
 
 ## Directories
 
-* /s/
+* (Site)/s/
   * Static files. Usually loaded via static.DOMAIN.com via CloudFront
-* /templates/
+* (Site)/templates/
   * [Jinja2](http://jinja.pocoo.org/) templates for Flask.
 * /deploy/
   * Deploy scripts for S3/AWS magic. Don't do things here.
 
 ## Seeing Things Live
 
-Once you've seen & tested your changes locally (e.g. at localhost:5000), commit your changes and push.
+Once you've seen & tested your changes locally (e.g. at localhost:5001), commit your changes and push.
 
 This will auto-push changes to AWS for S3 and CloudFront, and your changes will appear at http://staging.clindesk.org/ or http://staging.whitecoatacademy.org/
 
@@ -46,6 +46,5 @@ Some shared libraries are available via an Apache License v2.0 (e.g. bootstrap)
 
 All other work is Copyright 2012, ClinDesk, Inc. All rights reserved.
 
-(Note: We'll clean up this license to CC BY NC SA 3.0 when we can.)
-
+(Note: We'll clean up this license to CC BY SA 3.0 when we can.)
 
