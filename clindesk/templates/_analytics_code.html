@@ -18,6 +18,9 @@ mixpanel.init("c6e78819b803c8180d570c161b350254");</script> #}
 {% endif %}
   _gaq.push(['_setSiteSpeedSampleRate', 100]);
   _gaq.push(['_trackPageview']);
+  window.onerror = function(message, file, lineNumber) {
+    _gaq.push(['_trackEvent', 'error', file + ':' + lineNumber, message + '']);
+};
   (function() {
     var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
     ga.src = 'https://ssl.google-analytics.com/ga.js';

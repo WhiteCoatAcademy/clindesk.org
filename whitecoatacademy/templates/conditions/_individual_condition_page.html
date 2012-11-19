@@ -2,11 +2,8 @@
 {% block title %}TITLE{% endblock %}
 {% block tagline_text %}TAGLINE_TEXT{% endblock %}
 {% block maincontent %}
-<section class="mainContentWrap">
-<div class="container mainContent">
+<div class="container">
 
-<!-- Docs nav
-================================================== -->
 <div class="row">
   <div class="span3 bs-docs-sidebar">
     <ul class="nav nav-list bs-docs-sidenav">
@@ -17,6 +14,50 @@
       <li><a href="#examples"><i class="icon-chevron-right"></i> Examples</a></li>
       <li><a href="#what-next"><i class="icon-chevron-right"></i> What next?</a></li>
     </ul>
+      <br><br>
+
+      <div class="widget widget_categories">
+          <h4>Patient Support Resources</h4>
+          <ul>
+              <li class="cat-item">
+                  <a href="#">Some Site Here</a>
+              </li>
+              <li class="cat-item">
+                  <a href="#">Some Site Here</a>(For Profit)
+              </li>
+              <li class="cat-item">
+                  <a href="#">Some Site Here</a>(Great Site!)
+              </li>
+              <li class="cat-item">
+                  <a href="#">Some Site Here</a>
+              </li>
+          </ul>
+      </div>
+
+      <div class="widget widget_tabs">
+          <h3>Tabs Widget</h3>
+          <ul class="nav nav-tabs">
+              <li class="active"><a href="#tab1" data-toggle="tab">Tab 1</a></li>
+              <li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
+          </ul>
+
+          <div class="tab-content">
+              <div class="tab-pane active" id="tab1">
+                  <p>Lorem1 ipsum dolor sit amet, consec tetuer adipiscing elit. Phasellus hen drerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapi bus id, mattis vel, nisi. Sed pretium.</p>
+              </div>
+              <div class="tab-pane" id="tab2">
+                  <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
+              </div>
+          </div>
+
+      </div>
+
+      <div class="widget widget_text">
+          <h3>Text Widget 1</h3>
+          <div class="textwidget"><p>Lorem ipsum dolor sit amet, consec tetuer adipiscing elit. Phasellus hen drerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapi bus id, mattis vel, nisi. Sed pretium.</p></div> <a href="#"><span class="label">Read More</span></a>
+      </div>
+
+
   </div>
 
 
@@ -178,73 +219,7 @@
 </div>
 </div>
 
-<aside class="span3 sidebar">
 
-
-    <!--categories widget-->
-
-    <div class="widget widget_categories">
-        <h4>Patient Support Resources</h4>
-        <ul>
-            <li class="cat-item">
-                <a href="#">Some Site Here</a>
-            </li>
-            <li class="cat-item">
-                <a href="#">Some Site Here</a>(For Profit)
-            </li>
-            <li class="cat-item">
-                <a href="#">Some Site Here</a>(Great Site!)
-            </li>
-            <li class="cat-item">
-                <a href="#">Some Site Here</a>
-            </li>
-        </ul>
-    </div>
-
-
-    <!--tabs widget-->
-    <div class="widget widget_tabs">
-        <h3>Tabs Widget</h3>
-        <ul class="nav nav-tabs">
-            <li class="active"><a href="#tab1" data-toggle="tab">Tab 1</a></li>
-            <li><a href="#tab2" data-toggle="tab">Tab 2</a></li>
-        </ul>
-
-        <div class="tab-content">
-            <div class="tab-pane active" id="tab1">
-                <p>Lorem1 ipsum dolor sit amet, consec tetuer adipiscing elit. Phasellus hen drerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapi bus id, mattis vel, nisi. Sed pretium.</p>
-            </div>
-            <div class="tab-pane" id="tab2">
-                <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue, eu vulputate magna eros eu erat. Aliquam erat volutpat. Nam dui mi, tincidunt quis, accumsan porttitor, facilisis luctus, metus.</p>
-            </div>
-        </div>
-
-    </div>
-
-
-    <!--text widget-->
-
-    <div class="widget widget_text">
-        <h3>Text Widget 1</h3>
-        <div class="textwidget"><p>Lorem ipsum dolor sit amet, consec tetuer adipiscing elit. Phasellus hen drerit. Pellentesque aliquet nibh nec urna. In nisi neque, aliquet vel, dapi bus id, mattis vel, nisi. Sed pretium.</p></div> <a href="#"><span class="label">Read More</span></a>
-    </div>
-
-    <div class="widget widget_portfolio">
-        <h4>Patient Support Resources</h4>
-        <div>
-            <a href="#" class="peOver"><br/><span></span></a>
-            <div class="title">
-                <span class="icon-picture"></span><a href="#">Connect to Others</a><br />
-            </div>
-	    <ul>
-	      <li>test</li>
-	      <li>test</li>
-	    </ul>
-        </div>
-    </div>
-
-</aside>
 </div>
 </div>
-</section>
 {% endblock %}

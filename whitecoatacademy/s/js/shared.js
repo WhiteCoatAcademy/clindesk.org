@@ -6,12 +6,7 @@ if (document.cookie.match('disclaimer') != null) {
 // Set cookie on disclaimer dismissal
 $('#ackbutton').click(function(){
     var expires = new Date();
-    // Quick expires for dev/staging, etc.
-    expires.setTime(expires.getTime()+(60*1000));
-    if (window.location.host == "www.clindesk.org" ||
-        window.location.host == "www.whitecoatacademy.org") {
-        expires.setTime(expires.getTime()+(24*60*60*1000));
-    }
+    expires.setTime(expires.getTime()+(24*60*60*1000));
     document.cookie = "disclaimer=Meded_Should_Be_Open;expires=" + expires.toGMTString();
     $('#disclaimer').hide();
 });
