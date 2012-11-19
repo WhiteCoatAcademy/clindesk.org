@@ -88,7 +88,7 @@ def main():
             if not args.no_cd:
                 print("Freezing ClinDesk app ...")
                 print("*** Look for errors here *** \n")
-                clindesk = imp.load_source('clindesk', '../clindesk.py')
+                clindesk = imp.load_source('clindesk', '../clindesk/cd.py')
                 frozen_cd = Freezer(clindesk.app)
 
                 # Hierarchy required for URL generators for Flask static.
@@ -113,7 +113,7 @@ def main():
             if not args.no_wca:
                 print("Freezing WCA app ...")
                 print("*** Look for errors here *** \n")
-                wca = imp.load_source('wca', '../wca.py')
+                wca = imp.load_source('wca', '../whitecoatacademy/wca.py')
                 frozen_wca = Freezer(wca.app)
                 frozen_wca.freeze()
                 print("")
