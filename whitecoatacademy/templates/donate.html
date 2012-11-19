@@ -1,0 +1,93 @@
+{% extends "_base.html" %}
+{% block title %}Support Us{% endblock %}
+{% block tagline_text %}Help Open Medicine{% endblock %}
+{% block lead %}Donate and help us to create free medical resources{% endblock %}
+{% block maincontent %}
+<body>
+<div class="container">
+    <br><br>
+    <div class="row">
+        <div class="span4">
+            <div class="well">
+                <form action="https://authorize.payments.amazon.com/pba/paypipeline" method="post">
+                    <input type="hidden" name="returnUrl" value="http://www.clindesk.org/thanks.html" >
+                    <input type="hidden" name="processImmediate" value="1" >
+                    <input type="hidden" name="accessKey" value="11SEM03K88SD016FS1G2" >
+                    <input type="hidden" name="signatureMethod" value="HmacSHA256" >
+                    <input type="hidden" name="collectShippingAddress" value="0" >
+                    <input type="hidden" name="isDonationWidget" value="1" >
+                    <input type="hidden" name="amazonPaymentsAccountId" value="DKCLGRNGBYIT44TA45I766U33ZQ8MRBMJPQZF5" >
+                    <input type="hidden" name="referenceId" value="clindesk-001" >
+                    <input type="hidden" name="cobrandingStyle" value="logo" >
+                    <input type="hidden" name="immediateReturn" value="1" >
+                    <input type="hidden" name="amount" value="USD 25" >
+                    <input type="hidden" name="description" value="ClinDesk, Hosting for a Day" >
+                    <input type="hidden" name="abandonUrl" value="http://www.clindesk.org/donate.html" >
+                    <input type="hidden" name="signatureVersion" value="2" >
+                    <input type="hidden" name="signature" value="Ixt8S3PKIAPl8p/8i5NewotJoL87DsePxrWGMWHsdnA=" >
+                    <h2 class="text-warning">Hosting for A Day</h2><br>
+                    <p class="lead">Running our website is expensive!</p>
+                    <p class="lead">Help spread medical knowledge by keeping us running.</p>
+                    <button type="submit" class="btn btn-warning btn-large">Help Run our Website for <b>$25</b></button>
+                </form>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="well">
+                <form action="https://authorize.payments.amazon.com/pba/paypipeline" method="post">
+                    <input type="hidden" name="returnUrl" value="http://www.clindesk.org/thanks.html" >
+                    <input type="hidden" name="processImmediate" value="1" >
+                    <input type="hidden" name="accessKey" value="11SEM03K88SD016FS1G2" >
+                    <input type="hidden" name="signatureMethod" value="HmacSHA256" >
+                    <input type="hidden" name="collectShippingAddress" value="0" >
+                    <input type="hidden" name="isDonationWidget" value="1" >
+                    <input type="hidden" name="amazonPaymentsAccountId" value="DKCLGRNGBYIT44TA45I766U33ZQ8MRBMJPQZF5" >
+                    <input type="hidden" name="referenceId" value="clindesk-002" >
+                    <input type="hidden" name="cobrandingStyle" value="logo" >
+                    <input type="hidden" name="immediateReturn" value="1" >
+                    <input type="hidden" name="amount" value="USD 200" >
+                    <input type="hidden" name="description" value="ClinDesk, Any Donation Helps" >
+                    <input type="hidden" name="abandonUrl" value="http://www.clindesk.org/donate.html" >
+                    <input type="hidden" name="signatureVersion" value="2" >
+                    <input type="hidden" name="signature" value="aosHYUTumKOokLeC94W909v6q7XDDpZTGlvJekV99ss=" >
+                    <h2 class="text-success">Sponsor a Disease</h2><br>
+                    <p class="lead">Want something we don't have? Sponsor a disease and we'll add it to our video series.</p>
+                    <p class="lead">If you sponsor a disease, we'll get in touch and work with you as we make our videos!</p>
+                    <button type="submit" class="btn btn-success btn-large">Sponsor a Disease for <b>$200</b></button>
+                </form>
+            </div>
+        </div>
+        <div class="span4">
+            <div class="well">
+                <form action="https://authorize.payments.amazon.com/pba/paypipeline" method="post">
+                    <input type="hidden" name="returnUrl" value="http://www.clindesk.org/thanks.html" >
+                    <input type="hidden" name="processImmediate" value="1" >
+                    <input type="hidden" name="accessKey" value="11SEM03K88SD016FS1G2" >
+                    <input type="hidden" name="signatureMethod" value="HmacSHA256" >
+                    <input type="hidden" name="collectShippingAddress" value="0" >
+                    <input type="hidden" name="isDonationWidget" value="1" >
+                    <input type="hidden" name="amazonPaymentsAccountId" value="DKCLGRNGBYIT44TA45I766U33ZQ8MRBMJPQZF5" >
+                    <input type="hidden" name="referenceId" value="clindesk-003" >
+                    <input type="hidden" name="cobrandingStyle" value="logo" >
+                    <input type="hidden" name="immediateReturn" value="1" >
+                    <input type="hidden" name="description" value="ClinDesk, Any Donation Helps" >
+                    <input type="hidden" name="abandonUrl" value="http://www.clindesk.org/donate.html" >
+                    <input type="hidden" name="signatureVersion" value="2" >
+                    <input type="hidden" name="signature" value="HkHrz3l6FdCLDUnwxKP8JNtLaH/tjUTovpwZ4PP2oFE=" >
+                    <h2 class="text-info">Give What You Can</h2><br>
+                    <p class="lead">Help us open medical knowledge.</p>
+                    <blockquote>
+                      <p>The history of medicine is that what was inconceivable yesterday and barely achievable today often becomes routine tomorrow.</p>
+                      <small>Thomas Starzl <cite title="MD">MD</cite></small>
+                    </blockquote>
+                    <p class="lead">Any amount helps.</p>
+                    <form class="form-inline">
+                        <span class="add-on">$</span><input type="text" name="amount" class="input-small" value="15">
+                        <button type="submit" class="btn btn-info">Give Now</button>
+                    </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

@@ -1,0 +1,27 @@
+{# Analytics Code -- So far, we assume WCA and CD are derived from the same template.
+CD: UA-32988270-1
+WCA: UA-32988270-2
+#}
+{%- if config.prod is defined -%}
+{%- if "clindesk" in config.apphost -%}
+{# MixPanel Only
+<script type="text/javascript">(function(c,a){window.mixpanel=a;var b,d,h,e;b=c.createElement("script");b.type="text/javascript";b.async=!0;b.src=("https:"===c.location.protocol?"https:":"http:")+'//cdn.mxpnl.com/libs/mixpanel-2.1.min.js';d=c.getElementsByTagName("script")[0];d.parentNode.insertBefore(b,d);a._i=[];a.init=function(b,c,f){function d(a,b){var c=b.split(".");2==c.length&&(a=a[c[0]],b=c[1]);a[b]=function(){a.push([b].concat(Array.prototype.slice.call(arguments,0)))}}var g=a;"undefined"!==typeof f?
+g=a[f]=[]:f="mixpanel";g.people=g.people||[];h="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config people.identify people.set people.increment".split(" ");for(e=0;e<h.length;e++)d(g,h[e]);a._i.push([b,c,f])};a.__SV=1.1})(document,window.mixpanel||[]);
+mixpanel.init("c6e78819b803c8180d570c161b350254");</script> #}
+{% endif %}
+<script type="text/javascript">
+  var _gaq = _gaq || [];
+{%- if "whitecoatacademy" in config.apphost -%}
+  _gaq.push(['_setAccount', 'UA-32988270-2']);
+{%- elif "clindesk" in config.apphost -%}
+  _gaq.push(['_setAccount', 'UA-32988270-1']);
+{% endif %}
+  _gaq.push(['_setSiteSpeedSampleRate', 100]);
+  _gaq.push(['_trackPageview']);
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = 'https://ssl.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+</script>
+{% endif %}

@@ -1,0 +1,5 @@
+Static files.
+
+These are served via Flask if you run your dev instance locally.
+
+In prod, these are served via S3 & AWS CloudFront via static.clindesk.org.

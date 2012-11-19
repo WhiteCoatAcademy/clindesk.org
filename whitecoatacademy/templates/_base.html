@@ -1,0 +1,86 @@
+<!DOCTYPE HTML>
+<html lang="en">
+<head>
+    <title>{% block title %}{% endblock %} &mdash; ClinDesk, Inc.</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
+    <meta name="description" content="{% block meta_description %}{% endblock %}" />
+    <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome-protocol-less.css" rel="stylesheet">
+    {%- if config.apphost is defined -%}
+    <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
+    {% else %}
+    <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
+    {% endif %}
+    <!--[if lt IE 9]><script type="text/javascript" src="{{ static('js/html5shiv/36.js') }}"></script><![endif]-->
+    {#
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ static('img/ico/apple-touch-icon-144-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ static('img/ico/apple-touch-icon-114-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ static('img/ico/apple-touch-icon-72-precomposed.png') }}">
+    <link rel="apple-touch-icon-precomposed" href="{{ static('img/ico/apple-touch-icon-57-precomposed.png') }}">
+    #}
+    {% include '_analytics_code.html' %}
+</head>
+<body data-spy="scroll" data-target=".bs-docs-sidebar">
+
+<div class="navbar navbar-fixed-top">
+    <div class="navbar-inner">
+        <div class="container">
+            <button type="button" class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="brand" href="/"><img src="{{ static('img/content/logo_sml.png') }}" alt="ClinDesk, Inc."></a>
+            <!-- Things that get hidden at <= 940px -->
+            <div class="nav-collapse collapse">
+                <ul class="nav">
+                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/conditions/">Conditions</a></li>
+                    <li><a href="/donate.html">Support Us</a></li>
+                    <li><a href="/help.html">Help &amp; FAQ</a></li>
+                    <li><a href="/about.html">About Us</a></li>
+                </ul>
+                <form class="navbar-search pull-right" action="/search.html" id="searchform" role="search">
+                    <input type="hidden" name="cx" value="002941556813235485135:eikq6dcpctw"><input type="hidden" name="cof" value="FORID:11">
+                    <input type="text" class="search-query span2" name="q" placeholder="Search">
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<header class="jumbotron {% block jumbotron_class %}subhead{% endblock %}" id="overview">
+    <div class="container">
+        <h1>{% block tagline_text %}tagline_text{% endblock %}</h1>
+        <p class="lead">{% block lead %}lead{% endblock %}</p>
+        {% block extra_jumbotron %}{% endblock %}
+    </div>
+</header>
+
+{% block maincontent %}maincontent{% endblock %}
+
+<footer class="footer">
+    <div class="container">
+        <p class="pull-right"><a href="#">Back to top</a></p>
+        <p>&copy 2012 ClinDesk, Inc., some rights reserved</p>
+        <p>Videos are licensed under the Creative Commons <a href="https://creativecommons.org/licenses/by-nc-sa/3.0" target="_blank">CC BY NC SA 3.0</a> license.</p>
+        <ul class="footer-links">
+            <li><a href="/">Home</a></li>
+            <li class="muted">&middot;</li>
+            <li><a href="/donate.html">Donate</a></li>
+            <li class="muted">&middot;</li>
+            <li><a href="/about.html#team">Contact Us</a></li>
+        </ul>
+    </div>
+</footer>
+
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.7.2/jquery.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+{%- if config.apphost is defined -%}
+<script type="text/javascript" src="{{ static('js/shared.min.js') }}" async></script>
+{% else %}
+<script type="text/javascript" src="{{ static('js/shared.js') }}" async></script>
+{% endif %}
+</body>
+</html>
