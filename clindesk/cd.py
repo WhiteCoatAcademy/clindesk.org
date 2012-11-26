@@ -55,12 +55,6 @@ def page_donate():
     return render_template('donate.html')
 
 
-# Help & FAQ
-@app.route("/help.html")
-def page_help():
-    return render_template('help.html')
-
-
 # About Us
 @app.route("/about.html")
 def page_about():
@@ -71,62 +65,6 @@ def page_about():
 @app.route("/search.html")
 def search_results():
     return render_template('search.html')
-
-######
-# *** Condition Pages
-######
-
-
-@app.route("/conditions/")
-def page_conditions_index():
-    return render_template('conditions/index.html')
-
-
-@app.route("/conditions/<level1>/")
-def page_conditions_toplevel(level1):
-    # TODO: Does Flask provide a similar function?
-    # I see safe_join ...
-
-    # TODO: This 404 logic sucks. Fix it.
-    if (is_safe_string(level1)):
-        try:
-            return render_template('conditions/%s/index.html' % (level1,))
-        except jinja2.exceptions.TemplateNotFound:
-            return render_template('errors/404.html'), 404
-    else:
-        return render_template('errors/404.html'), 404
-
-
-@app.route("/conditions/<level1>/<level2>.html")
-def page_conditions_level2(level1, level2):
-    if (is_safe_string(level1) and is_safe_string(level2)):
-        try:
-            return render_template('conditions/%s/%s.html' % (level1, level2))
-        except jinja2.exceptions.TemplateNotFound:
-            return render_template('errors/404.html'), 404
-    else:
-        return render_template('errors/404.html'), 404
-
-
-
-
-#####
-# *** Special Topics Pages (Diagnostics & Treatments)
-#####
-
-#@app.route("/special-topics.html")
-#def page_special_topics():
-#    return render_template('special-topics.html')
-
-
-#@app.route("/diagnostics/")
-#def page_diagnostics():
-#    return render_template('diagnostics/index.html')
-
-
-#@app.route("/treatments/")
-#def page_treatments():
-#    return render_template('treatments/index.html')
 
 
 ######
