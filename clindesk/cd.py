@@ -50,9 +50,9 @@ def page_index():
 
 
 # Donate
-@app.route("/donate.html")
-def page_donate():
-    return render_template('donate.html')
+#@app.route("/donate.html")
+#def page_donate():
+#    return render_template('donate.html')
 
 
 # About Us
