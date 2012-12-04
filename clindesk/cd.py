@@ -77,6 +77,7 @@ def favicon():
     return send_from_directory(os.path.join(app.root_path, 's'),
                                'favicon.ico', mimetype='image/vnd.microsoft.icon')
 
+
 # Return favicon from the root path
 @app.route('/robots.txt')
 def robots():
@@ -86,24 +87,19 @@ def robots():
     return send_from_directory(os.path.join(app.root_path, 's'),
                                robot_path, mimetype='text/plain')
 
+
 # This doesn't really do anything. It renders error.html for Flask.
 # error.html is a special S3 endpoint custom error page.
 @app.route("/error.html")
 def error_handler_for_flask():
     return render_template('errors/404.html')
 
+
 # A more generic handler, only for live Flask deployments.
 @app.errorhandler(404)
 def page_not_found(error):
     """ Return our generic error page. """
     return render_template('errors/404.html'), 404
-
-
-# Strip non-alnum characters.
-pattern = re.compile('[^a-z0-9-]')
-def is_safe_string(unsafe_string):
-    subbed_string = pattern.sub('', unsafe_string)
-    return unsafe_string == subbed_string
 
 
 if __name__ == "__main__":
