@@ -13,7 +13,7 @@ $('#ackbutton').click(function(){
 
 // Auto-tab highlighting.
 // TODO: Move this to HTML?
-var page = location.href.split(/\//)[3].split(/#/)[0];
+try { var page = location.href.split(/\//)[3].split(/#/)[0]; } catch (err) {}
 if(page) {
     if(page.indexOf('.') == -1) {
         page += '/';
@@ -22,7 +22,6 @@ if(page) {
     page = 'index.html';
 }
 $(".navbar ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
-
 
 // Sexy smooth scroll
 // TODO: Name this something more portable.
@@ -43,6 +42,7 @@ $('.bs-docs-sidenav').affix({
   }
 })
 
+/*
 $(document).ready(function affixThings(){
 
     // fix sub nav on scroll
@@ -86,3 +86,5 @@ $(document).ready(function affixThings(){
 	}
     }
 });
+*/
+
