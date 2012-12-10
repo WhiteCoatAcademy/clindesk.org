@@ -17,7 +17,6 @@ import time
 from base64 import b64encode
 from boto.s3.connection import S3Connection
 from boto.s3.key import Key
-from datetime import datetime, timedelta
 from flask_frozen import Freezer
 from hashlib import md5
 
@@ -222,12 +221,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
     def get_headers(extn):
         headers = {}
         exp_seconds = cache_times.get(extn, cache_times['_DEFAULT_'])
-
-        expires = datetime.utcnow() + timedelta(seconds=int(exp_seconds))
-        expires = expires.strftime("%a, %d %b %Y %H:%M:%S GMT")
-
         headers['Cache-control'] = 'public, max-age=' + exp_seconds # TODO: fix whenever S3/CloudFront gzip doesn't suck
-        headers['Expires'] = expires
 
         # Security-related headers
         if extn in {'.html'}:
