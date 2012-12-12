@@ -218,7 +218,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
                    '.ico': '604800',
                    '_DEFAULT_': '14400'
                    }
-    def get_headers(extn):
+    def get_headers(filename, extn):
         headers = {}
         exp_seconds = cache_times.get(extn, cache_times['_DEFAULT_'])
         headers['Cache-control'] = 'public, max-age=' + exp_seconds # TODO: fix whenever S3/CloudFront gzip doesn't suck
@@ -229,6 +229,11 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
             headers['X-Content-Type-Options'] = 'nosniff'
             headers['X-Frame-Options'] = 'SAMEORIGIN'
             headers['X-XSS-Protection'] = '1; mode=block'
+        # SSO magic
+        if filename.endswith('openid') and extn is "":
+            headers['Content-Type'] = 'application/xrds+xml; charset=UTF-8'
+        if filename.endswith('host-meta') and extn is "":
+            headers['Content-Type'] = 'application/host-meta; charset=UTF-8'
         return headers
         
     # Note: We don't need to setup permission here (e.g. k.make_public()), because there is
@@ -241,7 +246,7 @@ def deploy_to_s3(conn, frozen_path, bucket_name, no_delete, overwrite_all):
 
             k = Key(bucket)
             k.key = upload_file
-            k.set_contents_from_filename(frozen_path + '/' + upload_file, headers=get_headers(extn), md5=local_hashes[upload_file])
+            k.set_contents_from_filename(frozen_path + '/' + upload_file, headers=get_headers(filename, extn), md5=local_hashes[upload_file])
 
             # Setup a gzip copy, too, maybe:
             if extn in {'.html', '.htm', '.css', '.js', '.txt'} and False:

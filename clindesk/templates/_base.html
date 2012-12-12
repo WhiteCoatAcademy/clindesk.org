@@ -12,6 +12,7 @@
     {% else %}
     <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
     {% endif %}
+    <!--[if lte IE 6]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
     <!--[if lt IE 9]><script type="text/javascript" src="{{ static('js/html5shiv/36.js') }}"></script><![endif]-->
     {#
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ static('img/ico/apple-touch-icon-144-precomposed.png') }}">
@@ -72,7 +73,7 @@
 </footer>
 
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 {%- if config.apphost is defined -%}
 <script type="text/javascript" src="{{ static('js/shared.min.js') }}" async></script>
 {% else %}
