@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     {%- if config.apphost is defined -%}
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.1/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome-protocol-less.css" rel="stylesheet">
     <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
     {% else %}
@@ -14,8 +15,8 @@
     <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome-protocol-less.css" rel="stylesheet">
     <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
     {% endif %}
-    <!--[if lte IE 6]><script src="http://ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("http://ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
-    <!--[if lt IE 9]><script type="text/javascript" src="{{ static('js/html5shiv/36.js') }}"></script><![endif]-->
+    <!--[if lte IE 7]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
+    <!--[if lt IE 9]><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
     {#
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ static('img/ico/apple-touch-icon-144-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" sizes="114x114" href="{{ static('img/ico/apple-touch-icon-114-precomposed.png') }}">
@@ -38,7 +39,7 @@
             <!-- Things that get hidden at <= 940px -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
-                    <li><a href="/index.html">Home</a></li>
+                    <li><a href="/">Home</a></li>
                     <li><a href="/conditions/">Conditions</a></li>
                     <li><a href="/donate.html">Support Us</a></li>
                     <li><a href="/help.html">Help &amp; FAQ</a></li>
