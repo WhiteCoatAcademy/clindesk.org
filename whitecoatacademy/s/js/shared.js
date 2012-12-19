@@ -12,7 +12,6 @@ $('#ackbutton').click(function(){
 });
 
 // Auto-tab highlighting.
-// TODO: Move this to HTML?
 try { var page = location.href.split(/\//)[3].split(/#/)[0]; } catch (err) {}
 if(page) {
     if(page.indexOf('.') == -1) {
@@ -34,13 +33,13 @@ $('.bs-docs-sidenav a').click(function smoothScroll(){
 
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
-$win = $(window)
+$win = $(window);
 $('.bs-docs-sidenav').affix({
   offset: {
     top: function () { return $win.width() <= 980 ? 290 : 210 }
   , bottom: 270
   }
-})
+});
 
 /*
 $(document).ready(function affixThings(){
