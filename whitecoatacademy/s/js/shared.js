@@ -23,7 +23,6 @@ if(page) {
 $(".navbar ul.nav").find('a[href$="'+page+'"]').parents("li").addClass("active");
 
 // Sexy smooth scroll
-// TODO: Name this something more portable.
 $('.bs-docs-sidenav a').click(function smoothScroll(){
     $('html, body').animate({
         scrollTop: $( $(this).attr('href') ).offset().top
@@ -33,13 +32,15 @@ $('.bs-docs-sidenav a').click(function smoothScroll(){
 
 // This is some cool crazy stuff to fix stuff to the top through scrolling
 // Derived from Bootstrap's doc's 'application.js'
-$win = $(window);
-$('.bs-docs-sidenav').affix({
-  offset: {
-    top: function () { return $win.width() <= 980 ? 290 : 210 }
-  , bottom: 270
-  }
-});
+!function($) {
+    $(function() {
+        $('.bs-docs-sidenav').affix({
+            offset: {
+                top: function () { return $(window).width() <= 980 ? 290 : 210 }
+                , bottom: 270
+            } });
+    });
+}(window.jQuery);
 
 /*
 $(document).ready(function affixThings(){
