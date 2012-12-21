@@ -1,7 +1,0 @@
-Update the shared.js file.
-
-The shared.min.js @@@@@@@.
-
-Make updated minified files using the ./make-minified.sh script.
-This requires yui-compressor (http://yuilibrary.com/download/yuicompressor/).
-

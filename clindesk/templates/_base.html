@@ -1,6 +1,7 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="utf-8">
     <title>{% block title %}{% endblock %} &mdash; ClinDesk, Inc.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
@@ -13,6 +14,7 @@
     {% else %}
     <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
     {% endif %}
+    {% include '_analytics_code.html' %}
     <!--[if lte IE 7]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
     <!--[if lt IE 9]><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
     {#
@@ -21,7 +23,6 @@
     <link rel="apple-touch-icon-precomposed" sizes="72x72" href="{{ static('img/ico/apple-touch-icon-72-precomposed.png') }}">
     <link rel="apple-touch-icon-precomposed" href="{{ static('img/ico/apple-touch-icon-57-precomposed.png') }}">
     #}
-    {% include '_analytics_code.html' %}
 </head>
 <body data-spy="scroll" data-target=".bs-docs-sidebar">
 
@@ -73,12 +74,16 @@
     </div>
 </footer>
 
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
 {%- if config.apphost is defined -%}
-<script type="text/javascript" src="{{ static('js/shared.min.js') }}" async></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ static('js/jquery.min.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="{{ static('js/shared.min.js') }}"></script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
+<script>$('body').popover || document.write('<script src="{{ static('js/bootstrap.min.js') }}">\x3C/script>')</script>
 {% else %}
-<script type="text/javascript" src="{{ static('js/shared.js') }}" async></script>
+<script type="text/javascript" src="{{ static('js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ static('js/shared.js') }}"></script>
+<script type="text/javascript" src="{{ static('js/bootstrap.min.js') }}"></script>
 {% endif %}
 </body>
 </html>
