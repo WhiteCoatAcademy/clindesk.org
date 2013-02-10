@@ -8,8 +8,8 @@
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
-    <link href="http://netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome-protocol-less.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
     {%- if config.apphost is defined -%}
     <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
     {% else %}
@@ -76,11 +76,11 @@
 </footer>
 
 {%- if config.apphost is defined -%}
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ static('js/jquery-1.9.0.min.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ static('js/jquery-1.9.1.min.js') }}">\x3C/script>')</script>
 <script type="text/javascript" src="{{ static('js/shared.min.js') }}"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-<script>$('body').popover || document.write('<script src="{{ static('js/bootstrap.min.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+<script>$('body').popover || document.write('<script src="{{ static('js/bootstrap-2.3.0.min.js') }}">\x3C/script>')</script>
 {% else %}
 <script type="text/javascript" src="{{ static('js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ static('js/shared.js') }}"></script>
