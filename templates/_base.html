@@ -1,23 +1,18 @@
 <!DOCTYPE html>
+<!--[if IE]><![endif]-->
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{% block title %}{% endblock %} &mdash; White Coat Academy, Inc.</title>
+    <title>{% block title %}{% endblock %} &mdash; ClinDesk, Inc.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" />
     <meta name="description" content="{% block meta_description %}{% endblock %}" />
     <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
-    {%- if config.apphost is defined -%}
-    <link href="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap.no-icons.min.css" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/3.0/css/font-awesome.css" rel="stylesheet">
-    <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
-    {% else %}
-    <link href="{{ static('css/bootstrap.no-icons.min.css') }}" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/2.0/css/font-awesome-protocol-less.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
+    <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
     <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
-    {% endif %}
     {% include '_analytics_code.html' %}
-    <!--[if lte IE 7]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
+    <!--[if lt IE 8]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
     <!--[if lt IE 9]><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
     {#
     <link rel="apple-touch-icon-precomposed" sizes="144x144" href="{{ static('img/ico/apple-touch-icon-144-precomposed.png') }}">
@@ -36,14 +31,12 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="brand" href="/"><img src="{{ static('img/content/logo_sml.png') }}" alt="White Coat Academy, Inc."></a>
+            <a class="brand" href="/"><img src="{{ static('img/content/logo_sml.png') }}" alt="ClinDesk, Inc."></a>
             <!-- Things that get hidden at <= 940px -->
             <div class="nav-collapse collapse">
                 <ul class="nav">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/conditions/">Conditions</a></li>
-                    <li><a href="/donate.html">Support Us</a></li>
-                    <li><a href="/help.html">Help &amp; FAQ</a></li>
+                    {# <li><a href="/donate.html">Support Us</a></li> #}
                     <li><a href="/about.html">About Us</a></li>
                 </ul>
                 <form class="navbar-search pull-right" action="/search.html" id="searchform" role="search">
@@ -68,12 +61,10 @@
 <footer class="footer">
     <div class="container">
         <p class="pull-right"><a href="#">Back to top</a></p>
-        <p>&copy; 2013 White Coat Academy, a part of <a href="http://www.clindesk.org/">ClinDesk, Inc.</a>, some rights reserved</p>
-        <p>Videos are licensed under a Creative Commons <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/3.0/us/deed.en_US" target="_blank">CC BY NC SA 3.0</a> license.</p>
+        <p>&copy; 2013 ClinDesk, Inc., some rights reserved</p>
+	<p>Videos are licensed under a Creative Commons <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/3.0/us/deed.en_US" target="_blank">CC BY NC SA 3.0</a> license.</p>
         <ul class="footer-links">
             <li><a href="/">Home</a></li>
-            <li class="muted">&middot;</li>
-            <li><a href="/donate.html">Donate</a></li>
             <li class="muted">&middot;</li>
             <li><a href="/about.html#the-team">Contact Us</a></li>
         </ul>
@@ -81,11 +72,11 @@
 </footer>
 
 {%- if config.apphost is defined -%}
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="{{ static('js/jquery-1.9.0.min.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ static('js/jquery-1.9.1.min.js') }}">\x3C/script>')</script>
 <script type="text/javascript" src="{{ static('js/shared.min.js') }}"></script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/js/bootstrap.min.js"></script>
-<script>$('body').popover || document.write('<script src="{{ static('js/bootstrap.min.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
+<script>$('body').popover || document.write('<script src="{{ static('js/bootstrap-2.3.0.min.js') }}">\x3C/script>')</script>
 {% else %}
 <script type="text/javascript" src="{{ static('js/jquery.min.js') }}"></script>
 <script type="text/javascript" src="{{ static('js/shared.js') }}"></script>
