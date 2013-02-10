@@ -44,14 +44,6 @@ def main():
                         dest='overwrite_all',
                         help='Overwrite everything. Useful if metadata changes.')
 
-    parser.add_argument('--no-cd', action='store_true', default=False,
-                        dest='no_cd',
-                        help='Don\'t touch ClinDesk')
-
-    parser.add_argument('--no-wca', action='store_true', default=False,
-                        dest='no_wca',
-                        help='Don\'t touch White Coat Academy.')
-
     parser.add_argument('--no-freeze', action='store_true', default=False,
                         dest='no_freeze',
                         help='Don\'t freeze Flask app first (assumes build/ is current)')
@@ -66,7 +58,6 @@ def main():
     if args.deploy or args.freeze_only:
         # Some flag constraints.
         assert((args.deploy and not args.freeze_only) or (args.freeze_only and not args.no_freeze))
-        assert(not args.no_cd or not args.no_wca)
 
         # Find the current git branch:
         #  master -> staging
@@ -84,38 +75,12 @@ def main():
         #    ./cd_frozen/
         #    ./wca_frozen/
         if not args.no_freeze:
-            if not args.no_cd:
-                print("Freezing ClinDesk app ...")
-                print("*** Look for errors here *** \n")
-                clindesk = imp.load_source('clindesk', '../clindesk/cd.py')
-                frozen_cd = Freezer(clindesk.app)
-                frozen_cd.freeze()
-                print("")
-            if not args.no_wca:
-                print("Freezing WCA app ...")
-                print("*** Look for errors here *** \n")
-                wca = imp.load_source('wca', '../whitecoatacademy/wca.py')
-                frozen_wca = Freezer(wca.app)
-
-                # Hierarchy required for URL generators for Flask static.
-                page_structure = {'metabolism-and-endocrine': ['diabetes'], }
-
-                # Generator for top level conditions.
-                @frozen_wca.register_generator
-                def page_conditions_toplevel():
-                    for level1, level2_list in page_structure.iteritems():
-                        yield {'level1': level1}
-
-                # Generator for level1 & level2
-                @frozen_wca.register_generator
-                def page_conditions_level2():
-                    for level1, level2_list in page_structure.iteritems():
-                        for level2 in level2_list:
-                            yield {'level1': level1, 'level2': level2}
-
-
-                frozen_wca.freeze()
-                print("")
+            print("Freezing ClinDesk app ...")
+            print("*** Look for errors here *** \n")
+            clindesk = imp.load_source('clindesk', '../clindesk/cd.py')
+            frozen_cd = Freezer(clindesk.app)
+            frozen_cd.freeze()
+            print("")
         else:
             print('*** Skipping Flask freeze. Are you sure you wanted that?')
 
@@ -137,12 +102,8 @@ def main():
             conn = S3Connection()
 
             # Deploy: (conn, frozen_path, remote_bucket)\
-            if not args.no_cd:
-                deploy_to_s3(conn, 'cd_frozen', bucket_prefix + '.clindesk.org', args.no_delete, args.overwrite_all)
-                time.sleep(1)
-            if not args.no_wca:
-                deploy_to_s3(conn, 'wca_frozen', bucket_prefix + '.whitecoatacademy.org', args.no_delete, args.overwrite_all)
-                time.sleep(1)
+            deploy_to_s3(conn, '.app_frozen', bucket_prefix + '.clindesk.org', args.no_delete, args.overwrite_all)
+            time.sleep(1)
 
         print('All done!')
     else:

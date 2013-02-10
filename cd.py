@@ -112,7 +112,7 @@ else:
 
     # Man, I kinda' miss the days when we were on EC2 instead of just static.
     # We're probably being Frozen. Cool.
-    app.config['FREEZER_DESTINATION'] = '../deploy/cd_frozen/'
+    app.config['FREEZER_DESTINATION'] = '.app_frozen/'
 
     # Find the current git branch:
     #  master -> staging
