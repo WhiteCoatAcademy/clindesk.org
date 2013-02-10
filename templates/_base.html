@@ -10,11 +10,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/css/bootstrap.no-icons.min.css" rel="stylesheet">
     <link href="http://netdna.bootstrapcdn.com/font-awesome/3.0.2/css/font-awesome.css" rel="stylesheet">
-    {%- if config.apphost is defined -%}
-    <link href="{{ static('css/shared.min.css') }}" rel="stylesheet" />
-    {% else %}
     <link href="{{ static('css/shared.css') }}" rel="stylesheet" />
-    {% endif %}
     {% include '_analytics_code.html' %}
     <!--[if lt IE 8]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
     <!--[if lt IE 9]><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.1/html5shiv.js"></script><![endif]-->
