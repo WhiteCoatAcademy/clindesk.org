@@ -74,13 +74,13 @@
 {%- if config.apphost is defined -%}
 <script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
 <script>window.jQuery || document.write('<script src="{{ static('js/jquery-1.9.1.min.js') }}">\x3C/script>')</script>
-<script type="text/javascript" src="{{ static('js/shared.min.js') }}"></script>
+<script type="text/javascript" src="{{ static('js/shared.js') }}"></script>
 <script type="text/javascript" src="//netdna.bootstrapcdn.com/twitter-bootstrap/2.3.0/js/bootstrap.min.js"></script>
 <script>$('body').popover || document.write('<script src="{{ static('js/bootstrap-2.3.0.min.js') }}">\x3C/script>')</script>
 {% else %}
-<script type="text/javascript" src="{{ static('js/jquery.min.js') }}"></script>
+<script type="text/javascript" src="{{ static('js/jquery-1.9.1.min.js') }}"></script>
 <script type="text/javascript" src="{{ static('js/shared.js') }}"></script>
-<script type="text/javascript" src="{{ static('js/bootstrap.min.js') }}"></script>
+<script type="text/javascript" src="{{ static('js/bootstrap-2.3.0.min.js') }}"></script>
 {% endif %}
 </body>
 </html>
