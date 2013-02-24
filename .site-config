@@ -1,0 +1,14 @@
+[general]
+aws_key_id = AKIAI2RJXWXDP2MGMWQA
+prod_s3_bucket = prod.clindesk.org
+staging_s3_bucket = staging.clindesk.org
+
+[cache_settings]
+png = 2628000
+jpg = 2628000
+js = 86400
+css = 86400
+html = 28800
+ico = 604800
+txt = 604800
+default = 86400
