@@ -5,14 +5,47 @@
 {% block lead %}Opening Medical Education{% endblock %}
 {% block extra_jumbotron %}{% endblock %}
 {% block maincontent %}
-<br xmlns="http://www.w3.org/1999/html">
-<div class="container">
-    <div class="row-fluid">
-        <div class="span12">
-            <div class="hero-unit">
-            <p class="lead">Welcome:</p>
-            <p>ClinDesk comprises a team of senior medical students and resident physicians who are passionate about opening the otherwise closed world of medical knowledge.</p>
-            <p>Soon, we'll be launching lots of Creative Commons-licensed medical resources, including:
+
+
+<div class="section-colored text-center">
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-12">
+                <h2>Welcome to ClinDesk: Opening Medical Education</h2>
+                <p>Bringing open source &amp collaborative resources to medicine.</p>
+                <hr>
+            </div>
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+</div><!-- /.section-colored -->
+
+
+<div class="section">
+
+    <div class="container">
+
+        <div class="row well">
+            <div class="col-lg-8 col-md-8">
+                <h4>New: Try out clinical calculators and medical calculator apps.</h4>
+                <p>Including Framingham risk, MELD, Ranson, CHADS2, TIMI, Warfarin dosing &hellip; </p>
+            </div>
+            <div class="col-lg-4 col-md-4">
+                <a class="btn btn-lg btn-primary pull-right" href="/calc/">Try our Medical Calculators &rarr;</a>
+            </div>
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+    <div class="container">
+
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <p>ClinDesk comprises a team of senior medical students and resident physicians who are passionate about opening the otherwise closed world of medical knowledge.</p>
+                <p>Soon, we'll be launching lots of Creative Commons-licensed medical resources, including:
                 <ul>
                     <li>Free medical education videos, through our sister-site <a href="http://www.WhiteCoatAcademy.org/" target="_blank">White Coat Academy</a></li>
                     <li>Open USMLE prep materials, including a Goljan-esque Step I review series</li>
@@ -20,45 +53,24 @@
                     <li>An H&amp;P/SOAP note wizard, with hints on important acronyms and diagnostics</li>
                     <li>The <a href="http://www.vaccinatedoctors.org/">Vaccinate Doctors Initiative</a>, advocating for influenza vaccines</li>
                 </ul>
-            </p>
-            <p>Hopefully we can change the face of medical education. If you're interested in helping out, please get in touch!</p><br>
-            <span style="float:right;"><img src="{{ static('img/logos/bottom-drop-banner.png') }}" height="120" width="600" alt="ClinDesk &amp; WhiteCoatAcademy" class="img-rounded img-polaroid"></span>
-            <p>Stay tuned,</p>
-            <p>Nick Semenkovich</p>
-            <p style="line-height:0px">Founder</p>
+                <p>Hopefully we can change the face of medical education. If you're interested in helping out, please get in touch!</p><br>
             </div>
         </div>
-    </div>
-</div>
+
+        <div class="row">
+            <div class="col-lg-7 col-md-7 col-sm-7">
+                <p>Stay tuned,</p>
+                <p>Nick Semenkovich</p>
+                <p style="line-height:0px">Founder</p>
+            </div>
+            <div class="col-lg-5 col-md-5 col-sm-5">
+                <img src="{{ static('img/logos/bottom-drop-banner.png') }}" height="120" width="600" alt="ClinDesk &amp; WhiteCoatAcademy" class="img-responsive img-thumbnail">
+            </div>
+
+        </div><!-- /.row -->
+
+    </div><!-- /.container -->
+
+</div><!-- /.section -->
 
 {% endblock %}
-
-{#
-<!--description-->
-<div class="span3">
-    <div class="item-description">
-        <h3>Welcome to ClinDesk</h3>
-        <div class="subtitle">
-            <span class="icon-file "></span><a href="#">Opening Medical knowledge</a>
-        </div>
-        <p>Our video lectures are designed for everyone, from people with no medical background to experienced physicians. For each condition we discuss:</p>
-        <ul class="unstyled">
-            <li><i class="icon-ok"></i>Background</li>
-            <li><i class="icon-ok"></i>Epidemiology</li>
-            <li><i class="icon-ok"></i>Symptoms</li>
-            <li><i class="icon-ok"></i>Diagnosis</li>
-            <li><i class="icon-ok"></i>Treatment</li>
-            <li><i class="icon-ok"></i>Outcome</li>
-        </ul>
-        <br />
-        <a href="#condition-topics" class="btn btn-primary"><i class="icon-share icon-white"></i>See the Topics</a>
-    </div>
-</div>
-
-
-<div class="span9">
-    <div class="innerSpacer">
-      <iframe width="100%" height="360" seamless="seamless" src="http://www.youtube-nocookie.com/embed/5vfdIE-eMig?rel=0&html5=1" frameborder="0"></iframe>
-    </div>
-</div>
-        #}
