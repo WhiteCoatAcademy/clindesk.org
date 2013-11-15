@@ -53,6 +53,20 @@
     </div><!-- /.container -->
 </nav>
 
+{% if header_title and header_text %}
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <h1 class="page-header">{{ header_title }} <small>{{ header_text }}</small></h1>
+          <ol class="breadcrumb">
+            <li><a href="/">Home</a></li>
+            <li class="active">{{ header_title }}</li>
+          </ol>
+        </div>
+      </div>
+        </div>
+{% endif %}
+
 {#
 <header class="jumbotron {% block jumbotron_class %}subhead{% endblock %}" id="overview">
     <div class="container">
