@@ -10,104 +10,103 @@
 {% block maincontent%}
 <div class="container">
 
-  <!-- Docs nav
-  ================================================== -->
-  <div class="row">
-    <div class="span3 bs-docs-sidebar">
-      <ul class="nav nav-list bs-docs-sidenav">
-        <li><a href="#our-philosophy"><i class="icon-book"></i><i class="icon-chevron-right"></i> Our Philosophy</a></li>
-        <li><a href="#the-team"><i class="icon-group"></i><i class="icon-chevron-right"></i> Meet the Team</a></li>
-        <li><a href="#non-profit-governance"><i class="icon-legal"></i><i class="icon-chevron-right"></i> Non-Profit Governance</a></li>
-        <li><a href="#contact-us"><i class="icon-envelope-alt"></i><i class="icon-chevron-right"></i> Contact Us</a></li>
-      </ul>
+    <div class="row">
+
+        <div class="col-md-7">
+            <h2>Welcome to ClinDesk</h2>
+            <p>We're a group of senior medical students and resident physicians who are passionate about opening up
+                the private world of medical knowledge and education.</p>
+            <p>Our mission is simple: to lead the transition of medical education from a proprietary to
+                an “open” process. Current medical education is broken, and far too few people have access to medical knowledge.</p>
+            <p>Through ClinDesk, Inc., a non-profit corporation, we hope to spawn many <a href="https://creativecommons.org/" target="_blank">Creative
+                Commons</a>-licensed works and expand the accessibility of medical resources. If you share our vision, and
+                you're interested in helping to open the closed state of medical education, please get in touch.</p>
+            <p>You can find some of our advocacy in the New England Journal of Medicine piece:
+                <a href="http://nejm200.nejm.org/essay/a-century-after-flexner-the-next-step-is-open/" target="_blank">A Century after Flexner, the Next Step is Open</a></p>
+        </div>
+        <br><br>
+        <div class="col-md-5 well">
+            <h4 style="text-align: center">Get in Touch</h4>
+            <table class="table table-striped">
+                <tbody>
+                <tr>
+                    <td>General Questions &amp; Feedback</td>
+                    <td><a href="mailto:team@clindesk.org">team@clindesk.org</a></td>
+                </tr>
+                <tr>
+                    <td>Media Inquiries</td>
+                    <td><a href="mailto:media@clindesk.org">media@clindesk.org</a></td>
+                </tr>
+                <tr>
+                    <td>Legal &amp; DMCA Agent</td>
+                    <td><a href="mailto:legal@clindesk.org">legal@clindesk.org</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+
     </div>
-    <div class="span9">
 
-      <section id="our-philosophy">
-        <div class="page-header">
-          <h1>Our Philosophy</h1>
+    <!-- Team Member Profiles -->
+
+    <div class="row">
+
+        <div class="col-lg-12">
+            <h2 class="page-header">Our Team</h2>
         </div>
-          <p class="lead">Our mission is simple: to lead the transition of medical education from a proprietary to
-              an “open” process. Current medical education is broken, and far too few people have access to medical knowledge.</p>
-          <p class="lead">Through ClinDesk, Inc., a non-profit corporation, we hope to spawn many <a href="https://creativecommons.org/" target="_blank">Creative
-              Commons</a>-licensed works and expand the accessibility of medical resources. If you share our vision, and
-              you're interested in helping to open the closed state of medical education, please get in touch.</p>
-          <p class="lead">You can find some of our advocacy in the New England Journal of Medicine piece:
-              <a href="http://nejm200.nejm.org/essay/a-century-after-flexner-the-next-step-is-open/" target="_blank">A Century after Flexner, the Next Step is Open</a></p>
-      </section>
 
-
-      <section id="the-team">
-        <div class="page-header">
-          <h1>Meet the Team</h1>
+        <div class="col-sm-3">
+            <img class="img-responsive img-thumbnail" src="{{ static('img/heads/semenko.jpg') }}">
+            <h3>Nick Semenkovich<br><small>Founder & President</small></h3>
+            <p>Nick hails from M.I.T. with two degrees in "Course 6" (Electrical Engineering and Computer science) and Course 7 (Biology). He's currently an MD/PhD student in the lab of Dr. Jeffrey Gordon.</p>
+            <ul class="list-unstyled list-inline list-social-icons">
+                <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/semenko" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                <li class="tooltip-social linkedin-link"><a href=https://www.linkedin.com/in/semenko" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                <li class="tooltip-social twitter-link"><a href="https://twitter.com/semenko" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+                <li class="tooltip-social google-plus-link"><a href="https://github.com/semenko" data-toggle="tooltip" data-placement="top" title="GitHub"><i class="fa fa-github-square fa-2x"></i></a></li>
+            </ul>
         </div>
-        <p class="lead">We're a group of senior medical students and resident physicians who are passionate about opening up
-            the private world of medical knowledge and education.</p>
 
-          <div class="row-fluid">
-              <div class="span6">
-                  <h3>Nick Semenkovich</h3>
-                  <h4>Founder &amp; President
-                      <span style="float:right">
-                          <a href="https://twitter.com/semenko" data-rel="tooltip" title="Twitter"><i class="icon-twitter-sign icon-large"></i></a>
-                          <a href="https://www.facebook.com/semenko" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
-                          <a href="https://github.com/semenko" data-rel="tooltip" title="GitHub" class="sm-icon"><i class="icon-github-sign icon-large"></i></a>
-                      </span>
-                  </h4>
-                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/semenko.jpg') }}" width="150"/></span>
-                  <span>Nick hails from M.I.T., where he served as Editor in Chief of the student newspaper The Tech. He's currently an MD/PhD student
-                      in the lab of Dr. Jeffrey Gordon, where he's focused on the microbiome.</p>
-                  </span>
-              </div>
-              <div class="span6">
-                  <h3>David Germain</h3>
-                  <h4>Chief Operations Officer
-                      <span style="float:right">
-                       <a href="https://twitter.com/keepitgermain" data-rel="tooltip" title="Twitter"><i class="icon-twitter-sign icon-large"></i></a>
-                      <a href="https://www.facebook.com/dgermain" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
-                      </span>
-                  </h4>
-                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/dgermain.jpg') }}" width="150"/></span>
-                  <span>David spent his undergrad at Stanford and is currently an MD/PhD student in the lab of Dr. Tim Ley,
-                        focused on epigenetic regulatory mechanisms of AML. When not at lab, he spends time entertaining his cat, Osmo.</p>
-                  </span>
-              </div>
-          </div>
-          <div class="row-fluid">
-              <div class="span6">
-                  <h3>Ray Jean</h3>
-                  <h4>Chief Technology Officer
-                      <span style="float:right">
-                      <a href="https://www.facebook.com/raymond.a.jean" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
-                      </span>
-                  </h4>
-                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/rayjean.jpg') }}" width="150"/></span>
-                  <span>Ray did his undergrad at Harvard where he was an engineering major. He's now a fourth year medical student at Washington University,
-                      taking a year off to do research with Dr. Jay Picarillo.</p>
-                  </span>
-              </div>
-              <div class="span6">
-                  <h3>Aaron Mintz</h3>
-                  <h4>CFO &amp; Visionary
-                      <span style="float:right">
-                      <a href="https://www.facebook.com/aaronmintz" data-rel="tooltip" title="Facebook"><i class="icon-facebook-sign icon-large"></i></a>
-                      </span>
-                  </h4>
-                  <span style="float:left; padding-right: 10px;"><img class="thumbnail" src="{{ static('img/heads/aaronm.jpg') }}" width="150"/></span>
-                  <span>Aaron spent his undergrad years at Stanford where he studied Symbolic Systems. He is currently a fourth year medical student.
-                        Aaron is also working on a number of small-scale health innovations.</p>
-                  </span>
-              </div>
+        <div class="col-sm-3">
+            <img class="img-responsive img-thumbnail" src="{{ static('img/heads/aaronm.jpg') }}">
+            <h3>Aaron Mintz<br><small>Chief Operations Officer</small></h3>
+            <p>Aaron spent his undergrad years at Stanford where he studied Symbolic Systems. He is currently a medicine resident. Aaron is also working on a health care startup.</p>
+            <ul class="list-unstyled list-inline list-social-icons">
+                <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/aaronmintz" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                <li class="tooltip-social linkedin-link"><a href=https://www.linkedin.com/in/aaronmintz" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+            </ul>
+        </div>
 
-          </div>
+        <div class="col-sm-3">
+            <img class="img-responsive img-thumbnail" src="{{ static('img/heads/leo.jpg') }}">
+            <h3>Leo Shmuylovich<br><small>Chief Technology Officer</small></h3>
+            <p>Leo is an MD/PhD student at Washington University, and recently sold his startup (Virtual Nerd) to Pearson Education. Leo completed his PhD in Dr. Sándor Kovác's laboratory.</p>
+            <ul class="list-unstyled list-inline list-social-icons">
+                <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/TheShmu" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                <li class="tooltip-social linkedin-link"><a href="https://www.linkedin.com/pub/leo-shmuylovich/10/346/a8" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                <li class="tooltip-social twitter-link"><a href="https://twitter.com/leoshmu" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+                <li class="tooltip-social google-plus-link"><a href="https://github.com/leoshmu" data-toggle="tooltip" data-placement="top" title="GitHub"><i class="fa fa-github-square fa-2x"></i></a></li>
+            </ul>
+        </div>
 
-      </section>
+        <div class="col-sm-3">
+            <img class="img-responsive img-thumbnail" src="{{ static('img/heads/dgermain.jpg') }}">
+            <h3>David Germain<br><small>CFO & Visionary</small></h3>
+            <p>David spent his undergrad at Stanford and is currently an MD/PhD student in the lab of Dr. Tim Ley, focused on epigenetic regulatory mechanisms of AML.</p>
+            <ul class="list-unstyled list-inline list-social-icons">
+                <li class="tooltip-social facebook-link"><a href="https://www.facebook.com/dgermain" data-toggle="tooltip" data-placement="top" title="Facebook"><i class="fa fa-facebook-square fa-2x"></i></a></li>
+                <li class="tooltip-social linkedin-link"><a href="https://www.linkedin.com/pub/david-russler-germain/13/501/613" data-toggle="tooltip" data-placement="top" title="LinkedIn"><i class="fa fa-linkedin-square fa-2x"></i></a></li>
+                <li class="tooltip-social twitter-link"><a href="https://twitter.com/dgermain21" data-toggle="tooltip" data-placement="top" title="Twitter"><i class="fa fa-twitter-square fa-2x"></i></a></li>
+            </ul>
+        </div>
 
+    </div>
+    <div class="row">
 
-        <section id="non-profit-governance">
-            <div class="page-header">
-                <h1>Non-Profit Governance</h1>
-            </div>
+        <div class="col-lg-12">
+            <h2 class="page-header">Non-Profit Governance</h2>
+        </div>
+        <div class="col-lg-12">
             <div class="tabbable tabs-left">
                 <ul class="nav nav-tabs">
                     <li class="active"><a href="#home" data-toggle="tab">Overview</a></li>
@@ -138,36 +137,8 @@
                     </div>
                 </div>
             </div>
-        </section>
-
-
-        <section id="contact-us">
-            <div class="page-header">
-                <h1>Contact Us</h1>
-            </div>
-            <div class="row-fluid">
-                <p class="lead">We love to hear from our visitors! If you have a question, please get in touch!</p>
-                <table class="table table-striped">
-                    <tbody>
-                    <tr>
-                        <td>General Questions &amp; Feedback</td>
-                        <td><a href="mailto:team@clindesk.org">team@clindesk.org</a></td>
-                    </tr>
-                    <tr>
-                        <td>Media &amp; PR Inquiries</td>
-                        <td><a href="mailto:media@clindesk.org">media@clindesk.org</a></td>
-                    </tr>
-                    <tr>
-                        <td>Legal Inquiries &amp; DMCA Notificant</td>
-                        <td><a href="mailto:legal@clindesk.org">legal@clindesk.org</a></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </section>
-
+        </div>
     </div>
-  </div>
-
 </div>
+
 {% endblock %}
