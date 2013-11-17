@@ -1,5 +1,29 @@
 {% extends "_base.html" %}
 {% block title %}Error: Page Not Found{% endblock %}
 {% block tagline_text %}Page Not Found{% endblock %}
-{% block lead %}Sorry about that. Hopefully we'll fix this error soon.{% endblock %}
-{% block maincontent %}{% endblock %}
+
+{% block maincontent %}
+
+            <div class="container">
+
+      <div class="row">
+
+        <div class="col-lg-12">
+          <h1 class="page-header">404 <small>Page Not Found</small></h1>
+        </div>
+
+      </div>
+
+      <div class="row">
+
+        <div class="col-lg-12">
+          <p class="lead">The page you're looking for could not be found.</p>
+          <p>Try <a href="/">heading back home</a>, or e-mail us at team@clindesk.org about this error.</p>
+        </div><br><br><br>
+
+      </div>
+
+    </div><!-- /.container -->
+
+
+{% endblock %}
