@@ -49,9 +49,10 @@
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/">Home</a></li>
-                <li><a href="/about.html">About</a></li>
-                <li><a href="/calc/">Medical Calculators</a></li>
+                {# TODO: Cleaner implementation? #}
+                <li class="{{ home_active }}"><a href="/">Home</a></li>
+                <li class="{{ about_active }}"><a href="/about.html">About</a></li>
+                <li class="{{ calc_active }}"><a href="/calc/">Medical Calculators</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
     </div><!-- /.container -->
