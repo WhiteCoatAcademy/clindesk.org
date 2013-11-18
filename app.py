@@ -49,10 +49,10 @@ def page_index():
     return render_template('index.html')
 
 
-# Donate
-#@app.route("/donate.html")
-#def page_donate():
-#    return render_template('donate.html')
+# TODO: Convert to Blueprint ASAP, when freezer is fixed.
+@app.route("/calc/")
+def page_calc():
+    return render_template('calc/index.html')
 
 
 # About Us

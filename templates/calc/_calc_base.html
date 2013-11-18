@@ -1,0 +1,42 @@
+{% extends "_base.html" %}
+
+{% block title %}{% block calc_title %}calc_title{% endblock %} — Medical Calculators{% endblock %}
+
+{% block maincontent %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-3 col-sm-4 sidebar">
+            <ul class="nav nav-stacked nav-pills">
+                <li><a href="/calc/">Home &amp; Fishbones</a></li>
+                <li class="nav-divider"></li>
+                <li class="disabled"><a href="#">Renal</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li class="disabled"><a href="#">Electrolytes</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-9 col-sm-8">
+            <h1 class="page-header">{{ self.calc_title() }} <small>{{ self.calc_short_description() }}</small></h1>
+            <ol class="breadcrumb">
+                <li><a href="/calc/">Home</a></li>
+                <li class="active">{{ self.calc_title() }}</li>
+            </ol>
+            <div class="bs-callout bs-callout-warning">
+                <div class="alert alert-info"><strong>Coming Soon!</strong> We're putting the finishing touches on these calculators.</div>
+            </div>
+
+            {% block calc_content %}calc_content{% endblock %}
+
+        </div>
+
+    </div><!-- /.row -->
+
+</div>
+
+{% endblock %}
