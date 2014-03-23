@@ -1,29 +1,14 @@
 {% extends "_base.html" %}
-{% block title %}Error: Page Not Found{% endblock %}
-{% block tagline_text %}Page Not Found{% endblock %}
+
+{% set hnp_active = 'active' %}
+{% block title %}H&amp;P Wizard{% endblock %}
+
+{# We want a breadcrumb / header block. #}
+{% set header_title = "H&P Wizard" %}
+{% set header_text = "A template with intelligent hints" %}
+
 
 {% block maincontent %}
-
-            <div class="container">
-
-      <div class="row">
-
-        <div class="col-lg-12">
-          <h1 class="page-header">HP <small>H&amp;P Wizard</small></h1>
-        </div>
-
-      </div>
-
-      <div class="row">
-
-        <div class="col-lg-12">
-          <p class="lead">The page you're looking for could not be found.</p>
-          <p>Try <a href="/">heading back home</a>, or e-mail us at team@clindesk.org about this error.</p>
-        </div><br><br><br>
-
-      </div>
-
-    </div><!-- /.container -->
 
 
 {% endblock %}
