@@ -32,7 +32,7 @@ Finally, after you've seen your changes in staging, and they seem to be working,
 Production code comes from the "prod" branch of the repository. You need to switch to this branch, copy over your changes, then swith back, and push everything.
 
 1. Make sure you're updated to the latest code: `git pull`
-2. Run this: `git checkout prod ; git merge -Xtheirs master ; git checkout master ; git push`
+2. Run this: `git checkout prod ; git merge -Xtheirs master ; git push ; git checkout master`
 
 (This will auto-deploy to PROD.example.com, which is a backend for AWS CloudFront.)
 

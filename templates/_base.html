@@ -9,19 +9,17 @@
     <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-
-
     {%- if config.apphost is defined -%}
     {# Building for production. Use the CDN minified versions. #}
-    <link href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
     <link href="{{ static('css/cd-style.css') }}" rel="stylesheet">
-    <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <link href="//cdn.jsdelivr.net/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
 
     <!-- Only serve analytics code if not running locally. -->
     {% include '_analytics_code.html' %}
     {% else %}
     {# Running locally. Use local versions (e.g. work on airplanes!) #}
-    <link href="{{ static('css/bootstrap-3.0.2.css') }}" rel="stylesheet">
+    <link href="{{ static('css/bootstrap-3.1.1.css') }}" rel="stylesheet">
     <link href="{{ static('css/cd-style.css') }}" rel="stylesheet">
     <link href="{{ static('css/font-awesome-4.0.3.css') }}" rel="stylesheet">
     {% endif %}
@@ -29,10 +27,12 @@
     {# Move this to local dependent code? #}
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
-    <!--[if lt IE 8]><script src="//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/warning.js"></script><script>window.onload=function(){e("//ie6-upgrade-warning.googlecode.com/svn/trunk/ie6/")}</script><![endif]-->
-    <!--[if lt IE 9]><script type="text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/html5shiv/3.6.2/html5shiv.js"></script><![endif]-->
-    {# TODO: Add Apple Touch icons & massive favicons. #}
+    <!--[if lt IE 9]>
+    <script src="//cdn.jsdelivr.net/html5shiv/3.7.0/html5shiv.min.js"></script>
+    <script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
 
+    {# TODO: Add Apple Touch icons & massive favicons. #}
 </head>
 <body>
 
@@ -54,6 +54,7 @@
                 {# TODO: Cleaner implementation? #}
                 <li class="{{ home_active }}"><a href="/">Home</a></li>
                 <li class="{{ about_active }}"><a href="/about.html">About</a></li>
+                <li class="{{ hnp_active }}"><a href="/history-physical-wizard/">H&amp;P Wizard</a></li>
                 <li class="{{ calc_active }}"><a href="/calc/">Medical Calculators</a></li>
             </ul>
         </div><!-- /.navbar-collapse -->
@@ -93,8 +94,8 @@
     <footer>
         <div class="row">
             <div class="col-lg-12">
-                <p>&copy; 2013 ClinDesk, Inc., some rights reserved</p>
-                <p>Videos are licensed under a Creative Commons <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/3.0/us/deed.en_US" target="_blank">CC BY NC SA 3.0</a> license.</p>
+                <p class="text-muted">&copy; 2013—2014 ClinDesk, Inc., some rights reserved</p>
+                <p class="text-muted">Videos are licensed under a Creative Commons <a rel="license" href="//creativecommons.org/licenses/by-nc-sa/3.0/us/deed.en_US" target="_blank">CC BY NC SA 3.0</a> license.</p>
             </div>
         </div>
     </footer>
@@ -104,17 +105,17 @@
 
 {%- if config.apphost is defined -%}
 {# Building for production. Use the CDN minified versions. #}
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
 <!-- This crazy code is failover if a CDN is blocked / fails. -->
-<script>window.jQuery || document.write('<script src="{{ static('js/jquery-1.10.2.js') }}">\x3C/script>')</script>
-<script type="text/javascript" src="//netdna.bootstrapcdn.com/bootstrap/3.0.2/js/bootstrap.min.js"></script>
+<script>window.jQuery || document.write('<script src="{{ static('js/jquery-1.11.0.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 <!-- This crazy code is failover if a CDN is blocked / fails. -->
-<script>$('body').popover || document.write('<script src="{{ static('js/bootstrap-3.0.2.js') }}">\x3C/script>')</script>
+<script>$('body').popover || document.write('<script src="{{ static('js/bootstrap-3.1.1.js') }}">\x3C/script>')</script>
 <script src="{{ static('js/cd-scripts.js') }}"></script>
 {% else %}
 {# Running locally. Use local versions (e.g. work on airplanes!) #}
-<script src="{{ static('js/jquery-1.10.2.js') }}"></script>
-<script src="{{ static('js/bootstrap-3.0.2.js') }}"></script>
+<script src="{{ static('js/jquery-1.11.0.js') }}"></script>
+<script src="{{ static('js/bootstrap-3.1.1.js') }}"></script>
 <script src="{{ static('js/cd-scripts.js') }}"></script>
 {% endif %}
 

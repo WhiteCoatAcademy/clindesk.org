@@ -54,6 +54,10 @@ def page_index():
 def page_calc():
     return render_template('calc/index.html')
 
+@app.route("/history-physical-wizard/")
+def page_hnp():
+    return render_template('hnp/index.html')
+
 
 # About Us
 @app.route("/about.html")
