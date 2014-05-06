@@ -3,15 +3,65 @@
 {% block title %}{% block calc_title %}calc_title{% endblock %} — Medical Calculators{% endblock %}
 
 {% block maincontent %}
-<div class="container">
 
-    <div class="row">
+{# Can we load these dependencies in a separate file. IT COULD GET LONG and MAKE THIS TEMPLATE QUITE LONG AND UGLY #}
+{%- if config.apphost is defined -%}
+{# Building for production. Use the CDN minified versions. #}
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular.min.js"></script>
+<!-- This crazy code is failover if a CDN is blocked / fails. -->
+<script>window.jQuery || document.write('<script src="{{ static('js/angular/angular.js') }}">\x3C/script>')</script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/angularjs/1.2.16/angular-route.min.js"></script>
+<!-- This crazy code is failover if a CDN is blocked / fails. -->
+<script>window.jQuery || document.write('<script src="{{ static('js/angular-route/angular-route.js') }}">\x3C/script>')</script>
+
+{% else %}
+{# Running locally. Use local versions (e.g. work on airplanes!) #}
+<script src="{{ static('js/angular/angular.js') }}"></script>
+<script src="{{ static('js/angular-route/angular-route.js') }}"></script>
+
+{% endif %}
+<script type = "text/javascript" src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js"></script>
+<script src="http://d3js.org/d3.v3.min.js"></script>
+<script src="{{ static('js/angular-app.js') }}"></script>
+
+<style>
+    /* tell the SVG path to be a thin blue line without any area fill */
+    path {
+        stroke: steelblue;
+        stroke-width: 1;
+        fill: none;
+    }
+
+    .axis {
+      shape-rendering: crispEdges;
+    }
+
+    .x.axis line {
+      stroke: lightgrey;
+    }
+
+    .x.axis .minor {
+      stroke-opacity: .5;
+    }
+
+    .x.axis path {
+      display: none;
+    }
+
+    .y.axis line, .y.axis path {
+      fill: none;
+      stroke: #000;
+    }
+</style>
+<div class="container" ng-app="calcApp">
+
+    <div class="row" ng-controller = "MainCtrl">
         <div class="col-md-3 col-sm-4 sidebar">
             <ul class="nav nav-stacked nav-pills">
                 <li><a href="/calc/">Home &amp; Fishbones</a></li>
                 <li class="nav-divider"></li>
                 <li class="disabled"><a href="#">Renal</a></li>
-                <li><a href="#">Coming Soon</a></li>
+                <li><a href="/calc/gfr/">Gfr</a></li>
                 <li><a href="#">Coming Soon</a></li>
                 <li><a href="#">Coming Soon</a></li>
                 <li class="disabled"><a href="#">Electrolytes</a></li>
