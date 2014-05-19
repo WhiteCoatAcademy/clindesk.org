@@ -1,5 +1,6 @@
 *.pyc
 *~
+.bin
 .DS_Store
 .idea
 .awskey
