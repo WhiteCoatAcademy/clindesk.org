@@ -7,3 +7,4 @@
 .app_frozen
 freezepop.py
 s/bower_components
+node_modules/
