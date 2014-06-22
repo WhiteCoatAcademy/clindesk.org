@@ -1,8 +1,7 @@
 /*
- * Generated on 2014-06-22
- * generator-assemble v0.4.11
- * https://github.com/assemble/generator-assemble
+ * Clindesk stock Assemble grunt file.
  *
+ * Derived from generator-assemble, https://github.com/assemble/generator-assemble
  * Copyright (c) 2014 Hariadi Hinta
  * Licensed under the MIT license.
  */
