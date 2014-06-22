@@ -10,9 +10,9 @@
 
 // # Globbing
 // for performance reasons we're only matching one level down:
-// '<%= config.src %>/app/pages/{,*/}*.hbs'
+// '<%= config.src %>/templates/pages/{,*/}*.hbs'
 // use this if you want to match all subfolders:
-// '<%= config.src %>/app/pages/**/*.hbs'
+// '<%= config.src %>/templates/pages/**/*.hbs'
 
 module.exports = function(grunt) {
 
@@ -28,7 +28,7 @@ module.exports = function(grunt) {
 
     watch: {
       assemble: {
-        files: ['<%= config.src %>/{content,data,app}/{,*/}*.{md,hbs,yml}'],
+        files: ['<%= config.src %>/{content,data,templates}/{,*/}*.{md,hbs,yml}'],
         tasks: ['assemble']
       },
       livereload: {
@@ -66,13 +66,13 @@ module.exports = function(grunt) {
         options: {
           flatten: true,
           assets: '<%= config.dist %>/assets',
-          layout: '<%= config.src %>/app/layouts/default.hbs',
+          layout: '<%= config.src %>/templates/layouts/default.hbs',
           data: '<%= config.src %>/data/*.{json,yml}',
-          partials: '<%= config.src %>/app/partials/*.hbs',
+          partials: '<%= config.src %>/templates/partials/*.hbs',
           plugins: ['assemble-contrib-permalinks','assemble-contrib-sitemap'],
         },
         files: {
-          '<%= config.dist %>/': ['<%= config.src %>/app/pages/*.hbs']
+          '<%= config.dist %>/': ['<%= config.src %>/templates/pages/*.hbs']
         }
       }
     },
