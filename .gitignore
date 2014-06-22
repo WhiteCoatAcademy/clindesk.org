@@ -24,3 +24,4 @@ node_modules
 *.sublime-*
 dist
 bower_components/
+app/*.html
