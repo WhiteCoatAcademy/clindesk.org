@@ -1,0 +1,82 @@
+---
+layout: default.hbs
+calc_active: active
+title: TITLE — Medical Calculators
+---
+
+
+<script src="../bower_components/angular/angular.js"></script>
+<script src="../bower_components/angular-route/angular-route.js"></script>
+<script src="../bower_components/underscore/underscore.js"></script>
+<script src="../bower_components/d3/d3.js"></script>
+<script src="../bower_components/angular-charts/dist/angular-charts.js"></script>
+
+
+<script src="../scripts/angular-app.js"></script>
+
+<style>
+    /* tell the SVG path to be a thin blue line without any area fill */
+    path {
+        stroke: steelblue;
+        stroke-width: 1;
+        fill: none;
+    }
+
+    .axis {
+        shape-rendering: crispEdges;
+    }
+
+    .x.axis line {
+        stroke: lightgrey;
+    }
+
+    .x.axis .minor {
+        stroke-opacity: .5;
+    }
+
+    .x.axis path {
+        display: none;
+    }
+
+    .y.axis line, .y.axis path {
+        fill: none;
+        stroke: #000;
+    }
+</style>
+
+<div class="container" ng-app="calcApp">
+
+    <div class="row" ng-controller = "MainCtrl">
+        <div class="col-md-3 col-sm-4 sidebar">
+            <ul class="nav nav-stacked nav-pills">
+                <li><a href="/calc/">Home &amp; Fishbones</a></li>
+                <li class="nav-divider"></li>
+                <li class="disabled"><a href="#">Renal</a></li>
+                <li><a href="/calc/gfr.html">GFR</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li class="disabled"><a href="#">Electrolytes</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li class="disabled"><a href="#">Cardiac Risk</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+                <li><a href="#">Coming Soon</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-9 col-sm-8">
+            <h1 class="page-header">{{calc_title}} <small>{{calc_short_description}}</small></h1>
+            <ol class="breadcrumb">
+                <li><a href="/calc/">Home</a></li>
+                <li class="active"> {{calc_title}} </li>
+            </ol>
+
+            {{>body}}
+
+        </div>
+
+    </div><!-- /.row -->
+
+</div>

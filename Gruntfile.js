@@ -126,7 +126,8 @@ module.exports = function (grunt) {
         assemble: {
             options: {
                 flatten: false,
-                layout: '<%= config.app %>/template/layouts/default.hbs',
+                layout: 'default.hbs',
+                layoutdir: '<%= config.app %>/template/layouts/',
                 partials: ['<%= config.app %>/template/partials/**/*.hbs'],
             },
             pages: {

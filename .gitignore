@@ -26,3 +26,5 @@ node_modules
 dist
 bower_components/
 app/*.html
+app/calc/
+app/history-physical-wizard/
