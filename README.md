@@ -1,19 +1,14 @@
 # White Coat Academy
 
-## Overview
+## Getting started
+1. Clone this repo: `git clone git@github.com:WhiteCoatAcademy/clindesk.org.git`
+2. `cd clindesk.org`
+3. Install required node packages: `npm install`
+4. Install the bower dependencies (bootstrap, etc.) `bower install`
+5. Build or run the app using: `grunt build` or `grunt serve`
 
-The magic happens in `app.py`
-
-This runs on [Flask](http://flask.pocoo.org/).
-
-If you want to run them on your machine, try:
-
- `sudo easy_install pip; sudo pip install flask frozen-flask` then `python app.py`
-
-A local instance should then be running at: http://localhost:5000/ (or 5001...)
 
 ## Directories
-
 * /s/
   * Static files. Usually loaded via CloudFront
 * /templates/
@@ -40,4 +35,4 @@ Production code comes from the "prod" branch of the repository. You need to swit
 
 Some shared libraries are available via an Apache License v2.0 (e.g. bootstrap)
 
-All other work is Copyright 2012-2013, ClinDesk, Inc. All rights reserved.
+All other work is Copyright 2012-2014, ClinDesk, Inc. All rights reserved.
