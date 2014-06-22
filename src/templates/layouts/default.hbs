@@ -9,30 +9,17 @@
     <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-    {%- if config.apphost is defined -%}
-    {# Building for production. Use the CDN minified versions. #}
-    <link href="//cdn.jsdelivr.net/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
-    <link href="{{ static('css/cd-style.css') }}" rel="stylesheet">
-    <link href="//cdn.jsdelivr.net/fontawesome/4.0.3/css/font-awesome.min.css" rel="stylesheet">
+    <!-- ADD ANALYTICS CODE: {% include '_analytics_code.html' -->
+    <link href="{{bower_assets}}/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
+    <link href="{{app_assets}}/css/cd-style.css" rel="stylesheet">
+    <link href="{{bower_assets}}/font-awesome/css/font-awesome.css" rel="stylesheet">
 
-    <!-- Only serve analytics code if not running locally. -->
-    {% include '_analytics_code.html' %}
-    {% else %}
-    {# Running locally. Use local versions (e.g. work on airplanes!) #}
-    <link href="{{ static('bower_components/bootstrap/dist/css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ static('css/cd-style.css') }}" rel="stylesheet">
-    <link href="{{ static('bower_components/font-awesome/css/font-awesome.css') }}" rel="stylesheet">
-    {% endif %}
-
-    {# Move this to local dependent code? #}
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
 
     <!--[if lt IE 9]>
     <script src="//cdn.jsdelivr.net/html5shiv/3.7.0/html5shiv.min.js"></script>
     <script src="//cdn.jsdelivr.net/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
-    {# TODO: Add Apple Touch icons & massive favicons. #}
 </head>
 <body>
 
@@ -46,7 +33,7 @@
                 <span class="icon-bar"></span>
             </button>
             {# TODO: Remove this style override. Boo. #}
-            <a class="navbar-brand" href="/" style="padding: 10px"><img src="{{ static('img/content/logo_sml.png') }}" alt="ClinDesk, Inc."></a>
+            <a class="navbar-brand" href="/" style="padding: 10px"><img src="{{app_assets}}/img/content/logo_sml.png" alt="ClinDesk, Inc."></a>
         </div>
 
         <div class="collapse navbar-collapse navbar-ex1-collapse">
@@ -102,22 +89,10 @@
 
 </div><!-- /.container -->
 
-
-{%- if config.apphost is defined -%}
-{# Building for production. Use the CDN minified versions. #}
-<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-<!-- This crazy code is failover if a CDN is blocked / fails. -->
-<script>window.jQuery || document.write('<script src="{{ static('bower_components/jquery/jquery.js') }}">\x3C/script>')</script>
-<script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-<!-- This crazy code is failover if a CDN is blocked / fails. -->
-<script>$('body').popover || document.write('<script src="{{ static('bower_components/bootstrap/dist/js/bootstrap.js') }}">\x3C/script>')</script>
-<script src="{{ static('js/cd-scripts.js') }}"></script>
-{% else %}
-{# Running locally. Use local versions (e.g. work on airplanes!) #}
-<script src="{{ static('bower_components/jquery/jquery.js') }}"></script>
-<script src="{{ static('bower_components/bootstrap/dist/js/bootstrap.js') }}"></script>
-<script src="{{ static('js/cd-scripts.js') }}"></script>
-{% endif %}
+<!-- TODO: Re-add CDN failover, or get into bower somehow, etc. -->
+<script src="{{bower_assets}}/jquery/jquery.js') }}"></script>
+<script src="{{bower_assets}}/bootstrap/dist/js/bootstrap.js') }}"></script>
+<script src="{{app_assets}}/js/cd-scripts.js"></script>
 
 
 </body>
