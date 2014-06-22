@@ -125,19 +125,18 @@ module.exports = function (grunt) {
         //assemble io
         assemble: {
             options: {
-                flatten: true,
+                flatten: false,
                 layout: '<%= config.app %>/template/layouts/default.hbs',
                 partials: ['<%= config.app %>/template/partials/**/*.hbs'],
             },
             pages: {
-                files: {
-                    '<%= config.app %>/': ['<%= config.app %>/template/pages/**/*.hbs']
-                }
-            },
-            index: {
-                files: {
-                    '<%= config.app %>/': ['<%= config.app %>/template/pages/index.hbs']
-                }
+                files: [
+                    {   expand: true,
+                        cwd: '<%= config.app %>/template/pages',
+                        src: ['**/*.hbs'],
+                        dest: '<%= config.app %>'
+                    }
+                ]
             }
         },
 
