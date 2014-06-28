@@ -3,13 +3,13 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>{{title}}&mdash; ClinDesk, Inc.</title>
+    <title>{{title}} &mdash; ClinDesk, Inc.</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{{meta_description}}" />
-    <meta name="author" content="{% block meta_author %}Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy{% endblock %}" />
+    <meta name="author" content="Nick Semenkovich (@semenko), ClinDesk &amp; White Coat Academy" />
     <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
 
-    <!-- ADD ANALYTICS CODE: {% include '_analytics_code.html' -->
+    {{>google_analytics }}
 
     <!-- build:css styles/vendor.css -->
     <!-- bower:css -->
@@ -95,16 +95,6 @@
         <script src="../bower_components/jquery/jquery.js"></script>
         <!-- endbower -->
         <!-- endbuild -->
-
-        <!-- Google Analytics: change UA-XXXXX-X to be your site's ID. -->
-        <script>
-            (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
-            function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
-            e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-            e.src='//www.google-analytics.com/analytics.js';
-            r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
-            ga('create','UA-XXXXX-X');ga('send','pageview');
-        </script>
 
         <!-- build:js scripts/plugins.js -->
         <script src="../bower_components/bootstrap/js/affix.js"></script>
