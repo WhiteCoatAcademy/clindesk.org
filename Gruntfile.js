@@ -168,6 +168,7 @@ module.exports = function (grunt) {
                 layout: 'default.hbs',
                 layoutdir: '<%= config.app %>/template/layouts/',
                 partials: ['<%= config.app %>/template/partials/**/*.hbs'],
+                assets: '<%= config.app %>/images/'
             },
             pages: {
                 files: [
