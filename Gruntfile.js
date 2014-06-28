@@ -58,7 +58,7 @@ module.exports = function (grunt) {
                     differential: true // Only uploads the files that have changed
                 },
                 files: [
-                    {dest: '/', cwd: 'backup/staging/', action: 'download'},
+                    // {dest: '/', cwd: 'backup/staging/', action: 'download'},
                     {dest: '/', differential: false, action: 'delete'},
 
                     // 60 second expiry
