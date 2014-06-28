@@ -9,7 +9,7 @@
 
 module.exports = function (grunt) {
     //load assemble.io
-    grunt.loadNpmTasks('assemble' );
+    grunt.loadNpmTasks('assemble');
 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);

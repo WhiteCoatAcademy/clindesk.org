@@ -2,9 +2,9 @@
 {% block title %}Error: Page Not Found{% endblock %}
 {% block tagline_text %}Page Not Found{% endblock %}
 
-{% block maincontent %}
+
 <script>
-    {# Report error to Google Analytics #}
+    {{! Report error to Google Analytics }}
     ga('send', 'event', 'Error404', location.pathname + location.search  + location.hash, document.referrer, null, {'nonInteraction': 1});
 </script>
 
@@ -29,5 +29,3 @@
 
     </div><!-- /.container -->
 
-
-{% endblock %}
