@@ -29,6 +29,45 @@ module.exports = function (grunt) {
         // Project settings
         config: config,
 
+        aws: grunt.file.readJSON('aws-keys.json'),
+        aws_s3: {
+            options: {
+                accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
+                secretAccessKey: '<%= aws.AWSSecretKey %>', // You can also use env variables
+                // region: 'eu-west-1',
+                uploadConcurrency: 5, // 5 simultaneous uploads
+                downloadConcurrency: 5 // 5 simultaneous downloads
+            },
+            prod: {
+                options: {
+                    bucket: 'prod.clindesk.org',
+                    differential: true // Only uploads the files that have changed
+                },
+                files: [
+                    {dest: '/', cwd: 'backup/prod/', action: 'download'},
+                    {dest: '/', differential: false, action: 'delete'},
+
+                    // Upload all files w/ a 48 hour cache time
+                    {expand: true, cwd: 'dist/', src: ['**'], dest: '',
+                        params: {CacheControl: 'max-age=172800'}}
+                ]
+            },
+            staging: {
+                options: {
+                    bucket: 'staging.clindesk.org',
+                    differential: true // Only uploads the files that have changed
+                },
+                files: [
+                    {dest: '/', cwd: 'backup/staging/', action: 'download'},
+                    {dest: '/', differential: false, action: 'delete'},
+
+                    // 60 second expiry
+                    {expand: true, cwd: 'dist/', src: ['**'], dest: '',
+                        params: {CacheControl: 'max-age=60'}}
+                ]
+            }
+        },
+
         // Watches files for changes and runs tasks based on the changed files
         watch: {
             bower: {
@@ -390,6 +429,14 @@ module.exports = function (grunt) {
         'rev',
         'usemin',
         'htmlmin'
+    ]);
+
+    grunt.registerTask('prod', [
+        'aws_s3:prod'
+    ]);
+
+    grunt.registerTask('staging', [
+        'aws_s3:staging'
     ]);
 
     grunt.registerTask('default', [
