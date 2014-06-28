@@ -7,20 +7,13 @@
 4. Install the bower dependencies (bootstrap, etc.) `bower install`
 5. Build or run the app using: `grunt build` or `grunt serve`
 
-
-## Directories
-* /s/
-  * Static files. Usually loaded via CloudFront
-* /templates/
-  * [Jinja2](http://jinja.pocoo.org/) templates for Flask.
-
 ## Seeing Things Live
 
-Once you've seen & tested your changes locally (e.g. at localhost:500X), commit your changes and push.
+Once you've seen & tested your changes locally (e.g. at localhost:9000), commit & push your changes.
 
-This will auto-push changes to AWS for S3 and CloudFront, and your changes will appear at http://STAGING.example.com/
+Then, deploy to staging ( http://STAGING.example.com/ ) via: `grunt staging`
 
-## Pushing to Production
+## Deploying to Production
 
 Finally, after you've seen your changes in staging, and they seem to be working, you should push into production!
 
@@ -28,6 +21,7 @@ Production code comes from the "prod" branch of the repository. You need to swit
 
 1. Make sure you're updated to the latest code: `git pull`
 2. Run this: `git checkout prod ; git merge -Xtheirs master ; git push ; git checkout master`
+3. Finally, push to prod: `grunt prod`
 
 (This will auto-deploy to PROD.example.com, which is a backend for AWS CloudFront.)
 
