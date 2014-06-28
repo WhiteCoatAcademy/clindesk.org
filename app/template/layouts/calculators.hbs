@@ -2,16 +2,31 @@
 layout: default.hbs
 title: Medical Calculators
 ---
+{{! TODO: Fix up these versions (make sure bower == CDN, or otherwise build them as VENDOR, etc. }}
 
-
+<!-- ref:js //ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js -->
 <script src="../bower_components/angular/angular.js"></script>
+<!-- endref -->
+
+<!-- ref:js //cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.18/angular-route.min.js -->
 <script src="../bower_components/angular-route/angular-route.js"></script>
+<!-- endref -->
+
+<!-- ref:js //cdn.jsdelivr.net/underscorejs/1.6.0/underscore-min.js -->
 <script src="../bower_components/underscore/underscore.js"></script>
+<!-- endref -->
+
+<!-- ref:js //cdn.jsdelivr.net/d3js/3.4.6/d3.min.js -->
 <script src="../bower_components/d3/d3.js"></script>
+<!-- endref -->
+
+<!-- ref:js //cdn.jsdelivr.net/angular.charts/0.2.0/angular-charts.min.js -->
 <script src="../bower_components/angular-charts/dist/angular-charts.js"></script>
+<!-- endref -->
 
-
+<!-- build:js(.tmp) /scripts/angular-app.js -->
 <script src="../scripts/angular-app.js"></script>
+<!-- endbuild -->
 
 <style>
     /* tell the SVG path to be a thin blue line without any area fill */
