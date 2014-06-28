@@ -9,6 +9,7 @@ aws-keys.json
 .app_frozen
 freezepop.py
 node_modules/
+backup/
 lib-cov
 *.seed
 *.log
