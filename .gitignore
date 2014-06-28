@@ -3,6 +3,7 @@
 *~
 .bin
 .DS_Store
+aws-keys.json
 .idea
 .awskey
 .app_frozen
