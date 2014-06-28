@@ -10,6 +10,7 @@
 module.exports = function (grunt) {
     //load assemble.io
     grunt.loadNpmTasks('assemble');
+    grunt.loadNpmTasks('grunt-htmlrefs');
 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
@@ -307,6 +308,12 @@ module.exports = function (grunt) {
             }
         },
 
+        htmlrefs: {
+            dist: {
+                src: '<%= config.dist %>/**/*.html'
+            }
+        },
+
         // By default, your `index.html`'s <!-- Usemin block --> will take care of
         // minification. These next options are pre-configured if you do not wish
         // to use the Usemin blocks.
@@ -429,6 +436,7 @@ module.exports = function (grunt) {
         'copy:dist',
         'rev',
         'usemin',
+        'htmlrefs:dist',
         'htmlmin'
     ]);
 
