@@ -1,7 +1,14 @@
 ---
 layout: default.hbs
-title: Medical Calculators
+title: <%=calc_title %>
 ---
+<!-- ref:js //cdn.jsdelivr.net/d3js/3.4.9/d3.min.js -->
+<!-- bower:js -->
+<script src="../bower_components/d3/d3.js"></script>
+<!-- endbower -->
+<!-- endref -->
+
+
 {{! TODO: Fix up these versions (make sure bower == CDN, or otherwise build them as VENDOR, etc. }}
 
 <!-- ref:js //ajax.googleapis.com/ajax/libs/angularjs/1.2.10/angular.min.js -->
@@ -14,10 +21,6 @@ title: Medical Calculators
 
 <!-- ref:js //cdn.jsdelivr.net/underscorejs/1.6.0/underscore-min.js -->
 <script src="../bower_components/underscore/underscore.js"></script>
-<!-- endref -->
-
-<!-- ref:js //cdn.jsdelivr.net/d3js/3.4.6/d3.min.js -->
-<script src="../bower_components/d3/d3.js"></script>
 <!-- endref -->
 
 <!-- ref:js //cdn.jsdelivr.net/angular.charts/0.2.0/angular-charts.min.js -->
@@ -74,7 +77,7 @@ title: Medical Calculators
                 <li><a href="#">Coming Soon</a></li>
                 <li><a href="#">Coming Soon</a></li>
                 <li class="disabled"><a href="#">Cardiac Risk</a></li>
-                <li><a href="#">Coming Soon</a></li>
+                <li><a href="timi-risk-score-for-stemi.html">TIMI Risk Score (for STEMI)</a></li>
                 <li><a href="#">Coming Soon</a></li>
                 <li><a href="#">Coming Soon</a></li>
             </ul>
