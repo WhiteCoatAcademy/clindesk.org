@@ -5,3 +5,32 @@ title: H&P Wizard
 header_title: H&P Wizard
 header_text: A template with intelligent hints
 ---
+
+<div class="container">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Editor</h3>
+        </div>
+        <div class="panel-body">
+            <div id="editor" style="height: 300px;">
+function foo(items) {
+    var x = "All this is syntax highlighted";
+    return x;
+}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- build:js /scripts/ace-build.js -->
+<!-- bower:js -->
+<script src="../bower_components/ace-builds/src/ace.js"></script>
+<!-- endbower -->
+<!-- endbuild -->
+
+<script>
+    var editor = ace.edit("editor");
+    editor.setTheme("ace/theme/monokai");
+    editor.getSession().setMode("ace/mode/javascript");
+</script>
