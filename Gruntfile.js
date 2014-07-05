@@ -310,6 +310,7 @@ module.exports = function (grunt) {
 
         htmlrefs: {
             dist: {
+                expand: true,
                 src: '<%= config.dist %>/**/*.html'
             }
         },
