@@ -1,4 +1,4 @@
-# White Coat Academy
+# ClinDesk [![Dependency Status](https://gemnasium.com/WhiteCoatAcademy/clindesk.org.png)](https://gemnasium.com/WhiteCoatAcademy/clindesk.org)
 
 ## Getting started
 1. Clone this repo: `git clone git@github.com:WhiteCoatAcademy/clindesk.org.git`
