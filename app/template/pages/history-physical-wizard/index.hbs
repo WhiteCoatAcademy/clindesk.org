@@ -6,17 +6,22 @@ header_title: H&P Wizard
 header_text: A template with intelligent hints
 ---
 
+<link href='http://fonts.googleapis.com/css?family=Inconsolata' rel='stylesheet' type='text/css'>
+
 <div class="container">
     <div class="panel panel-default">
         <div class="panel-heading">
             <h3 class="panel-title">Editor</h3>
         </div>
         <div class="panel-body">
-            <div id="editor" style="height: 300px;">
-function foo(items) {
-    var x = "All this is syntax highlighted";
-    return x;
-}
+            <div id="editor" style="height: 600px; font-family: 'Inconsolata'; font-size: 16px;">
+Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
+Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+
+Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+
+Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
             </div>
         </div>
     </div>
@@ -31,6 +36,6 @@ function foo(items) {
 
 <script>
     var editor = ace.edit("editor");
-    editor.setTheme("ace/theme/monokai");
-    editor.getSession().setMode("ace/mode/javascript");
+    editor.setTheme("ace/theme/clouds");
+    editor.getSession().setMode("ace/mode/text");
 </script>
