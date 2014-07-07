@@ -13,63 +13,73 @@ header_text: A template with intelligent hints
 <!-- endbower -->
 <!-- endbuild -->
 
+<style>
+    dt { padding-top: 20px; }
+
+    dd { margin-left: 20px;
+        border: 1px dotted #CCC;
+    }
+</style>
 
 <!-- outline: 0px solid transparent; //-->
 <div class="container">
     <div class="panel panel-default">
-        <div class="panel-heading">
-            <h3 class="panel-title">Editor</h3>
-        </div>
         <div class="panel-body">
-            <dl class="dl-horizontal">
-                <dt>CC:</dt>
-                <dd class="editable"></dd>
+            <div class="row">
+                <div class="col-md-8">
+                    <!-- TODO: add back  class="dl-horizontal" if i can fix it //-->
+                    <dl style="font-size: 16px;">
+                        <dt>CC:</dt>
+                        <dd data-placeholder="Complaint (in the patient's words)"></dd>
 
-                <dt>HPI:</dt>
-                <dd class="editable"></dd>
+                        <dt>HPI:</dt>
+                        <dd data-placeholder=""></dd>
 
-                <dt>PMHx:</dt>
-                <dd>TEXT</dd>
+                        <dt>PMHx:</dt>
+                        <dd data-placeholder=""></dd>
 
-                <dt>PSHx:</dt>
-                <dd></dd>
+                        <dt>PSHx:</dt>
+                        <dd data-placeholder=""></dd>
 
-                <dt>PSHx:</dt>
-                <dd></dd>
+                        <dt>PSHx:</dt>
+                        <dd data-placeholder=""></dd>
 
+                        <dt>Meds:</dt>
+                        <dd data-placeholder=""></dd>
 
-                <dt>Meds:</dt>
-                <dd></dd>
+                        <dt>Allergies:</dt>
+                        <dd data-placeholder=""></dd>
 
+                        <dt>FHx:</dt>
+                        <dd data-placeholder=""></dd>
 
-                <dt>Allergies:</dt>
-                <dd></dd>
+                        <dt>SHx:</dt>
+                        <dd data-placeholder=""></dd>
 
+                        <dt>ROS:</dt>
+                        <dd data-placeholder=""></dd>
 
-                <dt>FHx:</dt>
-                <dd></dd>
+                        <dt>PE:</dt>
+                        <dd data-placeholder=""></dd>
 
-
-                <dt>SHx:</dt>
-                <dd></dd>
-
-
-                <dt>ROS:</dt>
-                <dd></dd>
-
-
-                <dt>PE:</dt>
-                <dd></dd>
-
-
-                <dt>A&P:</dt>
-                <dd></dd>
-            </dl>
-
+                        <dt>A&P:</dt>
+                        <dd data-placeholder=""></dd>
+                    </dl>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-primary">
+                        <div class="panel-heading">H&P Tips</div>
+                        <div class="panel-body">Live hints go here</div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Abbreviations</div>
+                        <div class="panel-body">Live abbreviations go here</div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
 
 <!-- build:js /scripts/medium.js -->
 <!-- bower:js -->
@@ -78,9 +88,10 @@ header_text: A template with intelligent hints
 <!-- endbuild -->
 
 <script>
-    {{! This is a hackjob. Fix this up. }}
+        {{! This is a hackjob. Fix this up. }}
     window.onload = function() {
         $('dd').addClass('editable');
-        var editor = new MediumEditor('.editable', {});
+//            var editor = new MediumEditor('.editable', {placeholder: 'what the shit'});
+        var editor = new MediumEditor('.editable', {placeholder: ''});
     }
 </script>
