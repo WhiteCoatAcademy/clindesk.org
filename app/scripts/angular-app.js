@@ -16,8 +16,8 @@ app.directive('dthreePlot', function(){
     scope.$watch('patient', function(newVal, oldVal){
       console.log('change', newVal);
       if(graph){
-        graph.selectAll('g').remove()
-        graph.selectAll('path').remove()
+        graph.selectAll('g').remove();
+        graph.selectAll('path').remove();
 
 
         var data = scope.dat()[0];
@@ -41,32 +41,32 @@ app.directive('dthreePlot', function(){
       .y(function(d) {
         // return the Y coordinate where we want to plot this datapoint
         return y(d.y_coord);
-      })
+      });
 
 
     //   // create yAxis
       var xAxis = d3.svg.axis().scale(x).tickSize(-h).tickSubdivide(true);
       // Add the x-axis.
-      graph.append("svg:g")
-            .attr("class", "x axis")
-            .attr("transform", "translate(0," + h + ")")
+      graph.append('svg:g')
+            .attr('class', 'x axis')
+            .attr('transform', 'translate(0,' + h + ')')
             .call(xAxis);
 
 
       // create left yAxis
-      var yAxisLeft = d3.svg.axis().scale(y).ticks(4).orient("left");
+      var yAxisLeft = d3.svg.axis().scale(y).ticks(4).orient('left');
       // Add the y-axis to the left
-      graph.append("svg:g")
-            .attr("class", "y axis")
-            .attr("transform", "translate(-25,0)")
+      graph.append('svg:g')
+            .attr('class', 'y axis')
+            .attr('transform', 'translate(-25,0)')
             .call(yAxisLeft);
 
     //     // Add the line by appending an svg:path element with the data line we created above
     //   // do this AFTER the axes above so that the line is above the tick-lines
-        graph.append("svg:path").attr("d", line(data));
+        graph.append('svg:path').attr('d', line(data));
       }
 
-    }, true)
+    }, true);
 
     // create a simple data array that we'll plot with a line (this array represents only the Y values, X will just be the index location)
 
@@ -91,7 +91,7 @@ app.directive('dthreePlot', function(){
       .y(function(d) {
         // return the Y coordinate where we want to plot this datapoint
         return y(d.y_coord);
-      })
+      });
 
       // // Add an SVG element with the desired dimensions and margin.
       var graph = d3.select(element[0]).append("svg:svg")
@@ -121,7 +121,7 @@ app.directive('dthreePlot', function(){
       // do this AFTER the axes above so that the line is above the tick-lines
         graph.append("svg:path").attr("d", line(data));
     }
-  }
+  };
 });
 
 app.controller('MainCtrl', function($scope) {
@@ -130,12 +130,12 @@ app.controller('MainCtrl', function($scope) {
     age: 12,
     weight: 123,
     creatinine: 1.1
-  }
+  };
   // default gfr calc settings
   $scope.gfr_calc_settings = {
     weight_units: 'kg',
     creatinine_units: 'mg_dL'
-  }
+  };
 
   // $scope.$watch('patient_data', function(newVal, oldVal){
 
@@ -150,11 +150,11 @@ app.controller('MainCtrl', function($scope) {
       $scope.unitConvert_creatinine($scope.patient_data.creatinine,creatinine_units,'umol_L')
     );
     return $scope.patient_data.creatinine_clearance;
-  }
+  };
 
   $scope.cockgroftGault = function(sex_constant, weight, age, creatinine){
     return (sex_constant * weight * (140-age)) / creatinine;
-  }
+  };
 
   $scope.cockcroftGaultGraphing = function(missing_var, weight_units, creatinine_units){
     // get male and female graphs
@@ -188,29 +188,29 @@ app.controller('MainCtrl', function($scope) {
     }
     angular.forEach(data_array, function(data_array){
       array_male.push({x_coord: data_array.x_coord, y_coord: $scope.cockgroftGault(1.23, data_array.weight, data_array.age, data_array.creatinine)});
-      array_female.push({x_coord: data_array.x_coord, y_coord: $scope.cockgroftGault(1.04, data_array.weight, data_array.age, data_array.creatinine)})
+      array_female.push({x_coord: data_array.x_coord, y_coord: $scope.cockgroftGault(1.04, data_array.weight, data_array.age, data_array.creatinine)});
     });
     return [array_male, array_female];
-  }
+  };
 
   // TODO: abstract this into separate UNITS service, and combine these objects together
   $scope.weight_units = ['kg', 'lb'];
   var weightConversion = {
     kg: 1,
     lb: 2.2
-  }
+  };
 
   $scope.creatinine_units = ['mg_dL', 'mg_L', 'umol_L'];
   var creatinineConversion = {
     mg_dL: 1,
     mg_L: 10,
     umol_L: 88.4,
-  }
+  };
   // TODO: abstract unit conversion into separate service, with general function so as to be DRY
   $scope.unitConvert_weight = function(weight, fromUnit, toUnit){
-    return weight * weightConversion[toUnit] / weightConversion[fromUnit]
-  }
+    return weight * weightConversion[toUnit] / weightConversion[fromUnit];
+  };
   $scope.unitConvert_creatinine = function(creatinine, fromUnit, toUnit){
-    return creatinine * creatinineConversion[toUnit] / creatinineConversion[fromUnit]
-  }
+    return creatinine * creatinineConversion[toUnit] / creatinineConversion[fromUnit];
+  };
 });
