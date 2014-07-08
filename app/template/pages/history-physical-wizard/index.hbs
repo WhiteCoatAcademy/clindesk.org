@@ -28,37 +28,37 @@ header_text: A template with intelligent hints
                         <dd><p data-placeholder="Complaint (in the patient's words)"></p></dd>
 
                         <dt>HPI:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>PMHx:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>PSHx:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>PSHx:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>Meds:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>Allergies:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>FHx:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>SHx:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>ROS:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>PE:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
 
                         <dt>A&P:</dt>
-                        <dd data-placeholder=""></dd>
+                        <dd><p data-placeholder=""></p></dd>
                     </dl>
                 </div>
                 <div class="col-md-4">
@@ -86,7 +86,6 @@ header_text: A template with intelligent hints
         {{! This is a hackjob. Fix this up. }}
     window.onload = function() {
         $('dd>p').addClass('editable');
-//            var editor = new MediumEditor('.editable', {placeholder: 'what the shit'});
-        var editor = new MediumEditor('.editable', {placeholder: ''});
+        var editor = new MediumEditor('.editable', {});
     }
 </script>
