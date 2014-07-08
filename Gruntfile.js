@@ -30,7 +30,7 @@ module.exports = function (grunt) {
         // Project settings
         config: config,
 
-        aws: grunt.file.readJSON('aws-keys.json'),
+        aws: grunt.file.exists('aws-keys.json') ? grunt.file.readJSON('aws-keys.json') : {},
         aws_s3: {
             options: {
                 accessKeyId: '<%= aws.AWSAccessKeyId %>', // Use the variables
