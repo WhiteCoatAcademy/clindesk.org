@@ -14,11 +14,7 @@ header_text: A template with intelligent hints
 <!-- endbuild -->
 
 <style>
-    dt { padding-top: 20px; }
-
-    dd { margin-left: 20px;
-        border: 1px dotted #CCC;
-    }
+    dt, dd { padding-top: 20px; }
 </style>
 
 <!-- outline: 0px solid transparent; //-->
@@ -27,10 +23,9 @@ header_text: A template with intelligent hints
         <div class="panel-body">
             <div class="row">
                 <div class="col-md-8">
-                    <!-- TODO: add back  class="dl-horizontal" if i can fix it //-->
-                    <dl style="font-size: 16px;">
+                    <dl class="dl-horizontal" style="font-size: 16px;">
                         <dt>CC:</dt>
-                        <dd data-placeholder="Complaint (in the patient's words)"></dd>
+                        <dd><p data-placeholder="Complaint (in the patient's words)"></p></dd>
 
                         <dt>HPI:</dt>
                         <dd data-placeholder=""></dd>
@@ -90,7 +85,7 @@ header_text: A template with intelligent hints
 <script>
         {{! This is a hackjob. Fix this up. }}
     window.onload = function() {
-        $('dd').addClass('editable');
+        $('dd>p').addClass('editable');
 //            var editor = new MediumEditor('.editable', {placeholder: 'what the shit'});
         var editor = new MediumEditor('.editable', {placeholder: ''});
     }
