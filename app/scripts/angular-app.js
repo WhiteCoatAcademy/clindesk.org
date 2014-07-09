@@ -160,28 +160,29 @@ app.controller('MainCtrl', function($scope) {
 
     $scope.cockcroftGaultGraphing = function(missing_var, weight_units, creatinine_units){
         // get male and female graphs
-        var y_array_male = [];
-        var y_array_female = [];
+        // var y_array_male = [];
+        // var y_array_female = [];
         var weight = $scope.unitConvert_weight($scope.patient_data.weight, weight_units, 'kg');
         var age = $scope.patient_data.age;
         var creatinine = $scope.unitConvert_creatinine($scope.patient_data.creatinine,creatinine_units,'umol_L');
         var array_female = [];
         var array_male = [];
         var data_array = [];
-        var x_array = [];
+        // var x_array = [];
+        var i;
         switch (missing_var) {
             case 'weight':
-                for(var i=1; i<200; i+=5){
+                for(i=1; i<200; i+=5){
                     data_array.push({x_coord: i, weight: i, age: age, creatinine: creatinine});
                 }
                 break;
             case 'age':
-                for(var i=20; i<100; i+=5){
+                for(i=20; i<100; i+=5){
                     data_array.push({x_coord: i, weight: weight, age: i, creatinine: creatinine});
                 }
                 break;
             case 'creatinine':
-                for(var i=0.1; i<10; i+=0.2){
+                for(i=0.1; i<10; i+=0.2){
                     data_array.push({x_coord: i, weight: weight, age: age, creatinine: i});
                 }
                 break;
