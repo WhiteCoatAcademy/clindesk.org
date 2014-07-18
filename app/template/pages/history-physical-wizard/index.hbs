@@ -6,15 +6,9 @@ header_title: H&P Wizard
 header_text: A template with intelligent hints
 ---
 
-<!-- build:js /styles/medium.css -->
-<!-- bower:css -->
-<link rel="stylesheet" href="../bower_components/medium-editor/dist/css/medium-editor.css">
-<link rel="stylesheet" href="../bower_components/medium-editor/dist/css/themes/default.css">
-<!-- endbower -->
-<!-- endbuild -->
-
 <style>
-    dt, dd { padding-top: 20px; }
+    dt { padding-top: 20px; }
+    dd { padding-top: 12px; }
 </style>
 
 <!-- outline: 0px solid transparent; //-->
@@ -25,7 +19,9 @@ header_text: A template with intelligent hints
                 <div class="col-md-8">
                     <dl class="dl-horizontal" style="font-size: 16px;">
                         <dt>CC:</dt>
-                        <dd><p data-placeholder="Complaint (in the patient's words)"></p></dd>
+                        <dd>
+                            <textarea class="form-control" placeholder="Complaint (in the patient's words)" rows="2"></textarea>
+                        </dd>
 
                         <dt>HPI:</dt>
                         <dd><p data-placeholder=""></p></dd>
@@ -76,16 +72,10 @@ header_text: A template with intelligent hints
     </div>
 </div>
 
-<!-- build:js /scripts/medium.js -->
-<!-- bower:js -->
-<script src="../bower_components/medium-editor/dist/js/medium-editor.js"></script>
-<!-- endbower -->
-<!-- endbuild -->
-
 <script>
         {{! This is a hackjob. Fix this up. }}
     window.onload = function() {
         $('dd>p').addClass('editable');
-        var editor = new MediumEditor('.editable', {});
+
     }
 </script>
