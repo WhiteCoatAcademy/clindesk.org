@@ -1,4 +1,4 @@
-# ClinDesk [![Build Status](https://travis-ci.org/WhiteCoatAcademy/clindesk.org.svg?branch=master)](https://travis-ci.org/WhiteCoatAcademy/clindesk.org) [![Dependency Status](https://gemnasium.com/WhiteCoatAcademy/clindesk.org.png)](https://gemnasium.com/WhiteCoatAcademy/clindesk.org)
+# ClinDesk [![Build Status](https://travis-ci.org/WhiteCoatAcademy/clindesk.org.svg?branch=master)](https://travis-ci.org/WhiteCoatAcademy/clindesk.org) [![Dependency Status](https://david-dm.org/WhiteCoatAcademy/clindesk.org/status.svg?theme=shields.io)](https://david-dm.org/WhiteCoatAcademy/clindesk.org) [![Dev Dependency Status](https://david-dm.org/WhiteCoatAcademy/clindesk.org/dev-status.svg?theme=shields.io)](https://david-dm.org/WhiteCoatAcademy/clindesk.org#info=devDependencies)
 
 ## Getting started
 1. Clone this repo: `git clone git@github.com:WhiteCoatAcademy/clindesk.org.git`
