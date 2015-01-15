@@ -29,4 +29,4 @@ Production code comes from the "prod" branch of the repository. You need to swit
 
 Some shared libraries are available via an Apache License v2.0 (e.g. bootstrap)
 
-All other work is Copyright 2012-2014, ClinDesk, Inc. All rights reserved.
+All other work is Copyright 2012-2015, ClinDesk, Inc. All rights reserved.
